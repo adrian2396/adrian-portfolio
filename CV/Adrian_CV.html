@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Currículum de Adrián Vizcaíno Rodríguez. Arquitectura de sistemas embebidos y desarrollo de firmware: pruebas, producción y mantenimiento.">
+  <title>Adrián Vizcaíno Rodríguez — CV</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --page-width: 210mm;
+      --page-height: 297mm;
+      --margin-x: 10.5mm;
+      --margin-y: 10.16mm;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #ececea; color: #000; font-family: Arial, Helvetica, sans-serif; }
+    [hidden] { display: none !important; }
+
+    /* Los controles quedan fuera del documento y nunca se imprimen. */
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: #fafaf9;
+      border-bottom: 1px solid #d5d5d2;
+      padding: 14px 24px;
+    }
+    .toolbar-inner {
+      max-width: var(--page-width);
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .document-label { margin: 0 0 5px; font-size: 14px; font-weight: 600; }
+    .print-help { margin: 0; max-width: 490px; color: #62625e; font-size: 12px; line-height: 1.5; }
+    .print-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      flex-shrink: 0;
+      min-height: 42px;
+      padding: 10px 16px;
+      border: 1px solid #20201e;
+      border-radius: 5px;
+      background: #20201e;
+      color: #fff;
+      font: 600 13px Arial, Helvetica, sans-serif;
+      cursor: pointer;
+    }
+    .print-button:hover { background: #3c3c38; }
+    .print-button:focus-visible, a:focus-visible { outline: 2px solid #3569b0; outline-offset: 4px; }
+    .print-button svg { width: 16px; height: 16px; }
+    .noscript { text-align: center; padding: 12px; font-size: 13px; }
+    .document { padding: 28px 20px 44px; }
+    .page-frame { width: var(--page-width); margin: 0 auto 24px; }
+    .page-frame:last-child { margin-bottom: 0; }
+    .paper {
+      width: var(--page-width);
+      height: var(--page-height);
+      padding: var(--margin-y) var(--margin-x);
+      background: #fff;
+      box-shadow: 0 2px 12px #00000012;
+      transform-origin: top left;
+    }
+    .page-body { height: 100%; display: flow-root; }
+    .cv { font-size: 10pt; line-height: 12pt; }
+    .cv h1 { margin: 0 0 10pt; font-size: 24.88pt; line-height: 30pt; text-align: center; font-weight: 400; }
+    .contacts { display: flex; align-items: center; justify-content: space-around; gap: 8pt; margin-bottom: 12pt; }
+    .contacts a { display: inline-flex; align-items: center; gap: 3pt; white-space: nowrap; }
+    .contacts svg { width: 10pt; height: 10pt; flex: none; fill: currentColor; }
+    .cv a { color: inherit; text-decoration: none; }
+    .cv a:hover { text-decoration: underline; }
+    .summary { margin: 0 0 8pt; font-size: 9pt; line-height: 11pt; }
+    .cv h2 {
+      margin: 2pt 0 2pt;
+      padding-bottom: 2pt;
+      border-bottom: .4pt solid #000;
+      font-size: 14.4pt;
+      line-height: 17pt;
+      font-weight: 700;
+      break-after: avoid;
+    }
+    .cv h3 { margin: 6pt 0 6pt; font-size: 10pt; line-height: 12pt; font-weight: 400; break-after: avoid; }
+    .cv h2 + h3 { margin-top: 0; }
+    .cv strong { font-weight: 700; }
+    .cv ul { margin: 0; padding: 0 0 0 1em; list-style-type: disc; }
+    .cv li { margin: 0; padding: 0; break-inside: avoid; }
+    .cv li + li { margin-top: 2pt; }
+    .cv li::marker { font-size: 8pt; }
+    .education { margin: 0 0 10pt; break-inside: avoid; }
+    .education:last-child { margin-bottom: 0; }
+    .education p { margin: 0; }
+    .education h3 { margin: 0; }
+    .cv .project-title { margin: 4pt 0 4pt; font-weight: 700; }
+    .cv .project-list li + li { margin-top: 1pt; }
+
+    /* Sin JavaScript, el contenido sigue siendo legible e imprimible. */
+    #cv-source { width: var(--page-width); min-height: var(--page-height); height: auto; margin: auto; }
+
+    @media screen and (max-width: 600px) {
+      .toolbar { padding: 12px 16px; }
+      .toolbar-inner { flex-wrap: wrap; gap: 10px; }
+      .print-button { width: 100%; }
+      .document { padding: 16px 10px 24px; }
+      .document-label { font-size: 13px; }
+    }
+
+    @page { size: A4 portrait; margin: 0; }
+    @media print {
+      html, body { margin: 0 !important; padding: 0 !important; background: #fff; }
+      .toolbar, .noscript { display: none !important; }
+      .document { margin: 0; padding: 0; }
+      .page-frame { width: var(--page-width) !important; height: auto !important; margin: 0; }
+      .paper { transform: none !important; box-shadow: none; break-inside: avoid; }
+      .page-frame + .page-frame { break-before: page; }
+      .cv a { text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="toolbar">
+    <div class="toolbar-inner">
+      <div>
+        <p class="document-label">Currículum · <span id="page-count">A4</span></p>
+        <p class="print-help" id="print-help">Al imprimir, elige «Guardar como PDF», tamaño A4, escala 100 % y sin encabezados ni pies de página.</p>
+      </div>
+      <button class="print-button" id="print-button" type="button" aria-describedby="print-help" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M5 16v5h14v-5"/></svg>
+        Guardar como PDF
+      </button>
+    </div>
+  </header>
+  <noscript><p class="noscript">Puedes guardar el currículum como PDF desde Archivo → Imprimir en tu navegador.</p></noscript>
+
+  <main class="document" aria-label="Currículum de Adrián Vizcaíno Rodríguez">
+    <!--
+      CONTENIDO EDITABLE
+      Este bloque es la única fuente del currículum. Modifica aquí los textos,
+      añade puestos con h3 + ul o secciones con h2. Las páginas A4 se calculan
+      automáticamente al abrir el archivo. No necesita servidor ni Internet.
+    -->
+    <article class="paper cv" id="cv-source">
+      <header>
+        <h1>Adrián Vizcaíno Rodríguez</h1>
+        <div class="contacts">
+          <a href="mailto:v.r.adrian96@gmail.com">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18a2 2 0 0 1 2 2v1L12 14 1 7V6a2 2 0 0 1 2-2Zm-2 5.4 10.45 6.65a1 1 0 0 0 1.1 0L23 9.4V18a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z"/></svg>
+            v.r.adrian96@gmail.com
+          </a>
+          <a href="tel:+34630351345">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 1h10a2 2 0 0 1 2 2v18a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2Zm5 18a1.25 1.25 0 1 0 0 2.5A1.25 1.25 0 0 0 12 19Z"/></svg>
+            +34 630 351 345
+          </a>
+          <a href="https://www.linkedin.com/in/adrianvizcaino/">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 1H3a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2ZM8 19H5V9h3ZM6.5 7.6a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6ZM20 19h-3v-5c0-1.5-.5-2-1.5-2S14 12.6 14 14v5h-3V9h3v1.4c.6-.9 1.5-1.6 2.9-1.6 2.3 0 3.1 1.5 3.1 4.1Z"/></svg>
+            linkedin.com/in/adrianvizcaino
+          </a>
+        </div>
+      </header>
+
+      <p class="summary">Arquitecto de sistemas embebidos e ingeniero de firmware con experiencia desde el diseño de arquitectura hasta las pruebas, la puesta en producción y el mantenimiento. Desarrollo en C/C++, RTOS y Linux embebido, con foco en modularidad, testabilidad y fiabilidad. Experiencia en cuatro proyectos IoT / Edge a lo largo de todo su ciclo de vida, tres de ellos como único responsable técnico del firmware.</p>
+
+      <h2>EXPERIENCIA</h2>
+      <h3><strong>PRINCIPAL EMBEDDED / IoT ARCHITECT, ORBIS</strong> <strong>Febrero 2025 - Actualidad</strong></h3>
+      <ul>
+        <li><strong>Arquitectura, desarrollo, pruebas, puesta en producción y mantenimiento de cuatro proyectos IoT / Edge</strong>, como único responsable técnico del firmware en tres de ellos.</li>
+        <li><strong>Liderazgo técnico y toma de decisiones</strong> sobre plataformas HW/SW, interfaces y organización del firmware; diseño de arquitecturas modulares y desacopladas orientadas a testabilidad, mantenibilidad y reutilización entre productos.</li>
+        <li><strong>Desarrollo y portabilidad de firmware en C y C++ moderno para ESP32 y STM32</strong>, desde drivers y capas de abstracción hasta servicios y lógica de aplicación, con gestión de memoria, concurrencia y latencias.</li>
+        <li><strong>Definición y ejecución de pruebas de firmware</strong> y validación de la integración hardware-software para la puesta en producción de los productos.</li>
+        <li><strong>Puesta en producción y mantenimiento del firmware</strong>, con diagnóstico y resolución de incidencias de comunicaciones, concurrencia, estabilidad y uso de recursos.</li>
+        <li><strong>Integración de conectividad y pasarelas de datos</strong> entre dispositivos y plataformas externas: Wi-Fi, Ethernet, GSM, BLE, Zigbee, Matter y LoRa; MQTT, HTTP y Modbus; interfaces UART, I2C y SPI.</li>
+        <li><strong>Seguridad de dispositivos conectados</strong>: trabajo en secure boot, firmado de firmware, cifrado de flash y protección de credenciales; participación en requisitos de ciberseguridad asociados a RED.</li>
+        <li><strong>Desarrollo de frameworks internos e integración de librerías externas</strong> para dispositivos, eventos, comunicaciones y configuración; soporte técnico transversal a varios equipos y productos.</li>
+      </ul>
+
+      <h3><strong>INGENIERO DE SOFTWARE EMBEBIDO, NERTUS</strong> - Madrid <strong>Febrero 2024 - Enero 2025</strong></h3>
+      <ul>
+        <li>Desarrollo de software embebido en <strong>C/C++ y Ada</strong> para sistemas industriales, incluyendo componentes de bajo nivel e integración en sistemas distribuidos.</li>
+        <li>Implementación de comunicaciones <strong>TCP/IP, UDP y WebSockets</strong> para servicios orientados a conexión y flujos de datos en tiempo real.</li>
+        <li>Desarrollo de herramientas de <strong>pruebas, simulación y automatización en Python</strong>.</li>
+        <li>Integración en pipelines de <strong>CI/CD</strong> y entornos de desarrollo con <strong>Docker</strong>.</li>
+      </ul>
+
+      <h3><strong>INGENIERO DE FIRMWARE, WIYO TECHNOLOGIES</strong> - Madrid <strong>Octubre 2022 - Febrero 2024</strong></h3>
+      <ul>
+        <li>Desarrollo de firmware en <strong>C/C++ para ESP32 y Linux embebido</strong>; diseño de arquitecturas modulares e integración de librerías y capas de abstracción.</li>
+        <li>Trabajo con <strong>FreeRTOS, ESP-IDF, OpenWrt, Debian y Yocto Project</strong>.</li>
+        <li>Desarrollo y depuración de drivers e interfaces <strong>UART, I2C, SPI y GPIO</strong>, e integración de <strong>Wi-Fi, MQTT y TCP/IP</strong>.</li>
+        <li><strong>Validación funcional y análisis del comportamiento en campo</strong>, con depuración de incidencias de conectividad.</li>
+      </ul>
+
+      <h3><strong>INGENIERO ELECTRÓNICO / FIRMWARE EN I+D, Universidad de Oviedo (IG10)</strong> <strong>Mayo 2020 - Septiembre 2022</strong></h3>
+      <ul>
+        <li>Desarrollo de proyectos de I+D y transferencia tecnológica desde la <strong>definición inicial hasta la validación experimental</strong>, integrando electrónica, firmware y prototipado.</li>
+        <li>Diseño de <strong>esquemáticos y PCB con Altium Designer</strong>, selección de componentes y validación eléctrica.</li>
+        <li>Desarrollo de firmware en <strong>C++ para ESP32</strong>, con control de periféricos, comunicaciones y gestión de tareas.</li>
+        <li><strong>Integración hardware-firmware</strong>, puesta a punto de prototipos y pruebas de laboratorio con instrumentación y caracterización de sistemas.</li>
+      </ul>
+
+      <h2>HABILIDADES TÉCNICAS</h2>
+      <ul>
+        <li><strong>Arquitectura y ciclo de producto</strong>: definición HW/SW, modularidad, interfaces, reutilización, portabilidad, escalabilidad, testabilidad, puesta en producción y mantenimiento.</li>
+        <li><strong>Lenguajes</strong>: C, C++ moderno, Python, Bash, Ada.</li>
+        <li><strong>Plataformas y RTOS</strong>: ESP32, STM32, Raspberry Pi; arquitecturas ARM y RISC-V; FreeRTOS, ESP-IDF.</li>
+        <li><strong>Linux embebido</strong>: OpenWrt, Debian, Yocto Project.</li>
+        <li><strong>Conectividad IoT</strong>: Wi-Fi, Ethernet, GSM, BLE / NimBLE, Zigbee, Matter, LoRa, integración de stacks y pasarelas.</li>
+        <li><strong>Protocolos e interfaces</strong>: TCP/IP, UDP, WebSockets, MQTT, HTTP, Modbus, UART, I2C, SPI, GPIO.</li>
+        <li><strong>Pruebas y herramientas</strong>: pruebas de firmware, validación funcional, simulación, automatización, depuración, Git, Docker, CI/CD.</li>
+        <li><strong>Seguridad IoT</strong>: secure boot, firmado de firmware, cifrado de flash, protección de credenciales, hardening, requisitos RED.</li>
+        <li><strong>Diseño electrónico</strong>: esquemáticos y PCB, Altium Designer, KiCad, selección de componentes, validación eléctrica.</li>
+        <li><strong>Idiomas</strong>: Español (nativo), Inglés (B2), Italiano (A1).</li>
+      </ul>
+
+      <h2>EDUCACIÓN</h2>
+      <div class="education">
+        <h3><strong>Grado en Ingeniería Electrónica Industrial y Automática</strong> <strong>2015 - 2021</strong></h3>
+        <p>Universidad de Oviedo - Especialización en Control</p>
+        <p>Matrícula de Honor en TFG</p>
+      </div>
+      <div class="education">
+        <h3><strong>Programa Erasmus+</strong> <strong>2018 - 2019</strong></h3>
+        <p>Politécnico di Milano - Máster en Automatización y Control</p>
+      </div>
+
+      <h2>PROYECTOS ACADÉMICOS</h2>
+      <h3 class="project-title"><a href="https://drive.google.com/drive/folders/1nwX9xTe4u_fL9MrErMUaQaZuk0NaoRpc?usp=drive_link">Sistema automatizado para tratamientos fotodinámicos</a></h3>
+      <ul class="project-list">
+        <li>Sistema portátil automatizado: diseño hardware, firmware e interfaz de usuario</li>
+        <li>Publicación científica: <em>Biosensors and Bioelectronics: X</em></li>
+      </ul>
+      <h3 class="project-title">Prototipo de instrumentación optoelectrónica para análisis biomédico</h3>
+      <ul class="project-list">
+        <li>Desarrollo de dispositivo experimental para análisis espectral en muestras de sangre</li>
+        <li>Diseño electrónico, firmware y validación experimental</li>
+      </ul>
+    </article>
+    <!-- Vista paginada: se genera desde el contenido anterior, sin duplicarlo a mano. -->
+    <div id="pages"></div>
+  </main>
+
+  <script>
+    (() => {
+      'use strict';
+      const source = document.getElementById('cv-source');
+      const pages = document.getElementById('pages');
+      const button = document.getElementById('print-button');
+      const counter = document.getElementById('page-count');
+
+      // Un título viaja con el primer párrafo o viñeta que le sigue.
+      function contentGroups() {
+        const groups = [];
+        let headings = [];
+        Array.from(source.children).forEach((element, index) => {
+          if (/^H[23]$/.test(element.tagName)) {
+            headings.push({ element });
+          } else if (element.tagName === 'UL') {
+            Array.from(element.children).forEach(item => {
+              groups.push([...headings, { element: item, list: element, listId: String(index) }]);
+              headings = [];
+            });
+          } else {
+            groups.push([...headings, { element }]);
+            headings = [];
+          }
+        });
+        if (headings.length) groups.push(headings);
+        return groups;
+      }
+
+      function newPage() {
+        const frame = document.createElement('div');
+        frame.className = 'page-frame';
+        const paper = document.createElement('article');
+        paper.className = 'paper cv';
+        paper.setAttribute('aria-label', `Página ${pages.children.length + 1}`);
+        const body = document.createElement('div');
+        body.className = 'page-body';
+        paper.append(body);
+        frame.append(paper);
+        pages.append(frame);
+        return body;
+      }
+
+      function appendGroup(body, group) {
+        const inserted = [];
+        for (const unit of group) {
+          const clone = unit.element.cloneNode(true);
+          if (unit.list) {
+            let list = body.lastElementChild;
+            if (!list || list.dataset.listId !== unit.listId) {
+              list = unit.list.cloneNode(false);
+              list.dataset.listId = unit.listId;
+              body.append(list);
+              inserted.push(list);
+            }
+            list.append(clone);
+          } else {
+            body.append(clone);
+          }
+          inserted.push(clone);
+        }
+        return () => inserted.forEach(element => element.remove());
+      }
+
+      function fitPreview() {
+        const available = pages.clientWidth;
+        for (const frame of pages.children) {
+          const paper = frame.firstElementChild;
+          const scale = Math.min(1, available / paper.offsetWidth);
+          paper.style.transform = `scale(${scale})`;
+          frame.style.width = `${paper.offsetWidth * scale}px`;
+          frame.style.height = `${paper.offsetHeight * scale}px`;
+        }
+      }
+
+      function paginate() {
+        pages.replaceChildren();
+        let body = newPage();
+        for (const group of contentGroups()) {
+          const hadContent = body.children.length > 0;
+          const undo = appendGroup(body, group);
+          if (body.scrollHeight > body.clientHeight && hadContent) {
+            undo();
+            body = newPage();
+            appendGroup(body, group);
+          }
+          // Un bloque excepcionalmente largo sigue visible, sin recortes.
+          if (body.scrollHeight > body.clientHeight) {
+            body.parentElement.style.height = 'auto';
+            body.parentElement.style.minHeight = 'var(--page-height)';
+          }
+        }
+        source.hidden = true;
+        const total = pages.children.length;
+        counter.textContent = `${total} ${total === 1 ? 'página' : 'páginas'} · A4`;
+        fitPreview();
+      }
+
+      const ready = (document.fonts ? document.fonts.ready : Promise.resolve()).then(paginate);
+      button.addEventListener('click', async () => {
+        await ready;
+        window.print();
+      });
+      button.hidden = false;
+      window.addEventListener('resize', fitPreview);
+    })();
+  </script>
+</body>
+</html>

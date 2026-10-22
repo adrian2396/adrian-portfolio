@@ -1,0 +1,36 @@
+PORTFOLIO DE ADRIÁN VIZCAÍNO
+
+Abrir index.html con doble clic. No requiere instalación ni servidor.
+Mantener index.html, styles.css, portfolio.js y la carpeta assets juntos.
+La ilustración y las fuentes se cargan desde assets: funciona sin conexión.
+El acceso al currículum utiliza ../CV/Adrian_CV.html.
+
+CONTENIDO
+index.html: presentación, experiencia, tecnología, formación y contacto.
+styles.css: diseño y adaptación a móvil.
+portfolio.js: datos de los tres productos y controles interactivos.
+
+FOTOS Y VÍDEOS
+Guardar el material en assets/ y añadir sus rutas en el objeto products
+al principio de portfolio.js. Cada producto admite varias imágenes y un vídeo.
+Ejemplos de configuración en los comentarios del archivo.
+Los rótulos provisionales desaparecen al añadir imágenes o vídeo.
+
+FUENTES
+Información profesional: CV del proyecto y aclaraciones de Adrián.
+ANC + / ASTRO NOVA CITY +:
+https://orbis.es/wp-content/uploads/fichatecnica/FT_ASTRO_NOVA_CITY_PLUS.pdf
+ASTRO LUM (modelo Wi-Fi / Bluetooth):
+https://orbis.es/wp-content/uploads/fichatecnica/FT_ASTRO_LUM.pdf
+XEO LUM +:
+https://orbis.es/noticias/energia-inteligente/directiva-eed-la-eficiencia-energetica-entra-en-una-nueva-etapa/
+
+La variante ASTRO LUM gateway de XEO LUM + mediante Ethernet procede
+de la descripción de Adrián. La ficha pública enlazada documenta el modelo
+Wi-Fi / Bluetooth. Las imágenes provisionales son composiciones tipográficas,
+no representaciones de los dispositivos.
+
+DISEÑO
+Paleta carbón, hueso y naranja. Tipografías locales Geist e IBM Plex Mono.
+Licencias de las fuentes en assets/fonts/.
+hero-circuit.svg es una ilustración conceptual propia de la portada.

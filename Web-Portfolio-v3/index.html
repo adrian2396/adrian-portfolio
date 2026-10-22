@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="es" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#08090c">
+  <meta name="description" content="Adrián Vizcaíno. Arquitecto de sistemas embebidos e ingeniero de firmware: de la arquitectura a las pruebas, la producción y el mantenimiento.">
+  <title>Adrián Vizcaíno — Embedded & Firmware</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2308090c'/%3E%3Cpath d='M3 22h5V10h6v12h5V10h5v12h5' fill='none' stroke='%23ffd23f' stroke-width='2.4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.remove('no-js'); document.documentElement.classList.add('js');</script>
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <div class="progress" aria-hidden="true"><span data-progress></span></div>
+
+  <header class="topbar" data-topbar>
+    <div class="topbar-in wrap">
+      <a class="brand" href="#inicio" aria-label="Adrián Vizcaíno, inicio">
+        <span class="brand-mark" aria-hidden="true">AV</span>
+        <span class="brand-text">Adrián Vizcaíno<small>Embedded · Firmware</small></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Principal">
+        <a href="#proyectos" data-nav>Proyectos</a>
+        <a href="#stack" data-nav>Stack</a>
+        <a href="#trayectoria" data-nav>Trayectoria</a>
+        <a href="#investigacion" data-nav>Investigación</a>
+        <a href="#contacto" data-nav>Contacto</a>
+        <span class="nav-ind" aria-hidden="true"></span>
+      </nav>
+      <span class="addr" aria-hidden="true" title="Posición de lectura">ADDR <b>0x<span data-addr>0000</span></b></span>
+      <a class="btn btn-line btn-cv" href="../CV/Adrian_CV.html" target="_blank" rel="noopener">Ver CV <span aria-hidden="true">↗</span></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav"><span class="menu-label">Menú</span><span class="menu-icon" aria-hidden="true"><i></i><i></i></span></button>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ═════════ HERO · ANALIZADOR LÓGICO ═════════ -->
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="wrap hero-head">
+        <div class="capture-bar" aria-hidden="true">
+          <span class="rec"><i></i>Capturando</span>
+          <span>UART 115200 8N1</span>
+          <span class="hide-sm">I²C 100 kHz</span>
+          <span class="hide-sm">Disparo · bit de inicio ↓</span>
+          <span class="capture-hint">Pasa el cursor por la captura para medir</span>
+          <span class="capture-time" data-clock>t = 0,000 s</span>
+        </div>
+        <h1 class="hero-title" id="hero-title">
+          <span class="sr-only">Adrián Vizcaíno</span>
+          <span class="line" aria-hidden="true" data-decode>Adrián</span>
+          <span class="line line-2" aria-hidden="true" data-decode>Vizcaíno</span>
+        </h1>
+      </div>
+
+      <div class="analyzer" data-analyzer>
+        <canvas aria-hidden="true"></canvas>
+        <p class="sr-only">Animación de un analizador lógico: mi nombre se transmite por UART mientras un bus I²C y una salida PWM trabajan en paralelo.</p>
+      </div>
+
+      <div class="wrap hero-foot">
+        <p class="hero-lead" data-reveal>Arquitecto de sistemas embebidos e ingeniero de firmware. Diseño el software que hace funcionar el hardware: de la arquitectura a las pruebas, la producción y el mantenimiento.</p>
+        <div class="hero-meta" data-reveal>
+          <p class="now"><i aria-hidden="true"></i>Ahora: Principal Embedded / IoT Architect en ORBIS</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#proyectos" data-magnetic><span>Ver proyectos</span> <span aria-hidden="true">↓</span></a>
+            <a class="btn btn-line" href="#trayectoria">Trayectoria</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════ PERFIL · HOJA DE DATOS ═════════ -->
+    <section class="intro" id="perfil" aria-labelledby="perfil-title">
+      <div class="wrap">
+        <p class="eyebrow">Perfil</p>
+        <h2 class="sr-only" id="perfil-title">Perfil</h2>
+        <p class="manifesto" data-scrub-words>Escribo el software que hace funcionar el <em>hardware</em>. Arquitecturas modulares, firmware fácil de probar y productos que llegan a <em>producción</em> preparados para mantenerse.</p>
+
+        <div class="datasheet" data-reveal>
+          <div class="ds-head"><span>Características principales</span><span>AV-2026 · Hoja de datos · Rev. C</span></div>
+          <table>
+            <thead>
+              <tr><th scope="col">Parámetro</th><th scope="col">Valor</th><th scope="col">Unidad</th><th scope="col">Condiciones</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Experiencia en electrónica y firmware</th><td class="val"><span data-count="6">6</span>+</td><td class="unit">años</td><td class="cond">Desde mayo de 2020</td></tr>
+              <tr><th scope="row">Proyectos IoT / Edge</th><td class="val"><span data-count="4">4</span></td><td class="unit">proyectos</td><td class="cond">ORBIS, ciclo de vida completo</td></tr>
+              <tr><th scope="row">Firmware como único responsable técnico</th><td class="val"><span data-count="3">3</span></td><td class="unit">proyectos</td><td class="cond">De esos cuatro proyectos</td></tr>
+              <tr><th scope="row">Lenguajes de desarrollo</th><td class="val"><span data-count="5">5</span></td><td class="unit">lenguajes</td><td class="cond">C · C++ moderno · Ada · Python · Bash</td></tr>
+              <tr><th scope="row">Publicaciones científicas</th><td class="val"><span data-count="1">1</span></td><td class="unit">artículo</td><td class="cond"><i>Biosensors and Bioelectronics: X</i></td></tr>
+              <tr><th scope="row">Idiomas</th><td class="val"><span data-count="3">3</span></td><td class="unit">idiomas</td><td class="cond">ES nativo · EN B2 · IT A1</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════ TECNOLOGÍAS EN MOVIMIENTO ═════════ -->
+    <div class="marquee" aria-label="Tecnologías con las que trabajo" role="region" data-marquee>
+      <div class="marquee-row marquee-big" data-dir="1">
+        <ul class="marquee-track">
+          <li>C</li><li>C++ moderno</li><li>Ada</li><li>Python</li><li>FreeRTOS</li><li>ESP-IDF</li><li>Linux embebido</li><li>Yocto Project</li><li>OpenWrt</li><li>Debian</li><li>Altium Designer</li><li>KiCad</li><li>Docker</li><li>CI/CD</li>
+        </ul>
+      </div>
+      <div class="marquee-row marquee-chips" data-dir="-1">
+        <ul class="marquee-track">
+          <li>ESP32</li><li>STM32</li><li>ARM</li><li>RISC-V</li><li>Wi-Fi</li><li>Ethernet</li><li>BLE / NimBLE</li><li>Zigbee</li><li>Matter</li><li>LoRa</li><li>GSM</li><li>MQTT</li><li>Modbus</li><li>TCP/IP</li><li>UDP</li><li>WebSockets</li><li>UART</li><li>I²C</li><li>SPI</li><li>GPIO</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═════════ PROYECTOS · RECORRIDO HORIZONTAL ═════════ -->
+    <section class="work" id="proyectos" aria-labelledby="work-title">
+      <div class="work-pin" data-hscroll>
+        <div class="work-sticky">
+          <div class="work-hud wrap" aria-hidden="true">
+            <span>Trabajo seleccionado</span>
+            <span class="hud-bar"><i data-hbar></i></span>
+            <span class="hud-count"><b data-hcount>00</b> / 03</span>
+          </div>
+          <div class="work-track" data-htrack>
+
+            <header class="work-intro">
+              <p class="eyebrow">Proyectos · ORBIS, 2025 — hoy</p>
+              <h2 class="display" id="work-title" data-split>Firmware en productos reales.</h2>
+              <p class="work-lead">Tres productos de ORBIS en los que he asumido el liderazgo técnico y la responsabilidad del firmware.</p>
+              <p class="work-hint" aria-hidden="true"><span>Sigue bajando</span><i></i></p>
+            </header>
+
+            <article class="product" data-ch="2" aria-labelledby="anc-title">
+              <div class="product-copy">
+                <p class="product-type">Interruptor horario astronómico</p>
+                <h3 class="product-name" id="anc-title">ANC <span>+</span></h3>
+                <p class="product-full">Astro Nova City +</p>
+                <p class="product-sum">Interruptor horario astronómico de dos circuitos para control de alumbrado. Programación mediante Wi-Fi y Bluetooth e integración con ORBIS IoT.</p>
+                <ul class="chips"><li>Programación astronómica</li><li>Wi-Fi + Bluetooth</li><li>ORBIS IoT</li></ul>
+                <div class="product-foot">
+                  <p class="role"><span>Mi papel</span>Liderazgo técnico · Firmware</p>
+                  <a class="link" href="https://orbis.es/wp-content/uploads/fichatecnica/FT_ASTRO_NOVA_CITY_PLUS.pdf" target="_blank" rel="noopener">Ficha técnica <span aria-hidden="true">↗</span></a>
+                </div>
+              </div>
+              <figure class="product-media">
+                <div class="viz" data-viz="anc"><canvas aria-hidden="true"></canvas></div>
+                <div class="media" data-media="anc" hidden></div>
+                <figcaption>Visualización conceptual, no es el dispositivo. Orto y ocaso calculados para Madrid. Programa C2 de ejemplo.</figcaption>
+              </figure>
+            </article>
+
+            <article class="product" data-ch="3" aria-labelledby="astro-title">
+              <div class="product-copy">
+                <p class="product-type">Control de alumbrado</p>
+                <h3 class="product-name" id="astro-title">ASTRO LUM</h3>
+                <p class="product-full">Programación, contactor y medida</p>
+                <p class="product-sum">Programación astronómica, contactor y medida de energía en un mismo equipo. He trabajado en la variante independiente con Wi-Fi y Bluetooth y en la variante gateway de XEO LUM + mediante Ethernet.</p>
+                <ul class="chips"><li>Independiente · Wi-Fi + Bluetooth</li><li>Gateway · Ethernet</li><li>Medida de energía</li></ul>
+                <div class="product-foot">
+                  <p class="role"><span>Mi papel</span>Liderazgo técnico · Firmware</p>
+                  <a class="link" href="https://orbis.es/wp-content/uploads/fichatecnica/FT_ASTRO_LUM.pdf" target="_blank" rel="noopener">Ficha Wi-Fi / Bluetooth <span aria-hidden="true">↗</span></a>
+                </div>
+              </div>
+              <figure class="product-media">
+                <div class="viz" data-viz="astro"><canvas aria-hidden="true"></canvas></div>
+                <div class="media" data-media="astro" hidden></div>
+                <figcaption>Visualización conceptual, no es el dispositivo. Tensión y corriente de red de 50 Hz con valores simulados.</figcaption>
+              </figure>
+            </article>
+
+            <article class="product" data-ch="4" aria-labelledby="xeo-title">
+              <div class="product-copy">
+                <p class="product-type">Telegestión de alumbrado</p>
+                <h3 class="product-name" id="xeo-title">XEO LUM <span>+</span></h3>
+                <p class="product-full">Módulo con pantalla TFT</p>
+                <p class="product-sum">Módulo de telegestión para instalaciones de alumbrado, con pantalla TFT y conexión a plataformas de supervisión. Arquitectura y desarrollo de firmware bajo mi responsabilidad técnica.</p>
+                <ul class="chips"><li>Telegestión</li><li>Interfaz TFT</li><li>Plataformas de supervisión</li></ul>
+                <div class="product-foot">
+                  <p class="role"><span>Mi papel</span>Liderazgo técnico · Firmware</p>
+                  <a class="link" href="https://orbis.es/noticias/energia-inteligente/directiva-eed-la-eficiencia-energetica-entra-en-una-nueva-etapa/" target="_blank" rel="noopener">Producto en ORBIS <span aria-hidden="true">↗</span></a>
+                </div>
+              </div>
+              <figure class="product-media">
+                <div class="viz" data-viz="xeo"><canvas aria-hidden="true"></canvas></div>
+                <div class="media" data-media="xeolum" hidden></div>
+                <figcaption>Visualización conceptual, no es el dispositivo. Datos de supervisión simulados.</figcaption>
+              </figure>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════ STACK · CAPAS EN 3D ═════════ -->
+    <section class="stack" id="stack" aria-labelledby="stack-title">
+      <div class="wrap">
+        <header class="sec-head">
+          <p class="eyebrow">Stack técnico</p>
+          <h2 class="display" id="stack-title" data-split>De abajo arriba.</h2>
+          <p class="sec-lead" data-reveal>Trabajo en todas las capas del sistema: electrónica, firmware, comunicaciones, arquitectura y validación del producto.</p>
+        </header>
+        <div class="stack-body">
+          <div class="stack-visual" aria-hidden="true">
+            <div class="stack-lift" data-stack-lift>
+              <div class="stack-scene" data-stack>
+                <div class="plate" data-l="1"><span>L1 · Hardware</span></div>
+                <div class="plate" data-l="2"><span>L2 · Firmware y SO</span></div>
+                <div class="plate" data-l="3"><span>L3 · Conectividad</span></div>
+                <div class="plate" data-l="4"><span>L4 · Arquitectura</span></div>
+                <div class="plate" data-l="5"><span>L5 · Pruebas y seguridad</span></div>
+              </div>
+            </div>
+          </div>
+          <ol class="layers">
+            <li class="layer">
+              <p class="layer-idx">L1 · Capa física</p>
+              <h3>Hardware</h3>
+              <p class="layer-main">ESP32 · STM32 · Raspberry Pi · ARM · RISC-V</p>
+              <p class="layer-sub">Esquemáticos y PCB · Altium Designer · KiCad · Selección de componentes · Validación eléctrica</p>
+            </li>
+            <li class="layer">
+              <p class="layer-idx">L2 · Firmware y sistema operativo</p>
+              <h3>Firmware y SO</h3>
+              <p class="layer-main">C · C++ moderno · Ada · FreeRTOS · ESP-IDF</p>
+              <p class="layer-sub">Linux embebido · OpenWrt · Debian · Yocto Project · Python · Bash</p>
+            </li>
+            <li class="layer">
+              <p class="layer-idx">L3 · Comunicaciones</p>
+              <h3>Conectividad</h3>
+              <p class="layer-main">Wi-Fi · Ethernet · GSM · BLE / NimBLE · Zigbee · Matter · LoRa</p>
+              <p class="layer-sub">TCP/IP · UDP · WebSockets · MQTT · HTTP · Modbus · UART · I²C · SPI · GPIO · Pasarelas entre tecnologías</p>
+            </li>
+            <li class="layer">
+              <p class="layer-idx">L4 · Diseño del sistema</p>
+              <h3>Arquitectura</h3>
+              <p class="layer-main">Modularidad · Interfaces · Reutilización · Portabilidad</p>
+              <p class="layer-sub">Definición HW/SW · Escalabilidad · Testabilidad · Integración de stacks · Producción y mantenimiento</p>
+            </li>
+            <li class="layer">
+              <p class="layer-idx">L5 · Calidad del producto</p>
+              <h3>Pruebas y seguridad</h3>
+              <p class="layer-main">Validación funcional · Simulación · Automatización · Git · Docker · CI/CD</p>
+              <p class="layer-sub">Depuración · Secure boot · Firmado de firmware · Cifrado de flash · Protección de credenciales · Hardening · Requisitos RED</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════ TRAYECTORIA · CHANGELOG ═════════ -->
+    <section class="log" id="trayectoria" aria-labelledby="log-title">
+      <div class="wrap">
+        <header class="sec-head">
+          <p class="eyebrow">Trayectoria · CHANGELOG</p>
+          <h2 class="display" id="log-title" data-split>De la electrónica al sistema completo.</h2>
+          <p class="sec-lead" data-reveal>Investigación aplicada, dispositivos conectados y sistemas industriales. Una misma base: entender el hardware y construir el software que lo hace funcionar.</p>
+        </header>
+
+        <div class="releases-wrap">
+          <div class="rail" aria-hidden="true"><i data-rail></i><b data-rail-head></b></div>
+          <ol class="releases" data-timeline>
+            <li class="release is-latest">
+              <div class="rel-meta">
+                <span class="rel-ver">v4.0</span>
+                <span class="rel-date">Feb 2025 — hoy <em>Actual</em></span>
+              </div>
+              <div class="rel-body" data-reveal>
+                <h3>ORBIS</h3>
+                <p class="rel-role">Principal Embedded / IoT Architect</p>
+                <p class="rel-lead">Cuatro proyectos IoT / Edge a lo largo de todo su ciclo de vida. Único responsable técnico del firmware en tres de ellos.</p>
+                <ul class="rel-list">
+                  <li>Definición de plataformas HW/SW, interfaces y arquitecturas modulares orientadas a testabilidad, mantenimiento y reutilización.</li>
+                  <li>Desarrollo y portabilidad en C/C++ para ESP32 y STM32: drivers, abstracciones, servicios y aplicación; gestión de memoria, concurrencia y latencias.</li>
+                  <li>Pruebas de firmware, integración hardware-software, puesta en producción y resolución de incidencias.</li>
+                  <li>Conectividad y pasarelas de datos; frameworks internos e integración de librerías para dispositivos, eventos y configuración.</li>
+                  <li>Secure boot, firmado de firmware, cifrado de flash y credenciales. Participación en requisitos de ciberseguridad asociados a RED.</li>
+                  <li>Soporte técnico transversal a varios equipos y productos.</li>
+                </ul>
+                <ul class="chips"><li>C / C++</li><li>ESP32 / STM32</li><li>IoT / Edge</li><li>HW + SW</li></ul>
+              </div>
+            </li>
+            <li class="release">
+              <div class="rel-meta">
+                <span class="rel-ver">v3.0</span>
+                <span class="rel-date">Feb 2024 — Ene 2025</span>
+              </div>
+              <div class="rel-body" data-reveal>
+                <h3>NERTUS</h3>
+                <p class="rel-role">Ingeniero de software embebido · Madrid</p>
+                <p class="rel-lead">Software embebido y comunicaciones para sistemas industriales.</p>
+                <ul class="rel-list">
+                  <li>Desarrollo en C/C++ y Ada, componentes de bajo nivel e integración en sistemas distribuidos.</li>
+                  <li>Comunicaciones TCP/IP, UDP y WebSockets para servicios y flujos de datos en tiempo real.</li>
+                  <li>Herramientas de pruebas, simulación y automatización en Python.</li>
+                  <li>Integración en pipelines de CI/CD y entornos de desarrollo con Docker.</li>
+                </ul>
+                <ul class="chips"><li>C / C++ / Ada</li><li>Python</li><li>TCP/IP</li><li>Docker</li></ul>
+              </div>
+            </li>
+            <li class="release">
+              <div class="rel-meta">
+                <span class="rel-ver">v2.0</span>
+                <span class="rel-date">Oct 2022 — Feb 2024</span>
+              </div>
+              <div class="rel-body" data-reveal>
+                <h3>WIYO Technologies</h3>
+                <p class="rel-role">Ingeniero de firmware · Madrid</p>
+                <p class="rel-lead">Firmware para ESP32 y Linux embebido, desde los drivers hasta la validación en campo.</p>
+                <ul class="rel-list">
+                  <li>Arquitecturas modulares, librerías de terceros y capas de abstracción.</li>
+                  <li>FreeRTOS, ESP-IDF, OpenWrt, Debian y Yocto Project.</li>
+                  <li>Drivers e interfaces UART, I2C, SPI y GPIO; integración de Wi-Fi, MQTT y TCP/IP.</li>
+                  <li>Validación funcional, análisis del comportamiento en campo y depuración de incidencias de conectividad.</li>
+                </ul>
+                <ul class="chips"><li>ESP32</li><li>FreeRTOS</li><li>Linux</li><li>MQTT</li></ul>
+              </div>
+            </li>
+            <li class="release">
+              <div class="rel-meta">
+                <span class="rel-ver">v1.0</span>
+                <span class="rel-date">May 2020 — Sep 2022</span>
+              </div>
+              <div class="rel-body" data-reveal>
+                <h3>Universidad de Oviedo</h3>
+                <p class="rel-role">Ingeniero electrónico / firmware en I+D · IG10</p>
+                <p class="rel-lead">Proyectos de investigación y transferencia tecnológica, de la definición inicial a la validación experimental.</p>
+                <ul class="rel-list">
+                  <li>Esquemáticos y PCB con Altium Designer, selección de componentes y validación eléctrica.</li>
+                  <li>Firmware en C++ para ESP32: periféricos, comunicaciones y tareas.</li>
+                  <li>Integración hardware-firmware y puesta a punto de prototipos.</li>
+                  <li>Pruebas de laboratorio, instrumentación y caracterización de sistemas.</li>
+                </ul>
+                <ul class="chips"><li>Altium Designer</li><li>C++</li><li>ESP32</li><li>Prototipado</li></ul>
+              </div>
+            </li>
+            <li class="release is-base">
+              <div class="rel-meta">
+                <span class="rel-ver">v0.x</span>
+                <span class="rel-date">2015 — 2021</span>
+              </div>
+              <div class="rel-body" data-reveal>
+                <h3>Formación</h3>
+                <p class="rel-role">Ingeniería Electrónica Industrial y Automática · Universidad de Oviedo</p>
+                <p class="rel-lead">Grado con especialización en Control y Matrícula de Honor en el Trabajo Fin de Grado.</p>
+                <ul class="rel-list">
+                  <li>2018 — 2019: Programa Erasmus+ en el Politecnico di Milano, con estancia en el Máster en Automatización y Control.</li>
+                </ul>
+                <ul class="chips"><li>Control</li><li>Automática</li><li>Matrícula de Honor en TFG</li></ul>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════ INVESTIGACIÓN ═════════ -->
+    <section class="research" id="investigacion" aria-labelledby="research-title">
+      <div class="wrap">
+        <header class="sec-head">
+          <p class="eyebrow">Investigación</p>
+          <h2 class="display" id="research-title" data-split>Del laboratorio al prototipo.</h2>
+          <p class="sec-lead" data-reveal>Dos proyectos académicos en los que diseñé el hardware, el firmware y la validación experimental.</p>
+        </header>
+        <div class="cards">
+          <article class="card" data-reveal data-spot>
+            <div class="card-viz card-leds" aria-hidden="true"></div>
+            <p class="card-tag">Biomédica</p>
+            <h3>Sistema automatizado para tratamientos fotodinámicos</h3>
+            <p>Sistema portátil automatizado: diseño de hardware, firmware e interfaz de usuario.</p>
+            <p class="card-pub">Publicación científica en <i>Biosensors and Bioelectronics: X</i>.</p>
+            <a class="link" href="https://drive.google.com/drive/folders/1nwX9xTe4u_fL9MrErMUaQaZuk0NaoRpc?usp=drive_link" target="_blank" rel="noopener">Documentación del proyecto <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="card" data-reveal data-spot>
+            <div class="card-viz card-spectrum" aria-hidden="true">
+              <svg viewBox="0 0 400 160" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="spectrum" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="#7b5cff"/><stop offset=".18" stop-color="#3c7bff"/><stop offset=".36" stop-color="#2fd0e8"/><stop offset=".5" stop-color="#4fe08a"/><stop offset=".64" stop-color="#ffe14d"/><stop offset=".8" stop-color="#ff9a3d"/><stop offset="1" stop-color="#ff4d5e"/>
+                  </linearGradient>
+                </defs>
+                <path class="spec-fill" d="M0 140 C30 138 44 70 70 64 S110 112 140 108 S176 30 204 26 S236 96 262 104 S300 76 322 82 S360 128 400 132 V160 H0Z" fill="url(#spectrum)"/>
+                <path class="spec-line" d="M0 140 C30 138 44 70 70 64 S110 112 140 108 S176 30 204 26 S236 96 262 104 S300 76 322 82 S360 128 400 132" fill="none" stroke="url(#spectrum)" stroke-width="2"/>
+              </svg>
+              <span class="scan"></span>
+              <span class="axis"><b>400 nm</b><b>550 nm</b><b>700 nm</b></span>
+            </div>
+            <p class="card-tag">Instrumentación</p>
+            <h3>Análisis biomédico por instrumentación optoelectrónica</h3>
+            <p>Prototipo experimental para análisis espectral de muestras de sangre. Diseño electrónico, firmware y validación experimental.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════ CONTACTO ═════════ -->
+    <section class="contact" id="contacto" aria-labelledby="contact-title">
+      <div class="wrap">
+        <p class="eyebrow">Contacto</p>
+        <h2 class="contact-title" id="contact-title" data-split>Hablemos de ingeniería<span class="dot">.</span></h2>
+        <div class="contact-grid">
+          <div class="mail-block" data-reveal>
+            <p class="mail-label">Escríbeme</p>
+            <a class="mail" href="mailto:v.r.adrian96@gmail.com">v.r.adrian96@gmail.com</a>
+            <div class="mail-actions">
+              <button class="btn btn-line" type="button" data-copy="v.r.adrian96@gmail.com">Copiar correo</button>
+              <span class="toast" role="status" aria-live="polite" data-toast></span>
+            </div>
+          </div>
+          <ul class="contact-links" data-reveal>
+            <li><a href="https://www.linkedin.com/in/adrianvizcaino/" target="_blank" rel="noopener"><span>LinkedIn</span><span aria-hidden="true">↗</span></a></li>
+            <li><a href="tel:+34630351345"><span>+34 630 351 345</span><span aria-hidden="true">↗</span></a></li>
+            <li><a href="../CV/Adrian_CV.html" target="_blank" rel="noopener"><span>Currículum · guardar PDF</span><span aria-hidden="true">↗</span></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p class="giant" aria-hidden="true" data-giant>Adrián Vizcaíno</p>
+        <div class="wrap foot-row">
+          <span>© 2026 Adrián Vizcaíno Rodríguez</span>
+          <span>Hardware. Software. Oficio.</span>
+          <a href="#inicio">Volver arriba ↑</a>
+        </div>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,54 @@
+PORTFOLIO DE ADRIÁN VIZCAÍNO · v3 (PROPUESTA ALTERNATIVA)
+
+Abrir index.html con doble clic. No requiere instalación, servidor ni conexión.
+Mantener index.html, styles.css, main.js y la carpeta assets juntos.
+El acceso al currículum utiliza ../CV/Adrian_CV.html.
+La versión anterior sigue intacta en ../Web-Portfolio para poder compararlas.
+
+CONCEPTO
+La página es la pantalla de un analizador lógico. Cuatro canales de color
+(CH1 amarillo, CH2 cian, CH3 magenta, CH4 verde) identifican señales,
+productos y capas. Los bloques hexagonales imitan la decodificación de
+protocolos. Sin librerías externas: todo es HTML, CSS y JavaScript propio.
+
+SECCIONES Y ANIMACIONES
+Hero: el nombre se decodifica desde bytes hexadecimales mientras un
+  analizador transmite "ADRIÁN VIZCAÍNO" por UART (115200 8N1, UTF-8),
+  con un bus I²C y una salida PWM. Con ratón: cursor de medida con tiempo
+  real en ms y peso tipográfico que reacciona al puntero.
+Perfil: el texto se ilumina palabra a palabra con el scroll. Debajo, una
+  hoja de datos con las cifras del CV.
+Tecnologías: dos marquesinas cuya velocidad y sentido siguen al scroll.
+Proyectos: recorrido horizontal fijado (en escritorio). Cada producto tiene
+  una visualización conceptual animada:
+    ANC +      reloj astronómico con orto y ocaso calculados para Madrid
+               (hora oficial 2026) y los dos circuitos.
+    ASTRO LUM  osciloscopio de tensión y corriente a 50 Hz, medidas y
+               estado del contactor (valores simulados).
+    XEO LUM +  equipo con pantalla TFT entre la plataforma de supervisión
+               y la instalación (datos simulados).
+Stack: cinco capas en 3D que se separan con el scroll; la capa activa
+  se ilumina según el texto que se lee.
+Trayectoria: formato CHANGELOG (v4.0 ORBIS … v0.x formación) con una
+  pista que se dibuja al bajar.
+Investigación: tarjetas con foco que sigue al cursor.
+Contacto: botón para copiar el correo y nombre a gran tamaño al final.
+
+En móvil el recorrido de proyectos pasa a vertical. Con "reducir movimiento"
+activado en el sistema, las animaciones se desactivan y todo queda visible.
+Sin JavaScript, el contenido completo sigue siendo legible.
+
+FOTOS Y VÍDEOS
+Guardar el material en assets/ y añadir sus rutas en productMedia, al
+principio de main.js. Cuando un producto tiene imágenes o vídeo, sustituyen
+a su visualización conceptual. Ejemplos en los comentarios del archivo.
+
+FUENTES DE CONTENIDO
+Las mismas que la versión anterior (ver ../Web-Portfolio/LEEME.txt).
+Las visualizaciones son conceptuales y no representan los dispositivos;
+así se indica bajo cada una.
+
+DISEÑO
+Retícula casi negra, texto blanco frío y cuatro colores de canal.
+Tipografías locales Geist (variable, 100–900) e IBM Plex Mono.
+Licencias de las fuentes en assets/fonts/.

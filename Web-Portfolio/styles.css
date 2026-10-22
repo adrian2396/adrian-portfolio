@@ -8,17 +8,15 @@
 /* Concepto: terminal retro con dos estados. Oscuro = monitor de fósforo; claro = listado
    de impresora matricial. Las pantallas (bring-up y esquemas) siempre son oscuras.
    Tipografía: VT323 para titulares, IBM Plex Sans para leer, IBM Plex Mono para la interfaz.
-   Un único color de acento; los neutros toman un ligero tinte de su tono (--h). */
+   Un único acento turquesa; los neutros toman un ligero tinte de su tono (--h). */
 :root{
-  /* Acento: ámbar de fósforo. d = tema oscuro, l = tema claro. */
-  --h:75;
-  --a-d:#ffb000;
-  --a-on-d:#1b1300;
-  --a-l:#ffb000;
-  --a-on-l:#1b1300;
-  --a-ink-l:#8f5b00;
-  --a-mark-l:#ffc94a;
-  --a-mark-ink-l:#1c1a16;
+  /* Acento: turquesa de fósforo. d = tema oscuro, l = tema claro (relleno y tinta). */
+  --h:190;
+  --a-d:#3ddbd9;
+  --a-on-d:#001a1a;
+  --a-l:#007d79;
+  --a-on-l:#ffffff;
+  --a-ink-l:#005d5d;
 
   --display:VT323,"IBM Plex Mono",ui-monospace,Menlo,monospace;
   --sans:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
@@ -36,17 +34,15 @@
   --fg:oklch(21% .012 var(--h));
   --text:oklch(31% .012 var(--h));
   --muted:oklch(45% .012 var(--h));
-  --dim:oklch(54% .01 var(--h));
+  --dim:oklch(50% .01 var(--h));
   --accent:var(--a-l);
   --on-accent:var(--a-on-l);
   --accent-ink:var(--a-ink-l);
-  --accent-soft:color-mix(in srgb,var(--a-l) 14%,transparent);
-  --mark:var(--a-mark-l);
-  --mark-ink:var(--a-mark-ink-l);
+  --accent-soft:color-mix(in srgb,var(--a-l) 12%,transparent);
   --ok:#17803d;
   --err:#c2410c;
   --glow:none;
-  --shadow:0 1px 2px rgba(30,25,15,.04),0 16px 40px -24px rgba(30,25,15,.28);
+  --shadow:0 1px 2px rgba(10,35,35,.05),0 16px 40px -24px rgba(10,35,35,.3);
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){
@@ -59,13 +55,11 @@
     --fg:oklch(93% .008 var(--h));
     --text:oklch(84% .01 var(--h));
     --muted:oklch(70% .012 var(--h));
-    --dim:oklch(58% .012 var(--h));
+    --dim:oklch(62% .012 var(--h));
     --accent:var(--a-d);
     --on-accent:var(--a-on-d);
     --accent-ink:var(--a-d);
     --accent-soft:color-mix(in srgb,var(--a-d) 12%,transparent);
-    --mark:transparent;
-    --mark-ink:var(--a-d);
     --ok:#8fd694;
     --err:#ff8466;
     --glow:0 0 18px color-mix(in srgb,var(--a-d) 38%,transparent);
@@ -82,25 +76,17 @@
   --fg:oklch(93% .008 var(--h));
   --text:oklch(84% .01 var(--h));
   --muted:oklch(70% .012 var(--h));
-  --dim:oklch(58% .012 var(--h));
+  --dim:oklch(62% .012 var(--h));
   --accent:var(--a-d);
   --on-accent:var(--a-on-d);
   --accent-ink:var(--a-d);
   --accent-soft:color-mix(in srgb,var(--a-d) 12%,transparent);
-  --mark:transparent;
-  --mark-ink:var(--a-d);
   --ok:#8fd694;
   --err:#ff8466;
   --glow:0 0 18px color-mix(in srgb,var(--a-d) 38%,transparent);
   --shadow:none;
   color-scheme:dark;
 }
-
-/* Acentos alternativos para comparar (data-accent en <html>). */
-:root[data-accent="turquesa"]{--h:190;--a-d:#3ddbd9;--a-on-d:#001a1a;--a-l:#007d79;--a-on-l:#ffffff;--a-ink-l:#005d5d;--a-mark-l:transparent;--a-mark-ink-l:#005d5d}
-:root[data-accent="verde"]{--h:150;--a-d:#6fdc8c;--a-on-d:#04170a;--a-l:#198038;--a-on-l:#ffffff;--a-ink-l:#0e6027;--a-mark-l:transparent;--a-mark-ink-l:#0e6027}
-:root[data-accent="naranja"]{--h:50;--a-d:#ff832b;--a-on-d:#1d0b00;--a-l:#ba4e00;--a-on-l:#ffffff;--a-ink-l:#8a3800;--a-mark-l:transparent;--a-mark-ink-l:#8a3800}
-:root[data-accent="azul"]{--h:260;--a-d:#78a9ff;--a-on-d:#020f2b;--a-l:#0f62fe;--a-on-l:#ffffff;--a-ink-l:#0043ce;--a-mark-l:transparent;--a-mark-ink-l:#0043ce}
 
 /* Pantallas: siempre en modo monitor, con líneas de barrido. */
 .screen{
@@ -110,7 +96,7 @@
   --fg:oklch(93% .008 var(--h));
   --text:oklch(84% .01 var(--h));
   --muted:oklch(70% .012 var(--h));
-  --dim:oklch(56% .012 var(--h));
+  --dim:oklch(60% .012 var(--h));
   --accent:var(--a-d);
   --accent-ink:var(--a-d);
   --on-accent:var(--a-on-d);
@@ -143,7 +129,7 @@ p,h1,h2,h3,h4,dl,dd,figure{margin:0}
 .wrap{width:100%;max-width:1200px;margin-inline:auto;padding-left:max(var(--gutter),env(safe-area-inset-left,0px));padding-right:max(var(--gutter),env(safe-area-inset-right,0px))}
 
 /* ── Piezas comunes ── */
-em{font-style:normal;color:var(--mark-ink);background:linear-gradient(transparent 56%,var(--mark) 56%,var(--mark) 90%,transparent 90%);padding-inline:.04em;-webkit-box-decoration-break:clone;box-decoration-break:clone;text-shadow:var(--glow)}
+em{font-style:normal;color:var(--accent-ink);text-shadow:var(--glow)}
 .cmd{display:flex;flex-wrap:wrap;gap:0 .6em;margin-bottom:18px;color:var(--muted);font:400 14px/1.5 var(--mono)}
 .ps1{color:var(--accent-ink)}
 .typing::after,.cursor{content:"";display:inline-block;width:.55em;height:1em;margin-left:.12em;vertical-align:-.14em;background:var(--accent);animation:blink 1.1s steps(1) infinite}
@@ -348,7 +334,7 @@ em{font-style:normal;color:var(--mark-ink);background:linear-gradient(transparen
 
 /* ── Formulario de proyecto ── */
 .brief{width:min(880px,calc(100vw - 24px));max-width:none;max-height:calc(100dvh - 24px);margin:auto;padding:0;border:1px solid var(--line-strong);border-radius:var(--radius);background:var(--surface);color:var(--text);overflow:auto;box-shadow:0 30px 80px rgba(0,0,0,.35)}
-.brief::backdrop{background:rgba(8,7,5,.7);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.brief::backdrop{background:rgba(3,10,10,.72);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
 .brief[open]{animation:pop .22s ease-out}
 @keyframes pop{from{opacity:0;transform:translateY(10px)}}
 .brief .win-bar{position:sticky;top:0;z-index:2}

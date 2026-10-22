@@ -102,11 +102,10 @@ function queueScroll() {
 window.addEventListener('scroll', queueScroll, { passive: true });
 window.addEventListener('resize', queueScroll);
 
-/* Avisa a los lienzos cuando cambian el tema o el color de acento. */
+/* Avisa a los lienzos cuando cambia el tema. */
 const paletteListeners = [];
 const onPaletteChange = listener => paletteListeners.push(listener);
 function paletteChanged() { requestAnimationFrame(() => paletteListeners.forEach(listener => listener())); }
-document.addEventListener('accentchange', paletteChanged);
 
 function canvasSurface(canvas, onFit) {
   const ctx = canvas.getContext('2d');

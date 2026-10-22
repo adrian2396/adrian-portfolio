@@ -11,6 +11,12 @@ styles.css  diseño, temas claro y oscuro, y adaptación a móvil.
 main.js     configuración (fotos, vídeo, formulario) y animaciones.
 assets/     fuentes y material de producto (assets/media/).
 
+INICIO
+Líneas de arranque [ OK ], el comando whoami y el nombre, que se decodifica
+desde dígitos hexadecimales. Al pasar el cursor por cada letra se ven sus
+bytes UTF-8 en hexadecimal y en binario. Debajo, una línea UART transmite
+el nombre byte a byte (115200 8N1).
+
 TEMA
 Por defecto sigue al sistema operativo. El botón "tema:" de la cabecera
 cambia entre auto, claro y oscuro y recuerda la elección.

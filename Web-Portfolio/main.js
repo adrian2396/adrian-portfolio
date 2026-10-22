@@ -53,7 +53,8 @@ function paletteOf(element) {
   const read = name => rgbOf(style.getPropertyValue(name).trim());
   return {
     bg: read('--bg'), surface: read('--surface'), line: read('--line'), fg: read('--fg'),
-    muted: read('--muted'), dim: read('--dim'), accent: read('--accent'), onAccent: read('--on-accent')
+    muted: read('--muted'), dim: read('--dim'), accent: read('--accent'), ink: read('--accent-ink'),
+    onAccent: read('--on-accent')
   };
 }
 
@@ -236,7 +237,180 @@ function initReveal() {
   targets.forEach(target => observer.observe(target));
 }
 
-/* ───────── Bring-up del inicio ───────── */
+/* ───────── Inicio: arranque, whoami y el nombre que se decodifica desde hexadecimal ───────── */
+const utf8 = new TextEncoder();
+const hexByte = byte => byte.toString(16).toUpperCase().padStart(2, '0');
+
+function decodeLetters(letters) {
+  return new Promise(resolve => {
+    const glyphs = '0123456789ABCDEF';
+    const random = () => glyphs[(Math.random() * 16) | 0];
+    letters.forEach(letter => {
+      letter.classList.remove('is-wait');
+      if (!letter.dataset.char.trim()) return;
+      letter.classList.add('is-hex');
+      letter.textContent = random();
+    });
+    const start = performance.now();
+    let lastSwap = 0;
+    const tick = now => {
+      const elapsed = now - start;
+      const swap = now - lastSwap > 55;
+      if (swap) lastSwap = now;
+      let pending = false;
+      letters.forEach((letter, index) => {
+        if (!letter.classList.contains('is-hex')) return;
+        if (elapsed > 240 + index * 75) {
+          letter.textContent = letter.dataset.char;
+          letter.classList.remove('is-hex');
+        } else {
+          pending = true;
+          if (swap) letter.textContent = random();
+        }
+      });
+      if (pending) requestAnimationFrame(tick);
+      else resolve();
+    };
+    requestAnimationFrame(tick);
+  });
+}
+
+async function initHero() {
+  const hero = $('.hero');
+  const boot = $('[data-boot]');
+  const command = $('[data-hero-cmd]');
+  const name = $('[data-decode]');
+  // Cada letra guarda sus bytes UTF-8: al pasar el cursor se ven en hexadecimal y binario.
+  const letters = [...name.textContent].map(char => {
+    const span = document.createElement('span');
+    span.className = 'lt';
+    span.textContent = char;
+    span.dataset.char = char;
+    if (char.trim()) {
+      const bytes = [...utf8.encode(char)];
+      span.dataset.byte = `${bytes.map(byte => `0x${hexByte(byte)}`).join(' ')} · ${bytes.map(byte => byte.toString(2).padStart(8, '0')).join(' ')}`;
+    }
+    return span;
+  });
+  name.replaceChildren(...letters);
+  if (reduceMotion) {
+    boot.classList.add('is-on');
+    hero.classList.add('is-ready');
+    return;
+  }
+  const lines = $$('li', boot);
+  command.dataset.text = command.textContent;
+  command.textContent = '';
+  letters.forEach(letter => letter.classList.add('is-wait'));
+  lines.forEach(line => { line.style.opacity = '0'; });
+  boot.classList.add('is-on');
+  for (const line of lines) {
+    await wait(130);
+    line.style.opacity = '';
+  }
+  await wait(150);
+  await typeInto(command, 55);
+  await wait(120);
+  hero.classList.add('is-ready');
+  await decodeLetters(letters);
+}
+
+/* Línea UART bajo el inicio: transmite el nombre byte a byte (8N1, UTF-8). */
+function initUart() {
+  const host = $('[data-uart]');
+  if (!host) return;
+  const tx = [];
+  const frames = [];
+  const put = (level, count) => { for (let i = 0; i < count; i++) tx.push(level); };
+  put(1, 12);
+  for (const char of 'ADRIÁN VIZCAÍNO · EMBEDDED · FIRMWARE · ') {
+    const start = tx.length;
+    const bytes = [...utf8.encode(char)];
+    bytes.forEach((byte, index) => {
+      if (index) put(1, 2);
+      put(0, 2);
+      for (let bit = 0; bit < 8; bit++) put((byte >> bit) & 1, 2);
+      put(1, 2);
+    });
+    frames.push({ start, end: tx.length, label: char === ' ' ? 'SP' : char, hex: bytes.map(hexByte).join(' ') });
+    put(1, 6);
+  }
+  const level = i => tx[((i % tx.length) + tx.length) % tx.length];
+  const canvas = $('canvas', host);
+  let palette = paletteOf(host);
+  let offset = 0;
+  let cursorX = null;
+  const draw = () => {
+    const { w, h } = size;
+    if (!w) return;
+    const P = palette;
+    ctx.clearRect(0, 0, w, h);
+    const sw = w < 640 ? 3 : 4;
+    const from = offset / sw;
+    const to = (offset + w) / sw;
+    const x = i => i * sw - offset;
+    const hi = 12;
+    const lo = h * 0.48;
+    const first = Math.floor(from) - 1;
+    let previous = level(first);
+    ctx.beginPath();
+    ctx.moveTo(x(first), previous ? hi : lo);
+    for (let i = first + 1; i <= to + 1; i++) {
+      const current = level(i);
+      if (current !== previous) {
+        ctx.lineTo(x(i), previous ? hi : lo);
+        ctx.lineTo(x(i), current ? hi : lo);
+        previous = current;
+      }
+    }
+    ctx.lineTo(w, previous ? hi : lo);
+    ctx.strokeStyle = rgba(P.ink);
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    const yc = h * 0.76;
+    const half = Math.min(10, h * 0.13);
+    ctx.font = `500 ${w < 640 ? 10 : 11}px ${MONO}`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    for (let k = Math.floor(from / tx.length) - 1; k <= Math.floor(to / tx.length) + 1; k++) {
+      for (const frame of frames) {
+        const x0 = x(k * tx.length + frame.start) + 1;
+        const x1 = x(k * tx.length + frame.end) - 1;
+        if (x1 < 0 || x0 > w) continue;
+        const hot = cursorX !== null && cursorX >= x0 && cursorX <= x1;
+        ctx.beginPath();
+        ctx.moveTo(x0, yc);
+        ctx.lineTo(x0 + 6, yc - half);
+        ctx.lineTo(x1 - 6, yc - half);
+        ctx.lineTo(x1, yc);
+        ctx.lineTo(x1 - 6, yc + half);
+        ctx.lineTo(x0 + 6, yc + half);
+        ctx.closePath();
+        ctx.fillStyle = hot ? rgba(P.accent) : rgba(P.accent, 0.1);
+        ctx.fill();
+        ctx.strokeStyle = rgba(P.ink, hot ? 1 : 0.45);
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        const text = x1 - x0 > 76 ? `${frame.label} ${frame.hex}` : frame.label;
+        if (ctx.measureText(text).width < x1 - x0 - 12) {
+          ctx.fillStyle = rgba(hot ? P.onAccent : P.fg);
+          ctx.fillText(text, (x0 + x1) / 2, yc + 0.5);
+        }
+      }
+    }
+  };
+  const { ctx, size } = canvasSurface(canvas, draw);
+  onPaletteChange(() => { palette = paletteOf(host); draw(); });
+  host.addEventListener('pointermove', event => {
+    cursorX = event.clientX - canvas.getBoundingClientRect().left;
+    if (reduceMotion) draw();
+  });
+  host.addEventListener('pointerleave', () => { cursorX = null; if (reduceMotion) draw(); });
+  if (document.fonts) document.fonts.ready.then(draw);
+  animate(host, dt => { offset += dt * (size.w < 640 ? 40 : 56); draw(); });
+}
+
+/* ───────── Terminal de bring-up (sección de soluciones) ───────── */
 function initBringUp() {
   const screen = $('[data-bringup]');
   if (!screen || reduceMotion) return;
@@ -900,6 +1074,8 @@ function initBrief() {
 initTheme();
 initHeader();
 initNav();
+initHero();
+initUart();
 initTyping();
 initReveal();
 initBringUp();

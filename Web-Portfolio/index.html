@@ -46,17 +46,38 @@
     <!-- ── INICIO ── -->
     <section class="hero" id="inicio" aria-labelledby="hero-title">
       <div class="wrap">
-        <p class="status"><i aria-hidden="true"></i>disponible para proyectos freelance</p>
-        <h1 class="hero-title" id="hero-title">Bring-up <em>rápido</em>.<br>Firmware <em>fiable</em>.<br>Arquitectura que <em>escala</em>.</h1>
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <p class="hero-lead">Soy Adrián Vizcaíno, arquitecto de sistemas embebidos. Pongo en marcha tu hardware y lo llevo a producción con un firmware desacoplado, probado e integrado con tu plataforma.</p>
-            <div class="hero-cta">
-              <button class="btn btn-solid btn-lg" type="button" data-open-brief>&gt; cuéntame tu proyecto</button>
-              <a class="btn btn-line btn-lg" href="#soluciones">ver soluciones</a>
-            </div>
-          </div>
-          <div class="window hero-term" role="img" aria-label="Ejemplo de un bring-up: alimentación, depuración, bootloader, periféricos, radio, conexión con la plataforma y OTA verificados.">
+        <ol class="boot" data-boot aria-label="Resumen">
+          <li><span class="ok">[ OK ]</span> firmware en C/C++ · RTOS · Linux embebido</li>
+          <li><span class="ok">[ OK ]</span> de la arquitectura a producción y mantenimiento</li>
+          <li><span class="ok">[ OK ]</span> 4 productos IoT / Edge en ORBIS, 3 con el firmware a mi cargo</li>
+          <li><span class="ok">[ OK ]</span> disponible para proyectos freelance</li>
+        </ol>
+        <p class="cmd hero-cmd" aria-hidden="true"><span class="ps1">adrian@embedded:~$</span> <span data-hero-cmd>whoami</span></p>
+        <h1 class="hero-title" id="hero-title"><span class="sr-only">Adrián Vizcaíno</span><span class="hero-name" aria-hidden="true" data-decode>Adrián Vizcaíno</span><span class="cursor" aria-hidden="true"></span></h1>
+        <p class="hero-tagline">Bring-up <em>rápido</em>. Firmware <em>fiable</em>. Arquitectura que <em>escala</em>.</p>
+        <p class="hero-lead">Arquitecto de sistemas embebidos e ingeniero de firmware. Pongo en marcha tu hardware y lo llevo a producción con un firmware desacoplado, probado e integrado con tu plataforma.</p>
+        <div class="hero-cta">
+          <button class="btn btn-solid btn-lg" type="button" data-open-brief>&gt; cuéntame tu proyecto</button>
+          <a class="btn btn-line btn-lg" href="#soluciones">ver soluciones</a>
+        </div>
+      </div>
+      <div class="uart" data-uart>
+        <p class="uart-label" aria-hidden="true"><span><b>TX</b> 115200 8N1</span><span class="uart-hint">pasa el cursor por el nombre o por la señal</span></p>
+        <canvas aria-hidden="true"></canvas>
+        <p class="sr-only">Animación de una línea serie UART que transmite mi nombre byte a byte.</p>
+      </div>
+    </section>
+
+    <!-- ── SOLUCIONES ── -->
+    <section class="section" id="soluciones" aria-labelledby="solutions-title">
+      <div class="wrap">
+        <p class="cmd"><span class="ps1">$</span> <span data-type>adrian --soluciones</span></p>
+        <div class="sol-intro">
+          <header class="sec-head">
+            <h2 class="title" id="solutions-title">Lo que resuelvo.</h2>
+            <p class="sec-lead">Cuatro momentos clave al desarrollar un producto conectado. Puedes contar conmigo en uno o en todos, para ganar velocidad sin perder fiabilidad.</p>
+          </header>
+          <div class="window bringup" role="img" aria-label="Ejemplo de un bring-up: alimentación, depuración, bootloader, periféricos, radio, conexión con la plataforma y OTA verificados.">
             <div class="win-bar">
               <span class="win-path">~/proto-rev-a/<b>bring-up.sh</b></span>
               <button class="win-action" type="button" data-rerun hidden>[repetir]</button>
@@ -77,23 +98,6 @@
             </div>
           </div>
         </div>
-        <ul class="proof">
-          <li><b>6+</b><span>años en electrónica y firmware</span></li>
-          <li><b>4</b><span>productos IoT / Edge llevados a producción</span></li>
-          <li><b>3</b><span>de ellos con el firmware bajo mi responsabilidad</span></li>
-          <li><b>C/C++</b><span>ESP32 · STM32 · Linux embebido</span></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ── SOLUCIONES ── -->
-    <section class="section" id="soluciones" aria-labelledby="solutions-title">
-      <div class="wrap">
-        <p class="cmd"><span class="ps1">$</span> <span data-type>adrian --soluciones</span></p>
-        <header class="sec-head">
-          <h2 class="title" id="solutions-title">Lo que resuelvo.</h2>
-          <p class="sec-lead">Cuatro momentos clave al desarrollar un producto conectado. Puedes contar conmigo en uno o en todos, para ganar velocidad sin perder fiabilidad.</p>
-        </header>
         <ol class="solutions">
           <li class="solution" data-reveal>
             <p class="sol-id">01 · bring-up</p>

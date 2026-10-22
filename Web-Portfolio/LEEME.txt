@@ -1,36 +1,45 @@
 PORTFOLIO DE ADRIÁN VIZCAÍNO
 
-Abrir index.html con doble clic. No requiere instalación ni servidor.
-Mantener index.html, styles.css, portfolio.js y la carpeta assets juntos.
-La ilustración y las fuentes se cargan desde assets: funciona sin conexión.
+Abrir index.html con doble clic. No requiere instalación, servidor ni conexión.
+Mantener index.html, styles.css, main.js y la carpeta assets juntos.
 El acceso al currículum utiliza ../CV/Adrian_CV.html.
+El historial de cambios y las versiones anteriores están en git.
 
-CONTENIDO
-index.html: presentación, experiencia, tecnología, formación y contacto.
-styles.css: diseño y adaptación a móvil.
-portfolio.js: datos de los tres productos y controles interactivos.
+ESTRUCTURA
+index.html  contenido de la página y formulario de proyecto.
+styles.css  diseño, temas claro y oscuro, y adaptación a móvil.
+main.js     configuración (fotos, vídeo, formulario) y animaciones.
+assets/     fuentes y material de producto (assets/media/).
 
-FOTOS Y VÍDEOS
-Guardar el material en assets/ y añadir sus rutas en el objeto products
-al principio de portfolio.js. Cada producto admite varias imágenes y un vídeo.
-Ejemplos de configuración en los comentarios del archivo.
-Los rótulos provisionales desaparecen al añadir imágenes o vídeo.
+TEMA
+Por defecto sigue al sistema operativo. El botón "tema:" de la cabecera
+cambia entre auto, claro y oscuro y recuerda la elección.
+Oscuro = monitor de fósforo. Claro = listado de impresora.
+Las pantallas (bring-up y esquemas) siempre se ven como un monitor.
 
-FUENTES
-Información profesional: CV del proyecto y aclaraciones de Adrián.
-ANC + / ASTRO NOVA CITY +:
-https://orbis.es/wp-content/uploads/fichatecnica/FT_ASTRO_NOVA_CITY_PLUS.pdf
-ASTRO LUM (modelo Wi-Fi / Bluetooth):
-https://orbis.es/wp-content/uploads/fichatecnica/FT_ASTRO_LUM.pdf
-XEO LUM +:
-https://orbis.es/noticias/energia-inteligente/directiva-eed-la-eficiencia-energetica-entra-en-una-nueva-etapa/
+FORMULARIO "NUEVO PROYECTO"
+Se abre desde la cabecera, el inicio, soluciones y contacto, y también con
+el enlace index.html#brief. Por defecto prepara un resumen y abre el
+programa de correo del cliente. Para recibir los mensajes directamente,
+configura briefConfig al principio de main.js:
+  Web3Forms: pide una clave en web3forms.com con tu correo y pon
+    endpoint: 'https://api.web3forms.com/submit',
+    fields: { access_key: 'TU-CLAVE' }
+  Formspree: crea un formulario en formspree.io y pon
+    endpoint: 'https://formspree.io/f/TU-ID'
 
-La variante ASTRO LUM gateway de XEO LUM + mediante Ethernet procede
-de la descripción de Adrián. La ficha pública enlazada documenta el modelo
-Wi-Fi / Bluetooth. Las imágenes provisionales son composiciones tipográficas,
-no representaciones de los dispositivos.
+FOTOS Y VÍDEO
+Fotos en assets/media/ y rutas en productMedia, al principio de main.js.
+Para un vídeo, pega el enlace de YouTube. Cada producto muestra pestañas
+[vídeo] [fotos] [esquema] según el material disponible.
 
-DISEÑO
-Paleta carbón, hueso y naranja. Tipografías locales Geist e IBM Plex Mono.
-Licencias de las fuentes en assets/fonts/.
-hero-circuit.svg es una ilustración conceptual propia de la portada.
+FUENTES DE LOS DATOS DE PRODUCTO
+ANC +: ficha técnica de ORBIS.
+ASTRO LUM: ficha técnica de ORBIS e Interempresas, "Gestión IoT y
+  conectividad híbrida para el alumbrado público".
+XEO LUM +: Interempresas, "ORBIS presenta Xeo Lum +, para la telegestión
+  de alumbrado".
+Los esquemas son conceptuales, con valores simulados.
+
+LICENCIAS
+VT323, IBM Plex Sans e IBM Plex Mono: SIL Open Font License (assets/fonts/).

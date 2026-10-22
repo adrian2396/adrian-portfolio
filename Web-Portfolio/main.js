@@ -34,7 +34,10 @@ const lerp = (a, b, t) => a + (b - a) * t;
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const MONO = '"IBM Plex Mono", ui-monospace, Menlo, monospace';
 const DISPLAY = 'VT323, "IBM Plex Mono", monospace';
-const decimal = (value, digits) => value.toFixed(digits).replace('.', ',');
+/* Idioma: i18n.js expone los textos; si faltara, se usan las claves tal cual. */
+const i18n = window.i18n || { lang: 'es', t: key => key, onChange() {} };
+const t = (key, vars) => i18n.t(key, vars);
+const decimal = (value, digits) => value.toFixed(digits).replace('.', t('decimal'));
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 /* Convierte cualquier color CSS (también oklch) a [r, g, b] pintándolo en un píxel. */
@@ -134,14 +137,14 @@ function initTheme() {
   const root = document.documentElement;
   const button = $('[data-theme-toggle]');
   const order = ['auto', 'light', 'dark'];
-  const names = { auto: 'auto', light: 'claro', dark: 'oscuro' };
   const current = () => root.dataset.theme || 'auto';
   const render = () => {
     const mode = current();
     const next = order[(order.indexOf(mode) + 1) % order.length];
-    button.querySelector('b').textContent = names[mode];
-    button.setAttribute('aria-label', `Tema ${names[mode]}${mode === 'auto' ? ', según el sistema' : ''}. Cambiar a ${names[next]}.`);
+    button.innerHTML = `${t('theme.prefix')}<b>${t(`theme.${mode}`)}</b>`;
+    button.setAttribute('aria-label', t('theme.aria', { mode: t(`theme.${mode}`), system: mode === 'auto' ? t('theme.system') : '', next: t(`theme.${next}`) }));
   };
+  i18n.onChange(render);
   button.addEventListener('click', () => {
     const next = order[(order.indexOf(current()) + 1) % order.length];
     if (next === 'auto') delete root.dataset.theme;
@@ -151,6 +154,7 @@ function initTheme() {
     paletteChanged();
   });
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', paletteChanged);
+  i18n.onChange(paletteChanged);
   render();
 }
 
@@ -475,11 +479,10 @@ function initPipeline() {
 }
 
 /* ───────── Esquemas de producto ───────── */
-const MONTHS = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
 const dayOfYear = date => Math.floor((Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 864e5);
 const dateLabel = doy => {
   const date = new Date(Date.UTC(2026, 0, Math.floor(doy)));
-  return `${date.getUTCDate()} ${MONTHS[date.getUTCMonth()]}`;
+  return `${date.getUTCDate()} ${t('viz.months').split(',')[date.getUTCMonth()]}`;
 };
 const hhmm = hours => {
   const t = ((hours % 24) + 24) % 24;
@@ -526,8 +529,8 @@ function drawAnc(ctx, w, h, s, P) {
   const angle = hour => Math.PI / 2 + (hour / 24) * Math.PI * 2;
   const point = (hour, radius) => [cx + Math.cos(angle(hour)) * radius, cy + Math.sin(angle(hour)) * radius];
 
-  label(ctx, `ORTO ${hhmm(rise)}  OCASO ${hhmm(set)}`, pad, pad + 4, rgba(P.muted), 'left', fs);
-  label(ctx, 'MADRID 40,4° N', w - pad, pad + 4, rgba(P.dim), 'right', fs);
+  label(ctx, `${t('viz.rise')} ${hhmm(rise)}  ${t('viz.set')} ${hhmm(set)}`, pad, pad + 4, rgba(P.muted), 'left', fs);
+  label(ctx, t('viz.place'), w - pad, pad + 4, rgba(P.dim), 'right', fs);
   for (let q = 0; q < 48; q++) {
     const major = q % 6 === 0;
     const [ax, ay] = point(q / 2, R * 1.24);
@@ -579,8 +582,8 @@ function drawAnc(ctx, w, h, s, P) {
     label(ctx, `${name} [${on ? 'ON ' : 'OFF'}]`, pad, y, rgba(on ? P.accent : P.dim), 'left', fs);
     label(ctx, program, w - pad, y, rgba(P.muted), 'right', fs);
   };
-  row(h - pad - 22, 'C1', c1, 'ocaso -> orto');
-  row(h - pad - 2, 'C2', c2, 'ocaso -> 01:00');
+  row(h - pad - 22, 'C1', c1, t('viz.c1'));
+  row(h - pad - 2, 'C2', c2, t('viz.c2'));
 }
 
 function drawAstro(ctx, w, h, s, P) {
@@ -618,9 +621,9 @@ function drawAstro(ctx, w, h, s, P) {
   wave((s.voltage * Math.SQRT2) / 100, 0, rgba(P.accent), 1.8);
   const power = s.closed ? s.voltage * s.current * s.pf : 0;
   const rows = [
-    ['tensión', `${decimal(s.voltage, 1)} V`], ['corriente', `${decimal(s.closed ? s.current : 0, 2)} A`],
-    ['potencia', `${Math.round(power)} W`], ['energía', `${decimal(s.energy, 2)} kWh`],
-    ['contactor', s.closed ? 'cerrado' : 'abierto'], ['calibre', '63 A']
+    [t('viz.voltage'), `${decimal(s.voltage, 1)} V`], [t('viz.current'), `${decimal(s.closed ? s.current : 0, 2)} A`],
+    [t('viz.power'), `${Math.round(power)} W`], [t('viz.energy'), `${decimal(s.energy, 2)} kWh`],
+    [t('viz.contactor'), t(s.closed ? 'viz.closed' : 'viz.open')], [t('viz.rating'), '63 A']
   ];
   const cols = w > 280 ? 2 : 1;
   const top = y0 + gh + 18;
@@ -650,9 +653,9 @@ function drawXeo(ctx, w, h, s, P) {
   const core = { x: cx, y: h * 0.45, w: Math.min(w * 0.5, 260), h: h * 0.26 };
   const bottomY = h * 0.84;
   const leaves = [
-    { x: w * 0.18, text: 'LUMINARIAS', link: 'LoRa' },
-    { x: w * 0.5, text: 'CUADRO', link: 'Zigbee' },
-    { x: w * 0.82, text: 'EXPANSIÓN', link: 'RS485' }
+    { x: w * 0.18, text: t('viz.luminaires'), link: 'LoRa' },
+    { x: w * 0.5, text: t('viz.panel'), link: 'Zigbee' },
+    { x: w * 0.82, text: t('viz.expansion'), link: 'RS485' }
   ];
   const links = [
     [top.x, top.y + 16, core.x, core.y - core.h / 2, '4G · Ethernet · Wi-Fi'],
@@ -671,7 +674,7 @@ function drawXeo(ctx, w, h, s, P) {
     ctx.fillStyle = rgba(packet.up ? P.accent : P.fg);
     ctx.fillRect(lerp(ax, bx, t) - 2.5, lerp(ay, by, t) - 2.5, 5, 5);
   });
-  box(top.x, top.y, Math.min(w * 0.6, 300), 32, 'PLATAFORMA WEB', false);
+  box(top.x, top.y, Math.min(w * 0.6, 300), 32, t('viz.platform'), false);
   leaves.forEach(leaf => box(leaf.x, bottomY, Math.min(w * 0.27, 140), 30, leaf.text, false));
   box(core.x, core.y, core.w, core.h, '', true);
   label(ctx, 'XEO LUM +', core.x - core.w / 2, core.y - core.h / 2 - 12, rgba(P.accent), 'left', fs);
@@ -682,7 +685,7 @@ function drawXeo(ctx, w, h, s, P) {
   const sh = core.h - inset * 2;
   ctx.fillStyle = rgba(P.bg);
   ctx.fillRect(sx, sy, sw, sh);
-  label(ctx, '● en línea', sx + 8, sy + 12, rgba(P.accent), 'left', fs - 1);
+  label(ctx, t('viz.online'), sx + 8, sy + 12, rgba(P.accent), 'left', fs - 1);
   label(ctx, hhmm(s.clock), sx + sw - 8, sy + 12, rgba(P.muted), 'right', fs - 1);
   const barTop = sy + 26;
   const barBottom = sy + sh - 16;
@@ -752,7 +755,8 @@ function initProducts() {
     const tabs = $('[data-tabs]', article);
     const note = $('[data-note]', article);
     const panes = { esquema: $('[data-pane="esquema"]', screen) };
-    const notes = { esquema: note.textContent };
+    const notes = { esquema: () => t(`note.${key}`) };
+    const relabel = [];
     const videoId = youtubeId(media.youtube);
 
     if (videoId) {
@@ -762,12 +766,14 @@ function initProducts() {
       facade.type = 'button';
       facade.className = 'video-facade';
       facade.style.backgroundImage = `url("https://i.ytimg.com/vi/${videoId}/hqdefault.jpg")`;
-      facade.innerHTML = '<span>&gt; reproducir vídeo</span>';
-      facade.setAttribute('aria-label', `Reproducir el vídeo de ${media.name}`);
+      relabel.push(() => {
+        facade.innerHTML = `<span>${t('video.play')}</span>`;
+        facade.setAttribute('aria-label', t('video.aria', { name: media.name }));
+      });
       facade.addEventListener('click', () => {
         const frame = document.createElement('iframe');
         frame.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
-        frame.title = `Vídeo de ${media.name}`;
+        frame.title = t('video.title', { name: media.name });
         frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
         frame.allowFullscreen = true;
         pane.replaceChildren(frame);
@@ -775,7 +781,7 @@ function initProducts() {
       pane.append(facade);
       screen.prepend(pane);
       panes['vídeo'] = pane;
-      notes['vídeo'] = `vídeo de ${media.name} en YouTube`;
+      notes['vídeo'] = () => t('note.video', { name: media.name });
     }
 
     if (media.images.length) {
@@ -801,8 +807,10 @@ function initProducts() {
         prev.type = next.type = 'button';
         prev.textContent = '[<]';
         next.textContent = '[>]';
-        prev.setAttribute('aria-label', 'Foto anterior');
-        next.setAttribute('aria-label', 'Foto siguiente');
+        relabel.push(() => {
+          prev.setAttribute('aria-label', t('gallery.prev'));
+          next.setAttribute('aria-label', t('gallery.next'));
+        });
         prev.addEventListener('click', () => go(-1));
         next.addEventListener('click', () => go(1));
         const update = () => { counter.textContent = `${Math.round(gallery.scrollLeft / gallery.clientWidth) + 1}/${media.images.length}`; };
@@ -813,7 +821,7 @@ function initProducts() {
       }
       screen.insertBefore(pane, panes.esquema);
       panes.fotos = pane;
-      notes.fotos = `fotografías de ${media.name}`;
+      notes.fotos = () => t('note.photos', { name: media.name });
     }
 
     const order = ['vídeo', 'fotos', 'esquema'].filter(name => panes[name]);
@@ -826,27 +834,32 @@ function initProducts() {
         if (buttons[other]) buttons[other].setAttribute('aria-selected', String(other === name));
       });
       screen.classList.toggle('is-media', name !== 'esquema');
-      note.textContent = notes[name];
+      note.textContent = notes[name]();
       if (name === 'esquema') wake();
     };
+    const tabName = { 'vídeo': 'tab.video', fotos: 'tab.photos', esquema: 'tab.scheme' };
     if (order.length > 1) {
       tabs.setAttribute('role', 'tablist');
-      tabs.setAttribute('aria-label', `Contenido visual de ${media.name}`);
+      relabel.push(() => tabs.setAttribute('aria-label', t('tabs.aria', { name: media.name })));
       order.forEach(name => {
         const button = document.createElement('button');
         button.type = 'button';
         button.setAttribute('role', 'tab');
-        button.textContent = `[${name}]`;
+        relabel.push(() => { button.textContent = `[${t(tabName[name])}]`; });
         button.addEventListener('click', () => select(name));
         buttons[name] = button;
         tabs.append(button);
       });
     } else {
       const only = document.createElement('span');
-      only.textContent = '[esquema]';
+      relabel.push(() => { only.textContent = `[${t('tab.scheme')}]`; });
       only.setAttribute('aria-selected', 'true');
       tabs.append(only);
     }
+    relabel.push(() => { note.textContent = notes[current](); });
+    const applyLabels = () => relabel.forEach(update => update());
+    applyLabels();
+    i18n.onChange(applyLabels);
     select(current);
 
     const canvas = $('canvas', panes.esquema);
@@ -907,7 +920,7 @@ function initCopy() {
   const toast = $('[data-toast]');
   $$('[data-copy]').forEach(button => button.addEventListener('click', () => {
     copyText(button.dataset.copy, copied => {
-      toast.textContent = copied ? '[ OK ] correo copiado' : 'correo seleccionado: cópialo con el teclado';
+      toast.textContent = t(copied ? 'copy.ok' : 'copy.select');
       clearTimeout(button.timer);
       button.timer = setTimeout(() => { toast.textContent = ''; }, 2600);
     }, $('.mail'));
@@ -951,9 +964,13 @@ function initBrief() {
   $$('[data-close-brief]').forEach(button => button.addEventListener('click', close));
   if (location.hash === '#brief') open();
 
+  // El resumen usa los textos visibles, así sale en el idioma de la página.
   const values = () => {
     const data = new FormData(form);
-    const list = name => data.getAll(name).join(', ');
+    const label = input => input.nextElementSibling.textContent;
+    const list = name => $$(`input[name="${name}"]:checked`, form).map(label).join(', ');
+    const chosen = id => { const select = $(id); return select.value ? select.selectedOptions[0].textContent : ''; };
+    const stage = $('input[name="fase"]:checked', form);
     return {
       nombre: (data.get('nombre') || '').trim(),
       email: (data.get('email') || '').trim(),
@@ -961,23 +978,23 @@ function initBrief() {
       tipo: list('tipo'),
       plataforma: list('plataforma'),
       stack: (data.get('stack') || '').trim(),
-      fase: data.get('fase') || '',
+      fase: stage ? label(stage) : '',
       alcance: (data.get('alcance') || '').trim(),
-      plazo: data.get('plazo') || '',
-      presupuesto: data.get('presupuesto') || '',
+      plazo: chosen('#f-time'),
+      presupuesto: chosen('#f-budget'),
       descripcion: (data.get('descripcion') || '').trim()
     };
   };
   const summary = v => {
     const row = (key, value) => `${(key + ':').padEnd(14)}${value || '—'}`;
     return [
-      `NUEVO PROYECTO · ${new Date().toLocaleDateString('es-ES')}`,
+      `${t('sum.title')} · ${new Date().toLocaleDateString(t('date.locale'))}`,
       '-'.repeat(32),
-      row('nombre', v.nombre), row('email', v.email), row('empresa', v.empresa),
-      row('necesita', v.tipo), row('plataforma', v.plataforma), row('stack', v.stack),
-      row('fase', v.fase), row('alcance', v.alcance), row('plazo', v.plazo),
-      row('presupuesto', v.presupuesto || 'a comentar'),
-      '', 'descripción:', v.descripcion
+      row(t('sum.name'), v.nombre), row(t('sum.email'), v.email), row(t('sum.company'), v.empresa),
+      row(t('sum.needs'), v.tipo), row(t('sum.platform'), v.plataforma), row(t('sum.stack'), v.stack),
+      row(t('sum.stage'), v.fase), row(t('sum.scope'), v.alcance), row(t('sum.time'), v.plazo),
+      row(t('sum.budget'), v.presupuesto || t('sum.budget.none')),
+      '', `${t('sum.desc')}:`, v.descripcion
     ].join('\n');
   };
 
@@ -990,17 +1007,17 @@ function initBrief() {
     const consent = $('#f-consent');
     const types = $('[data-required-group="tipo"]');
     mark(name, !name.value.trim());
-    if (!name.value.trim()) problems.push([name, 'tu nombre']);
+    if (!name.value.trim()) problems.push([name, t('form.err.name')]);
     const badEmail = !email.value.trim() || !email.validity.valid;
     mark(email, badEmail);
-    if (badEmail) problems.push([email, 'un email válido']);
+    if (badEmail) problems.push([email, t('form.err.email')]);
     const noType = !$$('input[name="tipo"]:checked', form).length;
     types.classList.toggle('is-invalid', noType);
-    if (noType) problems.push([$('input[name="tipo"]', form), 'qué necesitas']);
+    if (noType) problems.push([$('input[name="tipo"]', form), t('form.err.type')]);
     mark(description, !description.value.trim());
-    if (!description.value.trim()) problems.push([description, 'una descripción']);
+    if (!description.value.trim()) problems.push([description, t('form.err.desc')]);
     mark(consent, !consent.checked);
-    if (!consent.checked) problems.push([consent, 'aceptar el uso de los datos']);
+    if (!consent.checked) problems.push([consent, t('form.err.consent')]);
     return problems;
   };
 
@@ -1008,14 +1025,14 @@ function initBrief() {
     event.preventDefault();
     const problems = validate();
     if (problems.length) {
-      error.textContent = `Falta ${problems.map(([, text]) => text).join(', ')}.`;
+      error.textContent = t('form.missing', { list: problems.map(([, text]) => text).join(', ') });
       problems[0][0].focus();
       return;
     }
     error.textContent = '';
     const v = values();
     const text = summary(v);
-    const subject = `Proyecto freelance · ${v.tipo.split(', ')[0]} · ${v.nombre}`;
+    const subject = t('sum.subject', { type: v.tipo.split(', ')[0], name: v.nombre });
     mailto.href = `mailto:${briefConfig.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
     summaryBox.textContent = text;
     const show = (title, message) => {
@@ -1027,11 +1044,11 @@ function initBrief() {
       dialog.scrollTop = 0;
     };
 
-    if ($('#f-trap').value) { show('brief enviado', 'Gracias. Te responderé por correo.'); return; }
+    if ($('#f-trap').value) { show(t('done.sent.title'), t('done.thanks')); return; }
 
     if (briefConfig.endpoint) {
       submit.disabled = true;
-      submit.textContent = '> enviando…';
+      submit.textContent = t('form.sending');
       try {
         const data = new FormData(form);
         data.set('tipo', v.tipo);
@@ -1041,17 +1058,17 @@ function initBrief() {
         Object.entries(briefConfig.fields).forEach(([key, value]) => data.set(key, value));
         const response = await fetch(briefConfig.endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
         if (!response.ok) throw new Error(String(response.status));
-        show('brief enviado', `Gracias, ${v.nombre}. Te escribiré a ${v.email} para seguir la conversación.`);
+        show(t('done.sent.title'), t('done.sent', { name: v.nombre, email: v.email }));
       } catch (failure) {
-        show('no se pudo enviar', `El envío ha fallado. Copia el resumen o ábrelo en tu correo y envíalo a ${briefConfig.email}.`);
+        show(t('done.fail.title'), t('done.fail', { to: briefConfig.email }));
       } finally {
         submit.disabled = false;
-        submit.textContent = '> enviar brief';
+        submit.textContent = t('form.submit.text');
       }
       return;
     }
 
-    show('brief preparado', `Abre el resumen en tu correo y envíalo a ${briefConfig.email}. Si el correo no se abre, copia el resumen.`);
+    show(t('done.ready.title'), t('done.ready', { to: briefConfig.email }));
     window.location.href = mailto.href;
   });
 
@@ -1064,8 +1081,8 @@ function initBrief() {
   $('[data-copy-summary]').addEventListener('click', event => {
     const button = event.currentTarget;
     copyText(summaryBox.textContent, copied => {
-      button.textContent = copied ? '[ OK ] copiado' : 'resumen seleccionado';
-      setTimeout(() => { button.textContent = 'copiar resumen'; }, 2400);
+      button.textContent = t(copied ? 'summary.copied' : 'summary.selected');
+      setTimeout(() => { button.textContent = t('summary.copy'); }, 2400);
     }, summaryBox);
   });
 }

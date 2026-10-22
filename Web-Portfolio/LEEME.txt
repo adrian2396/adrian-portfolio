@@ -9,6 +9,7 @@ ESTRUCTURA
 index.html  contenido de la página y formulario de proyecto.
 styles.css  diseño, temas claro y oscuro, y adaptación a móvil.
 main.js     configuración (fotos, vídeo, formulario) y animaciones.
+i18n.js     textos en inglés y cambio de idioma.
 assets/     fuentes y material de producto (assets/media/).
 
 INICIO
@@ -22,6 +23,17 @@ Por defecto sigue al sistema operativo. El botón "tema:" de la cabecera
 cambia entre auto, claro y oscuro y recuerda la elección.
 Oscuro = monitor de fósforo. Claro = listado de impresora.
 Las pantallas (bring-up y esquemas) siempre se ven como un monitor.
+
+IDIOMA
+Español e inglés. El botón "lang:" de la cabecera cambia de idioma y
+recuerda la elección. Si no hay elección guardada, usa el idioma del
+navegador (español si empieza por "es"; si no, inglés). El enlace
+index.html?lang=en abre siempre la versión en inglés (?lang=es, la española).
+Los textos en español están en index.html; cada uno lleva data-i18n="clave".
+Los textos en inglés están en i18n.js con la misma clave, junto con los
+mensajes que genera main.js (esquemas, formulario y avisos) en los dos idiomas.
+Al añadir un texto nuevo: escríbelo en español en index.html con su
+data-i18n y añade la clave con la traducción en i18n.js.
 
 FORMULARIO "NUEVO PROYECTO"
 Se abre desde la cabecera, el inicio, soluciones y contacto, y también con

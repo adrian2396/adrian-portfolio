@@ -168,7 +168,7 @@ em{font-style:normal;color:var(--accent-ink);text-shadow:var(--glow)}
 .topbar{position:fixed;inset:0 0 auto;z-index:60;padding-top:env(safe-area-inset-top,0px);border-bottom:1px solid transparent;transition:background-color .25s,border-color .25s}
 .topbar.is-scrolled{background:color-mix(in srgb,var(--bg) 88%,transparent);border-color:var(--line);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
 .topbar.menu-open{background:var(--bg);border-color:var(--line);-webkit-backdrop-filter:none;backdrop-filter:none}
-.topbar-in{height:var(--header);display:flex;align-items:center;gap:22px}
+.topbar-in{height:var(--header);display:flex;align-items:center;gap:18px}
 .brand{display:flex;align-items:center;gap:12px;margin-right:auto;color:var(--fg);text-decoration:none;font:400 14px var(--mono)}
 .brand-mark{display:grid;place-items:center;width:32px;height:32px;border-radius:var(--radius);background:var(--fg);color:var(--bg);font:400 22px/1 var(--display)}
 .brand-text span{color:var(--dim)}
@@ -181,9 +181,9 @@ em{font-style:normal;color:var(--accent-ink);text-shadow:var(--glow)}
 .nav a.is-active{color:var(--fg)}
 .nav a.is-active::before,.nav a.is-active::after{opacity:1}
 .nav-cta{display:none}
-.theme-toggle{padding:6px 2px;color:var(--dim);font:400 13px var(--mono);white-space:nowrap}
-.theme-toggle b{font-weight:500;color:var(--fg)}
-.theme-toggle:hover b{color:var(--accent-ink)}
+.theme-toggle,.lang-toggle{padding:6px 2px;color:var(--dim);font:400 13px var(--mono);white-space:nowrap}
+.theme-toggle b,.lang-toggle b{font-weight:500;color:var(--fg)}
+.theme-toggle:hover b,.lang-toggle:hover b{color:var(--accent-ink)}
 .header-cta{min-height:38px;padding:0 14px;font-size:13px}
 .menu-btn{display:none;min-height:40px;padding:0 2px;color:var(--fg);font:400 14px var(--mono)}
 .menu-btn::before{content:"[";color:var(--accent-ink);margin-right:.3em}
@@ -424,7 +424,7 @@ legend+*{clear:both}
   .uart{height:76px}
   body{font-size:16px}
   .brand-text{display:none}
-  .theme-toggle{font-size:12px}
+  .theme-toggle,.lang-toggle{font-size:12px}
   .term-body{padding:14px 14px 16px;font-size:12.5px}
   .pipeline{grid-template-columns:minmax(0,1fr)}
   .row-3,.row-2{grid-template-columns:minmax(0,1fr)}

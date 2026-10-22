@@ -18,26 +18,27 @@
   <script src="main.js" defer></script>
 </head>
 <body>
-  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <a class="skip" href="#contenido" data-i18n="skip">Saltar al contenido</a>
   <div class="progress" aria-hidden="true"><span data-progress></span></div>
 
   <header class="topbar" data-topbar>
     <div class="topbar-in wrap">
-      <a class="brand" href="#inicio" aria-label="Adrián Vizcaíno, inicio">
+      <a class="brand" href="#inicio" data-i18n-attr="aria-label:brand.label" aria-label="Adrián Vizcaíno, inicio">
         <span class="brand-mark" aria-hidden="true">AV</span>
         <span class="brand-text">adrian<span>@embedded</span>:~$</span>
       </a>
-      <nav class="nav" id="nav" aria-label="Principal">
-        <a href="#soluciones" data-nav>soluciones</a>
-        <a href="#proceso" data-nav>proceso</a>
-        <a href="#proyectos" data-nav>proyectos</a>
-        <a href="#trayectoria" data-nav>trayectoria</a>
-        <a href="#contacto" data-nav>contacto</a>
-        <button class="btn btn-solid nav-cta" type="button" data-open-brief>&gt; nuevo proyecto</button>
+      <nav class="nav" id="nav" data-i18n-attr="aria-label:nav.label" aria-label="Principal">
+        <a href="#soluciones" data-nav data-i18n="nav.solutions">soluciones</a>
+        <a href="#proceso" data-nav data-i18n="nav.process">proceso</a>
+        <a href="#proyectos" data-nav data-i18n="nav.projects">proyectos</a>
+        <a href="#trayectoria" data-nav data-i18n="nav.career">trayectoria</a>
+        <a href="#contacto" data-nav data-i18n="nav.contact">contacto</a>
+        <button class="btn btn-solid nav-cta" type="button" data-open-brief data-i18n="cta.new">&gt; nuevo proyecto</button>
       </nav>
+      <button class="lang-toggle" type="button" data-lang-toggle>lang:<b>es</b></button>
       <button class="theme-toggle" type="button" data-theme-toggle>tema:<b>auto</b></button>
-      <button class="btn btn-solid header-cta" type="button" data-open-brief>&gt; nuevo proyecto</button>
-      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">menú</button>
+      <button class="btn btn-solid header-cta" type="button" data-open-brief data-i18n="cta.new">&gt; nuevo proyecto</button>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" data-i18n="menu">menú</button>
     </div>
   </header>
 
@@ -46,110 +47,110 @@
     <!-- ── INICIO ── -->
     <section class="hero" id="inicio" aria-labelledby="hero-title">
       <div class="wrap">
-        <ol class="boot" data-boot aria-label="Resumen">
-          <li><span class="ok">[ OK ]</span> firmware en C/C++ · RTOS · Linux embebido</li>
-          <li><span class="ok">[ OK ]</span> de la arquitectura a producción y mantenimiento</li>
-          <li><span class="ok">[ OK ]</span> 4 productos IoT / Edge en ORBIS, 3 con el firmware a mi cargo</li>
-          <li><span class="ok">[ OK ]</span> disponible para proyectos freelance</li>
+        <ol class="boot" data-boot data-i18n-attr="aria-label:boot.label" aria-label="Resumen">
+          <li><span class="ok">[ OK ]</span> <span data-i18n="boot.1">firmware en C/C++ · RTOS · Linux embebido</span></li>
+          <li><span class="ok">[ OK ]</span> <span data-i18n="boot.2">de la arquitectura a producción y mantenimiento</span></li>
+          <li><span class="ok">[ OK ]</span> <span data-i18n="boot.3">4 productos IoT / Edge en ORBIS, 3 con el firmware a mi cargo</span></li>
+          <li><span class="ok">[ OK ]</span> <span data-i18n="boot.4">disponible para proyectos freelance</span></li>
         </ol>
         <p class="cmd hero-cmd" aria-hidden="true"><span class="ps1">adrian@embedded:~$</span> <span data-hero-cmd>whoami</span></p>
         <h1 class="hero-title" id="hero-title"><span class="sr-only">Adrián Vizcaíno</span><span class="hero-name" aria-hidden="true" data-decode>Adrián Vizcaíno</span><span class="cursor" aria-hidden="true"></span></h1>
-        <p class="hero-tagline">Bring-up <em>rápido</em>. Firmware <em>fiable</em>. Arquitectura que <em>escala</em>.</p>
-        <p class="hero-lead">Arquitecto de sistemas embebidos e ingeniero de firmware. Pongo en marcha tu hardware y lo llevo a producción con un firmware desacoplado, probado e integrado con tu plataforma.</p>
+        <p class="hero-tagline" data-i18n="hero.tagline">Bring-up <em>rápido</em>. Firmware <em>fiable</em>. Arquitectura que <em>escala</em>.</p>
+        <p class="hero-lead" data-i18n="hero.lead">Arquitecto de sistemas embebidos e ingeniero de firmware. Pongo en marcha tu hardware y lo llevo a producción con un firmware desacoplado, probado e integrado con tu plataforma.</p>
         <div class="hero-cta">
-          <button class="btn btn-solid btn-lg" type="button" data-open-brief>&gt; cuéntame tu proyecto</button>
-          <a class="btn btn-line btn-lg" href="#soluciones">ver soluciones</a>
+          <button class="btn btn-solid btn-lg" type="button" data-open-brief data-i18n="hero.cta">&gt; cuéntame tu proyecto</button>
+          <a class="btn btn-line btn-lg" href="#soluciones" data-i18n="hero.cta2">ver soluciones</a>
         </div>
       </div>
       <div class="uart" data-uart>
-        <p class="uart-label" aria-hidden="true"><span><b>TX</b> 115200 8N1</span><span class="uart-hint">pasa el cursor por el nombre o por la señal</span></p>
+        <p class="uart-label" aria-hidden="true"><span><b>TX</b> 115200 8N1</span><span class="uart-hint" data-i18n="uart.hint">pasa el cursor por el nombre o por la señal</span></p>
         <canvas aria-hidden="true"></canvas>
-        <p class="sr-only">Animación de una línea serie UART que transmite mi nombre byte a byte.</p>
+        <p class="sr-only" data-i18n="uart.sr">Animación de una línea serie UART que transmite mi nombre byte a byte.</p>
       </div>
     </section>
 
     <!-- ── SOLUCIONES ── -->
     <section class="section" id="soluciones" aria-labelledby="solutions-title">
       <div class="wrap">
-        <p class="cmd"><span class="ps1">$</span> <span data-type>adrian --soluciones</span></p>
+        <p class="cmd"><span class="ps1">$</span> <span data-type data-i18n="sol.cmd">adrian --soluciones</span></p>
         <div class="sol-intro">
           <header class="sec-head">
-            <h2 class="title" id="solutions-title">Lo que resuelvo.</h2>
-            <p class="sec-lead">Cuatro momentos clave al desarrollar un producto conectado. Puedes contar conmigo en uno o en todos, para ganar velocidad sin perder fiabilidad.</p>
+            <h2 class="title" id="solutions-title" data-i18n="sol.title">Lo que resuelvo.</h2>
+            <p class="sec-lead" data-i18n="sol.lead">Cuatro momentos clave al desarrollar un producto conectado. Puedes contar conmigo en uno o en todos, para ganar velocidad sin perder fiabilidad.</p>
           </header>
-          <div class="window bringup" role="img" aria-label="Ejemplo de un bring-up: alimentación, depuración, bootloader, periféricos, radio, conexión con la plataforma y OTA verificados.">
+          <div class="window bringup" role="img" data-i18n-attr="aria-label:bu.label" aria-label="Ejemplo de un bring-up: alimentación, depuración, bootloader, periféricos, radio, conexión con la plataforma y OTA verificados.">
             <div class="win-bar">
               <span class="win-path">~/proto-rev-a/<b>bring-up.sh</b></span>
-              <button class="win-action" type="button" data-rerun hidden>[repetir]</button>
+              <button class="win-action" type="button" data-rerun hidden data-i18n="bu.rerun">[repetir]</button>
             </div>
             <div class="screen term-body" data-bringup aria-hidden="true">
-              <p class="term-cmd"><span class="ps1">$</span> ./bring-up.sh --placa proto-rev-a</p>
+              <p class="term-cmd" data-i18n="bu.cmd"><span class="ps1">$</span> ./bring-up.sh --placa proto-rev-a</p>
               <ol class="bootlog">
-                <li><span class="st">[  OK  ]</span> alimentación y relojes</li>
-                <li><span class="st">[  OK  ]</span> depuración SWD / JTAG</li>
-                <li><span class="st">[  OK  ]</span> bootloader y flash</li>
-                <li><span class="st">[  OK  ]</span> consola UART</li>
-                <li><span class="st">[  OK  ]</span> periféricos I²C · SPI · GPIO</li>
-                <li><span class="st">[  OK  ]</span> radio Wi-Fi · BLE · LoRa</li>
-                <li><span class="st">[  OK  ]</span> MQTT -&gt; tu plataforma</li>
-                <li><span class="st">[  OK  ]</span> OTA y secure boot</li>
+                <li><span class="st">[  OK  ]</span> <span data-i18n="bu.1">alimentación y relojes</span></li>
+                <li><span class="st">[  OK  ]</span> <span data-i18n="bu.2">depuración SWD / JTAG</span></li>
+                <li><span class="st">[  OK  ]</span> <span data-i18n="bu.3">bootloader y flash</span></li>
+                <li><span class="st">[  OK  ]</span> <span data-i18n="bu.4">consola UART</span></li>
+                <li><span class="st">[  OK  ]</span> <span data-i18n="bu.5">periféricos I²C · SPI · GPIO</span></li>
+                <li><span class="st">[  OK  ]</span> <span data-i18n="bu.6">radio Wi-Fi · BLE · LoRa</span></li>
+                <li><span class="st">[  OK  ]</span> <span data-i18n="bu.7">MQTT -&gt; tu plataforma</span></li>
+                <li><span class="st">[  OK  ]</span> <span data-i18n="bu.8">OTA y secure boot</span></li>
               </ol>
-              <p class="term-end">firmware listo para crecer<span class="cursor"></span></p>
+              <p class="term-end" data-i18n="bu.end">firmware listo para crecer<span class="cursor"></span></p>
             </div>
           </div>
         </div>
         <ol class="solutions">
           <li class="solution" data-reveal>
             <p class="sol-id">01 · bring-up</p>
-            <h3>Tienes placa nueva y hay que hacerla arrancar.</h3>
-            <p>Pongo en marcha la placa: arranque, programación y depuración, drivers y periféricos validados. Tu equipo desarrolla sobre una base estable desde el principio.</p>
+            <h3 data-i18n="sol.1.h">Tienes placa nueva y hay que hacerla arrancar.</h3>
+            <p data-i18n="sol.1.p">Pongo en marcha la placa: arranque, programación y depuración, drivers y periféricos validados. Tu equipo desarrolla sobre una base estable desde el principio.</p>
             <ul class="tags"><li>ESP32</li><li>STM32</li><li>RTOS</li><li>UART · I²C · SPI</li></ul>
           </li>
           <li class="solution" data-reveal>
-            <p class="sol-id">02 · arquitectura</p>
-            <h3>El firmware del prototipo no aguanta un producto.</h3>
-            <p>Diseño una arquitectura modular y desacoplada, con capas de abstracción, servicios y contratos claros entre módulos. Se prueba, se mantiene y se reutiliza entre productos.</p>
-            <ul class="tags"><li>C / C++ moderno</li><li>HAL</li><li>servicios</li><li>portabilidad</li></ul>
+            <p class="sol-id" data-i18n="sol.2.id">02 · arquitectura</p>
+            <h3 data-i18n="sol.2.h">El firmware del prototipo no aguanta un producto.</h3>
+            <p data-i18n="sol.2.p">Diseño una arquitectura modular y desacoplada, con capas de abstracción, servicios y contratos claros entre módulos. Se prueba, se mantiene y se reutiliza entre productos.</p>
+            <ul class="tags"><li data-i18n="tag.cpp">C / C++ moderno</li><li>HAL</li><li data-i18n="tag.services">servicios</li><li data-i18n="tag.portability">portabilidad</li></ul>
           </li>
           <li class="solution" data-reveal>
-            <p class="sol-id">03 · integración</p>
-            <h3>El dispositivo tiene que hablar con tu plataforma.</h3>
-            <p>Integro los stacks de comunicación y los protocolos que necesites y conecto el equipo con tu nube, tu app o tus sistemas industriales.</p>
+            <p class="sol-id" data-i18n="sol.3.id">03 · integración</p>
+            <h3 data-i18n="sol.3.h">El dispositivo tiene que hablar con tu plataforma.</h3>
+            <p data-i18n="sol.3.p">Integro los stacks de comunicación y los protocolos que necesites y conecto el equipo con tu nube, tu app o tus sistemas industriales.</p>
             <ul class="tags"><li>Wi-Fi · BLE</li><li>Ethernet · 4G</li><li>LoRa · Zigbee · Matter</li><li>MQTT · HTTP · Modbus</li></ul>
           </li>
           <li class="solution" data-reveal>
-            <p class="sol-id">04 · producción</p>
-            <h3>Vas a fabricar y necesitas que no falle en campo.</h3>
-            <p>Pruebas automatizadas, actualizaciones OTA, secure boot, firmado y cifrado, y soporte a los requisitos de la directiva RED para salir al mercado con garantías.</p>
+            <p class="sol-id" data-i18n="sol.4.id">04 · producción</p>
+            <h3 data-i18n="sol.4.h">Vas a fabricar y necesitas que no falle en campo.</h3>
+            <p data-i18n="sol.4.p">Pruebas automatizadas, actualizaciones OTA, secure boot, firmado y cifrado, y soporte a los requisitos de la directiva RED para salir al mercado con garantías.</p>
             <ul class="tags"><li>CI/CD</li><li>OTA</li><li>secure boot</li><li>RED</li></ul>
           </li>
         </ol>
-        <p class="also"><span>También</span>Linux embebido con Yocto, OpenWrt o Debian · esquemáticos y PCB · auditoría y rescate de un firmware existente.</p>
+        <p class="also" data-i18n="sol.also"><span>También</span>Linux embebido con Yocto, OpenWrt o Debian · esquemáticos y PCB · auditoría y rescate de un firmware existente.</p>
       </div>
     </section>
 
     <!-- ── PROCESO ── -->
     <section class="section" id="proceso" aria-labelledby="process-title">
       <div class="wrap">
-        <p class="cmd"><span class="ps1">$</span> <span data-type>make proyecto</span></p>
+        <p class="cmd"><span class="ps1">$</span> <span data-type data-i18n="proc.cmd">make proyecto</span></p>
         <header class="sec-head">
-          <h2 class="title" id="process-title">Cómo trabajo.</h2>
-          <p class="sec-lead">Un proceso corto y transparente: sabes qué recibes, cuándo y en qué estado está cada entrega.</p>
+          <h2 class="title" id="process-title" data-i18n="proc.title">Cómo trabajo.</h2>
+          <p class="sec-lead" data-i18n="proc.lead">Un proceso corto y transparente: sabes qué recibes, cuándo y en qué estado está cada entrega.</p>
         </header>
         <ol class="pipeline" data-pipeline>
-          <li class="stage"><p class="stage-st"><span>[ OK ]</span> 01</p><h3>Brief</h3><p>Entendemos el producto, el hardware y el objetivo. Me cuentas el proyecto con el formulario o en una llamada.</p></li>
-          <li class="stage"><p class="stage-st"><span>[ OK ]</span> 02</p><h3>Propuesta</h3><p>Alcance, entregables, hitos y presupuesto cerrados por escrito antes de empezar.</p></li>
-          <li class="stage"><p class="stage-st"><span>[ OK ]</span> 03</p><h3>Entregas por hitos</h3><p>Avances verificables y frecuentes, con el código en tu repositorio y CI desde el primer día.</p></li>
-          <li class="stage"><p class="stage-st"><span>[ OK ]</span> 04</p><h3>Producción y soporte</h3><p>Documentación, pruebas y acompañamiento hasta fabricación y mantenimiento.</p></li>
+          <li class="stage"><p class="stage-st"><span>[ OK ]</span> 01</p><h3>Brief</h3><p data-i18n="proc.1.p">Entendemos el producto, el hardware y el objetivo. Me cuentas el proyecto con el formulario o en una llamada.</p></li>
+          <li class="stage"><p class="stage-st"><span>[ OK ]</span> 02</p><h3 data-i18n="proc.2.h">Propuesta</h3><p data-i18n="proc.2.p">Alcance, entregables, hitos y presupuesto cerrados por escrito antes de empezar.</p></li>
+          <li class="stage"><p class="stage-st"><span>[ OK ]</span> 03</p><h3 data-i18n="proc.3.h">Entregas por hitos</h3><p data-i18n="proc.3.p">Avances verificables y frecuentes, con el código en tu repositorio y CI desde el primer día.</p></li>
+          <li class="stage"><p class="stage-st"><span>[ OK ]</span> 04</p><h3 data-i18n="proc.4.h">Producción y soporte</h3><p data-i18n="proc.4.p">Documentación, pruebas y acompañamiento hasta fabricación y mantenimiento.</p></li>
         </ol>
 
         <div class="why" data-reveal>
-          <h3 class="why-title">Por qué es más rápido</h3>
+          <h3 class="why-title" data-i18n="why.title">Por qué es más rápido</h3>
           <dl class="why-list">
-            <div><dt>Patrones probados</dt><dd>Arquitecturas ya validadas en productos que están en el mercado. Menos exploración y menos sorpresas.</dd></div>
-            <div><dt>Hardware y firmware a la vez</dt><dd>Leo esquemáticos y diseño PCB, así que el bring-up no se atasca entre equipos.</dd></div>
-            <div><dt>Desacoplado desde el inicio</dt><dd>Con capas y contratos claros, cambiar de MCU, de radio o de plataforma no obliga a reescribir.</dd></div>
-            <div><dt>Pruebas desde el primer día</dt><dd>Integración continua y validación en cada entrega: los fallos aparecen pronto, no en campo.</dd></div>
+            <div><dt data-i18n="why.1.t">Patrones probados</dt><dd data-i18n="why.1.d">Arquitecturas ya validadas en productos que están en el mercado. Menos exploración y menos sorpresas.</dd></div>
+            <div><dt data-i18n="why.2.t">Hardware y firmware a la vez</dt><dd data-i18n="why.2.d">Leo esquemáticos y diseño PCB, así que el bring-up no se atasca entre equipos.</dd></div>
+            <div><dt data-i18n="why.3.t">Desacoplado desde el inicio</dt><dd data-i18n="why.3.d">Con capas y contratos claros, cambiar de MCU, de radio o de plataforma no obliga a reescribir.</dd></div>
+            <div><dt data-i18n="why.4.t">Pruebas desde el primer día</dt><dd data-i18n="why.4.d">Integración continua y validación en cada entrega: los fallos aparecen pronto, no en campo.</dd></div>
           </dl>
         </div>
       </div>
@@ -158,15 +159,15 @@
     <!-- ── PROYECTOS ── -->
     <section class="section" id="proyectos" aria-labelledby="work-title">
       <div class="wrap">
-        <p class="cmd"><span class="ps1">$</span> <span data-type>ls -l proyectos/</span></p>
+        <p class="cmd"><span class="ps1">$</span> <span data-type data-i18n="work.cmd">ls -l proyectos/</span></p>
         <header class="sec-head">
-          <h2 class="title" id="work-title">Casos reales.</h2>
-          <p class="sec-lead">Tres productos de ORBIS en los que he asumido el liderazgo técnico y la responsabilidad del firmware, de la arquitectura a producción.</p>
+          <h2 class="title" id="work-title" data-i18n="work.title">Casos reales.</h2>
+          <p class="sec-lead" data-i18n="work.lead">Tres productos de ORBIS en los que he asumido el liderazgo técnico y la responsabilidad del firmware, de la arquitectura a producción.</p>
         </header>
 
         <article class="window product" data-product="anc" data-reveal aria-labelledby="anc-title">
           <div class="win-bar">
-            <span class="win-path">~/proyectos/<b>anc-plus</b></span>
+            <span class="win-path" data-i18n="work.path.anc">~/proyectos/<b>anc-plus</b></span>
             <span class="win-tabs" data-tabs></span>
           </div>
           <div class="win-body">
@@ -174,16 +175,16 @@
               <div class="pane" data-pane="esquema"><canvas aria-hidden="true" data-viz="anc"></canvas></div>
             </div>
             <div class="product-info">
-              <p class="kicker">Interruptor horario astronómico</p>
+              <p class="kicker" data-i18n="anc.kicker">Interruptor horario astronómico</p>
               <h3 class="product-name" id="anc-title">ANC +</h3>
-              <p class="product-sum">Interruptor astronómico de dos circuitos para control de alumbrado. Calcula orto y ocaso según la ubicación, se programa por Wi-Fi o Bluetooth y se integra con ORBIS IoT.</p>
+              <p class="product-sum" data-i18n="anc.sum">Interruptor astronómico de dos circuitos para control de alumbrado. Calcula orto y ocaso según la ubicación, se programa por Wi-Fi o Bluetooth y se integra con ORBIS IoT.</p>
               <dl class="specs">
-                <div><dt>circuitos</dt><dd>2 independientes</dd></div>
-                <div><dt>conectividad</dt><dd>Wi-Fi · Bluetooth</dd></div>
-                <div><dt>plataforma</dt><dd>ORBIS IoT</dd></div>
-                <div><dt>mi papel</dt><dd>liderazgo técnico · firmware</dd></div>
+                <div><dt data-i18n="spec.circuits">circuitos</dt><dd data-i18n="spec.circuits.v">2 independientes</dd></div>
+                <div><dt data-i18n="spec.connectivity">conectividad</dt><dd>Wi-Fi · Bluetooth</dd></div>
+                <div><dt data-i18n="spec.platform">plataforma</dt><dd>ORBIS IoT</dd></div>
+                <div><dt data-i18n="spec.role">mi papel</dt><dd data-i18n="spec.role.v">liderazgo técnico · firmware</dd></div>
               </dl>
-              <p class="product-links"><a class="link" href="https://orbis.es/wp-content/uploads/fichatecnica/FT_ASTRO_NOVA_CITY_PLUS.pdf" target="_blank" rel="noopener">ficha técnica -&gt;</a></p>
+              <p class="product-links"><a class="link" href="https://orbis.es/wp-content/uploads/fichatecnica/FT_ASTRO_NOVA_CITY_PLUS.pdf" target="_blank" rel="noopener" data-i18n="anc.link">ficha técnica -&gt;</a></p>
             </div>
           </div>
           <p class="win-note" data-note>esquema conceptual · orto y ocaso calculados para Madrid · programa de C2 de ejemplo</p>
@@ -191,7 +192,7 @@
 
         <article class="window product" data-product="astro" data-reveal aria-labelledby="astro-title">
           <div class="win-bar">
-            <span class="win-path">~/proyectos/<b>astro-lum</b></span>
+            <span class="win-path" data-i18n="work.path.astro">~/proyectos/<b>astro-lum</b></span>
             <span class="win-tabs" data-tabs></span>
           </div>
           <div class="win-body">
@@ -199,16 +200,16 @@
               <div class="pane" data-pane="esquema"><canvas aria-hidden="true" data-viz="astro"></canvas></div>
             </div>
             <div class="product-info">
-              <p class="kicker">Control y medida de alumbrado</p>
+              <p class="kicker" data-i18n="astro.kicker">Control y medida de alumbrado</p>
               <h3 class="product-name" id="astro-title">ASTRO LUM</h3>
-              <p class="product-sum">Reúne en dos módulos un interruptor astronómico, un contactor de potencia y un analizador de red. He trabajado en la variante independiente con Wi-Fi y Bluetooth y en la variante gateway de XEO LUM + por Ethernet.</p>
+              <p class="product-sum" data-i18n="astro.sum">Reúne en dos módulos un interruptor astronómico, un contactor de potencia y un analizador de red. He trabajado en la variante independiente con Wi-Fi y Bluetooth y en la variante gateway de XEO LUM + por Ethernet.</p>
               <dl class="specs">
-                <div><dt>contactor</dt><dd>63 A con paso por cero</dd></div>
-                <div><dt>medida</dt><dd>tensión, corriente, potencia y energía</dd></div>
-                <div><dt>conectividad</dt><dd>Wi-Fi · Bluetooth · Ethernet · OTA</dd></div>
-                <div><dt>mi papel</dt><dd>liderazgo técnico · firmware</dd></div>
+                <div><dt>contactor</dt><dd data-i18n="spec.contactor.v">63 A con paso por cero</dd></div>
+                <div><dt data-i18n="spec.metering">medida</dt><dd data-i18n="spec.metering.v">tensión, corriente, potencia y energía</dd></div>
+                <div><dt data-i18n="spec.connectivity">conectividad</dt><dd>Wi-Fi · Bluetooth · Ethernet · OTA</dd></div>
+                <div><dt data-i18n="spec.role">mi papel</dt><dd data-i18n="spec.role.v">liderazgo técnico · firmware</dd></div>
               </dl>
-              <p class="product-links"><a class="link" href="https://orbis.es/wp-content/uploads/fichatecnica/FT_ASTRO_LUM.pdf" target="_blank" rel="noopener">ficha wi-fi / bluetooth -&gt;</a><a class="link" href="https://www.interempresas.net/Energia/626768-Gestion-IoT-y-conectividad-hibrida-para-el-alumbrado-publico.html" target="_blank" rel="noopener">artículo en interempresas -&gt;</a></p>
+              <p class="product-links"><a class="link" href="https://orbis.es/wp-content/uploads/fichatecnica/FT_ASTRO_LUM.pdf" target="_blank" rel="noopener" data-i18n="astro.link1">ficha wi-fi / bluetooth -&gt;</a><a class="link" href="https://www.interempresas.net/Energia/626768-Gestion-IoT-y-conectividad-hibrida-para-el-alumbrado-publico.html" target="_blank" rel="noopener" data-i18n="astro.link2">artículo en interempresas -&gt;</a></p>
             </div>
           </div>
           <p class="win-note" data-note>esquema conceptual · señales de red de 50 Hz con valores simulados</p>
@@ -216,7 +217,7 @@
 
         <article class="window product" data-product="xeolum" data-reveal aria-labelledby="xeo-title">
           <div class="win-bar">
-            <span class="win-path">~/proyectos/<b>xeo-lum-plus</b></span>
+            <span class="win-path" data-i18n="work.path.xeo">~/proyectos/<b>xeo-lum-plus</b></span>
             <span class="win-tabs" data-tabs></span>
           </div>
           <div class="win-body">
@@ -224,16 +225,16 @@
               <div class="pane" data-pane="esquema"><canvas aria-hidden="true" data-viz="xeo"></canvas></div>
             </div>
             <div class="product-info">
-              <p class="kicker">Telegestión de alumbrado</p>
+              <p class="kicker" data-i18n="xeo.kicker">Telegestión de alumbrado</p>
               <h3 class="product-name" id="xeo-title">XEO LUM +</h3>
-              <p class="product-sum">Centro de telegestión para alumbrado público y cuadros eléctricos, con pantalla TFT a color. Supervisa la instalación, detecta fallos en tiempo real y conecta con la plataforma web. Arquitectura y firmware bajo mi responsabilidad técnica.</p>
+              <p class="product-sum" data-i18n="xeo.sum">Centro de telegestión para alumbrado público y cuadros eléctricos, con pantalla TFT a color. Supervisa la instalación, detecta fallos en tiempo real y conecta con la plataforma web. Arquitectura y firmware bajo mi responsabilidad técnica.</p>
               <dl class="specs">
-                <div><dt>comunicaciones</dt><dd>4G Cat 1 bis · Ethernet · Wi-Fi</dd></div>
-                <div><dt>radio</dt><dd>LoRa (luminarias) · Zigbee (cuadro)</dd></div>
-                <div><dt>expansión</dt><dd>buses RS485 aislados</dd></div>
-                <div><dt>mi papel</dt><dd>liderazgo técnico · firmware</dd></div>
+                <div><dt data-i18n="spec.comms">comunicaciones</dt><dd>4G Cat 1 bis · Ethernet · Wi-Fi</dd></div>
+                <div><dt>radio</dt><dd data-i18n="spec.radio.v">LoRa (luminarias) · Zigbee (cuadro)</dd></div>
+                <div><dt data-i18n="spec.expansion">expansión</dt><dd data-i18n="spec.expansion.v">buses RS485 aislados</dd></div>
+                <div><dt data-i18n="spec.role">mi papel</dt><dd data-i18n="spec.role.v">liderazgo técnico · firmware</dd></div>
               </dl>
-              <p class="product-links"><a class="link" href="https://www.interempresas.net/Electricidad/610729-ORBIS-presenta-Xeo-Lum-para-la-telegestion-de-alumbrado.html" target="_blank" rel="noopener">presentación del producto -&gt;</a><a class="link" href="https://orbis.es/noticias/energia-inteligente/directiva-eed-la-eficiencia-energetica-entra-en-una-nueva-etapa/" target="_blank" rel="noopener">producto en orbis -&gt;</a></p>
+              <p class="product-links"><a class="link" href="https://www.interempresas.net/Electricidad/610729-ORBIS-presenta-Xeo-Lum-para-la-telegestion-de-alumbrado.html" target="_blank" rel="noopener" data-i18n="xeo.link1">presentación del producto -&gt;</a><a class="link" href="https://orbis.es/noticias/energia-inteligente/directiva-eed-la-eficiencia-energetica-entra-en-una-nueva-etapa/" target="_blank" rel="noopener" data-i18n="xeo.link2">producto en orbis -&gt;</a></p>
             </div>
           </div>
           <p class="win-note" data-note>esquema conceptual · datos de supervisión simulados</p>
@@ -244,17 +245,17 @@
     <!-- ── STACK ── -->
     <section class="section" id="stack" aria-labelledby="stack-title">
       <div class="wrap">
-        <p class="cmd"><span class="ps1">$</span> <span data-type>tree --capas stack/</span></p>
+        <p class="cmd"><span class="ps1">$</span> <span data-type data-i18n="stack.cmd">tree --capas stack/</span></p>
         <header class="sec-head">
-          <h2 class="title" id="stack-title">De la placa a la plataforma.</h2>
-          <p class="sec-lead">Trabajo en todas las capas del sistema, así que las decisiones de una no rompen las demás.</p>
+          <h2 class="title" id="stack-title" data-i18n="stack.title">De la placa a la plataforma.</h2>
+          <p class="sec-lead" data-i18n="stack.lead">Trabajo en todas las capas del sistema, así que las decisiones de una no rompen las demás.</p>
         </header>
         <ol class="layers" reversed>
-          <li class="layer" data-layer><span class="layer-id">L5</span><h3>Pruebas y seguridad</h3><p>Validación funcional · simulación · automatización · Git · Docker · CI/CD · secure boot · firmado · cifrado de flash · hardening · requisitos RED</p></li>
-          <li class="layer" data-layer><span class="layer-id">L4</span><h3>Arquitectura</h3><p>Definición HW/SW · modularidad · interfaces · reutilización · portabilidad · escalabilidad · testabilidad · integración de stacks</p></li>
-          <li class="layer" data-layer><span class="layer-id">L3</span><h3>Conectividad</h3><p>Wi-Fi · Ethernet · GSM · BLE / NimBLE · Zigbee · Matter · LoRa · TCP/IP · UDP · WebSockets · MQTT · HTTP · Modbus · pasarelas</p></li>
-          <li class="layer" data-layer><span class="layer-id">L2</span><h3>Firmware y SO</h3><p>C · C++ moderno · Ada · FreeRTOS · ESP-IDF · Linux embebido · OpenWrt · Debian · Yocto Project · Python · Bash</p></li>
-          <li class="layer" data-layer><span class="layer-id">L1</span><h3>Hardware</h3><p>ESP32 · STM32 · Raspberry Pi · ARM · RISC-V · esquemáticos y PCB · Altium Designer · KiCad · validación eléctrica</p></li>
+          <li class="layer" data-layer><span class="layer-id">L5</span><h3 data-i18n="layer.5">Pruebas y seguridad</h3><p data-i18n="layer.5.p">Validación funcional · simulación · automatización · Git · Docker · CI/CD · secure boot · firmado · cifrado de flash · hardening · requisitos RED</p></li>
+          <li class="layer" data-layer><span class="layer-id">L4</span><h3 data-i18n="layer.4">Arquitectura</h3><p data-i18n="layer.4.p">Definición HW/SW · modularidad · interfaces · reutilización · portabilidad · escalabilidad · testabilidad · integración de stacks</p></li>
+          <li class="layer" data-layer><span class="layer-id">L3</span><h3 data-i18n="layer.3">Conectividad</h3><p data-i18n="layer.3.p">Wi-Fi · Ethernet · GSM · BLE / NimBLE · Zigbee · Matter · LoRa · TCP/IP · UDP · WebSockets · MQTT · HTTP · Modbus · pasarelas</p></li>
+          <li class="layer" data-layer><span class="layer-id">L2</span><h3 data-i18n="layer.2">Firmware y SO</h3><p data-i18n="layer.2.p">C · C++ moderno · Ada · FreeRTOS · ESP-IDF · Linux embebido · OpenWrt · Debian · Yocto Project · Python · Bash</p></li>
+          <li class="layer" data-layer><span class="layer-id">L1</span><h3>Hardware</h3><p data-i18n="layer.1.p">ESP32 · STM32 · Raspberry Pi · ARM · RISC-V · esquemáticos y PCB · Altium Designer · KiCad · validación eléctrica</p></li>
         </ol>
       </div>
     </section>
@@ -262,98 +263,98 @@
     <!-- ── TRAYECTORIA ── -->
     <section class="section" id="trayectoria" aria-labelledby="log-title">
       <div class="wrap">
-        <p class="cmd"><span class="ps1">$</span> <span data-type>git log --graph trayectoria</span></p>
+        <p class="cmd"><span class="ps1">$</span> <span data-type data-i18n="log.cmd">git log --graph trayectoria</span></p>
         <header class="sec-head">
-          <h2 class="title" id="log-title">Trayectoria.</h2>
-          <p class="sec-lead">Investigación aplicada, dispositivos conectados y sistemas industriales. Una misma base: entender el hardware y construir el software que lo hace funcionar.</p>
+          <h2 class="title" id="log-title" data-i18n="log.title">Trayectoria.</h2>
+          <p class="sec-lead" data-i18n="log.lead">Investigación aplicada, dispositivos conectados y sistemas industriales. Una misma base: entender el hardware y construir el software que lo hace funcionar.</p>
         </header>
         <div class="log">
           <div class="rail" aria-hidden="true"><i data-rail></i></div>
           <ol class="commits" data-timeline>
             <li class="commit is-head">
-              <p class="commit-meta"><b>v4.0</b> <span class="tag">HEAD -&gt; actual</span> feb 2025 — hoy</p>
+              <p class="commit-meta" data-i18n="log.v4.meta"><b>v4.0</b> <span class="tag">HEAD -&gt; actual</span> feb 2025 — hoy</p>
               <h3>ORBIS</h3>
               <p class="commit-role">Principal Embedded / IoT Architect</p>
-              <p class="commit-lead">Cuatro proyectos IoT / Edge a lo largo de todo su ciclo de vida. Único responsable técnico del firmware en tres de ellos.</p>
+              <p class="commit-lead" data-i18n="log.v4.lead">Cuatro proyectos IoT / Edge a lo largo de todo su ciclo de vida. Único responsable técnico del firmware en tres de ellos.</p>
               <details class="diff" open>
-                <summary>cambios (6)</summary>
+                <summary data-i18n="log.changes6">cambios (6)</summary>
                 <ul>
-                  <li>Definición de plataformas HW/SW, interfaces y arquitecturas modulares orientadas a testabilidad, mantenimiento y reutilización.</li>
-                  <li>Desarrollo y portabilidad en C/C++ para ESP32 y STM32: drivers, abstracciones, servicios y aplicación; gestión de memoria, concurrencia y latencias.</li>
-                  <li>Pruebas de firmware, integración hardware-software, puesta en producción y resolución de incidencias.</li>
-                  <li>Conectividad y pasarelas de datos; frameworks internos e integración de librerías para dispositivos, eventos y configuración.</li>
-                  <li>Secure boot, firmado de firmware, cifrado de flash y credenciales. Participación en requisitos de ciberseguridad asociados a RED.</li>
-                  <li>Soporte técnico transversal a varios equipos y productos.</li>
+                  <li data-i18n="log.v4.1">Definición de plataformas HW/SW, interfaces y arquitecturas modulares orientadas a testabilidad, mantenimiento y reutilización.</li>
+                  <li data-i18n="log.v4.2">Desarrollo y portabilidad en C/C++ para ESP32 y STM32: drivers, abstracciones, servicios y aplicación; gestión de memoria, concurrencia y latencias.</li>
+                  <li data-i18n="log.v4.3">Pruebas de firmware, integración hardware-software, puesta en producción y resolución de incidencias.</li>
+                  <li data-i18n="log.v4.4">Conectividad y pasarelas de datos; frameworks internos e integración de librerías para dispositivos, eventos y configuración.</li>
+                  <li data-i18n="log.v4.5">Secure boot, firmado de firmware, cifrado de flash y credenciales. Participación en requisitos de ciberseguridad asociados a RED.</li>
+                  <li data-i18n="log.v4.6">Soporte técnico transversal a varios equipos y productos.</li>
                 </ul>
               </details>
             </li>
             <li class="commit">
-              <p class="commit-meta"><b>v3.0</b> feb 2024 — ene 2025</p>
+              <p class="commit-meta" data-i18n="log.v3.meta"><b>v3.0</b> feb 2024 — ene 2025</p>
               <h3>NERTUS</h3>
-              <p class="commit-role">Ingeniero de software embebido · Madrid</p>
-              <p class="commit-lead">Software embebido y comunicaciones para sistemas industriales.</p>
+              <p class="commit-role" data-i18n="log.v3.role">Ingeniero de software embebido · Madrid</p>
+              <p class="commit-lead" data-i18n="log.v3.lead">Software embebido y comunicaciones para sistemas industriales.</p>
               <details class="diff">
-                <summary>cambios (4)</summary>
+                <summary data-i18n="log.changes4">cambios (4)</summary>
                 <ul>
-                  <li>Desarrollo en C/C++ y Ada, componentes de bajo nivel e integración en sistemas distribuidos.</li>
-                  <li>Comunicaciones TCP/IP, UDP y WebSockets para servicios y flujos de datos en tiempo real.</li>
-                  <li>Herramientas de pruebas, simulación y automatización en Python.</li>
-                  <li>Integración en pipelines de CI/CD y entornos de desarrollo con Docker.</li>
+                  <li data-i18n="log.v3.1">Desarrollo en C/C++ y Ada, componentes de bajo nivel e integración en sistemas distribuidos.</li>
+                  <li data-i18n="log.v3.2">Comunicaciones TCP/IP, UDP y WebSockets para servicios y flujos de datos en tiempo real.</li>
+                  <li data-i18n="log.v3.3">Herramientas de pruebas, simulación y automatización en Python.</li>
+                  <li data-i18n="log.v3.4">Integración en pipelines de CI/CD y entornos de desarrollo con Docker.</li>
                 </ul>
               </details>
             </li>
             <li class="commit">
               <p class="commit-meta"><b>v2.0</b> oct 2022 — feb 2024</p>
               <h3>WIYO Technologies</h3>
-              <p class="commit-role">Ingeniero de firmware · Madrid</p>
-              <p class="commit-lead">Firmware para ESP32 y Linux embebido, desde los drivers hasta la validación en campo.</p>
+              <p class="commit-role" data-i18n="log.v2.role">Ingeniero de firmware · Madrid</p>
+              <p class="commit-lead" data-i18n="log.v2.lead">Firmware para ESP32 y Linux embebido, desde los drivers hasta la validación en campo.</p>
               <details class="diff">
-                <summary>cambios (4)</summary>
+                <summary data-i18n="log.changes4">cambios (4)</summary>
                 <ul>
-                  <li>Arquitecturas modulares, librerías de terceros y capas de abstracción.</li>
-                  <li>FreeRTOS, ESP-IDF, OpenWrt, Debian y Yocto Project.</li>
-                  <li>Drivers e interfaces UART, I2C, SPI y GPIO; integración de Wi-Fi, MQTT y TCP/IP.</li>
-                  <li>Validación funcional, análisis del comportamiento en campo y depuración de incidencias de conectividad.</li>
+                  <li data-i18n="log.v2.1">Arquitecturas modulares, librerías de terceros y capas de abstracción.</li>
+                  <li data-i18n="log.v2.2">FreeRTOS, ESP-IDF, OpenWrt, Debian y Yocto Project.</li>
+                  <li data-i18n="log.v2.3">Drivers e interfaces UART, I2C, SPI y GPIO; integración de Wi-Fi, MQTT y TCP/IP.</li>
+                  <li data-i18n="log.v2.4">Validación funcional, análisis del comportamiento en campo y depuración de incidencias de conectividad.</li>
                 </ul>
               </details>
             </li>
             <li class="commit">
               <p class="commit-meta"><b>v1.0</b> may 2020 — sep 2022</p>
-              <h3>Universidad de Oviedo</h3>
-              <p class="commit-role">Ingeniero electrónico / firmware en I+D · IG10</p>
-              <p class="commit-lead">Investigación y transferencia tecnológica, de la definición inicial a la validación experimental.</p>
+              <h3 data-i18n="log.v1.org">Universidad de Oviedo</h3>
+              <p class="commit-role" data-i18n="log.v1.role">Ingeniero electrónico / firmware en I+D · IG10</p>
+              <p class="commit-lead" data-i18n="log.v1.lead">Investigación y transferencia tecnológica, de la definición inicial a la validación experimental.</p>
               <details class="diff">
-                <summary>cambios (4)</summary>
+                <summary data-i18n="log.changes4">cambios (4)</summary>
                 <ul>
-                  <li>Esquemáticos y PCB con Altium Designer, selección de componentes y validación eléctrica.</li>
-                  <li>Firmware en C++ para ESP32: periféricos, comunicaciones y tareas.</li>
-                  <li>Integración hardware-firmware y puesta a punto de prototipos.</li>
-                  <li>Pruebas de laboratorio, instrumentación y caracterización de sistemas.</li>
+                  <li data-i18n="log.v1.1">Esquemáticos y PCB con Altium Designer, selección de componentes y validación eléctrica.</li>
+                  <li data-i18n="log.v1.2">Firmware en C++ para ESP32: periféricos, comunicaciones y tareas.</li>
+                  <li data-i18n="log.v1.3">Integración hardware-firmware y puesta a punto de prototipos.</li>
+                  <li data-i18n="log.v1.4">Pruebas de laboratorio, instrumentación y caracterización de sistemas.</li>
                 </ul>
               </details>
             </li>
             <li class="commit is-root">
               <p class="commit-meta"><b>v0.x</b> 2015 — 2021</p>
-              <h3>Formación</h3>
-              <p class="commit-role">Ingeniería Electrónica Industrial y Automática · Universidad de Oviedo</p>
-              <p class="commit-lead">Especialización en Control y Matrícula de Honor en el Trabajo Fin de Grado. Erasmus+ en el Politecnico di Milano (2018 — 2019), en el Máster en Automatización y Control.</p>
+              <h3 data-i18n="log.v0.org">Formación</h3>
+              <p class="commit-role" data-i18n="log.v0.role">Ingeniería Electrónica Industrial y Automática · Universidad de Oviedo</p>
+              <p class="commit-lead" data-i18n="log.v0.lead">Especialización en Control y Matrícula de Honor en el Trabajo Fin de Grado. Erasmus+ en el Politecnico di Milano (2018 — 2019), en el Máster en Automatización y Control.</p>
             </li>
           </ol>
         </div>
 
         <div class="research">
-          <h3 class="research-title">Investigación</h3>
+          <h3 class="research-title" data-i18n="research.title">Investigación</h3>
           <div class="research-grid">
             <article class="research-item" data-reveal>
-              <p class="kicker">Biomédica</p>
-              <h4>Sistema automatizado para tratamientos fotodinámicos</h4>
-              <p>Sistema portátil automatizado: diseño de hardware, firmware e interfaz de usuario. Publicado en Biosensors and Bioelectronics: X.</p>
-              <a class="link" href="https://drive.google.com/drive/folders/1nwX9xTe4u_fL9MrErMUaQaZuk0NaoRpc?usp=drive_link" target="_blank" rel="noopener">documentación del proyecto -&gt;</a>
+              <p class="kicker" data-i18n="research.1.kicker">Biomédica</p>
+              <h4 data-i18n="research.1.h">Sistema automatizado para tratamientos fotodinámicos</h4>
+              <p data-i18n="research.1.p">Sistema portátil automatizado: diseño de hardware, firmware e interfaz de usuario. Publicado en Biosensors and Bioelectronics: X.</p>
+              <a class="link" href="https://drive.google.com/drive/folders/1nwX9xTe4u_fL9MrErMUaQaZuk0NaoRpc?usp=drive_link" target="_blank" rel="noopener" data-i18n="research.1.link">documentación del proyecto -&gt;</a>
             </article>
             <article class="research-item" data-reveal>
-              <p class="kicker">Instrumentación</p>
-              <h4>Análisis biomédico por instrumentación optoelectrónica</h4>
-              <p>Prototipo experimental para análisis espectral de muestras de sangre. Diseño electrónico, firmware y validación experimental.</p>
+              <p class="kicker" data-i18n="research.2.kicker">Instrumentación</p>
+              <h4 data-i18n="research.2.h">Análisis biomédico por instrumentación optoelectrónica</h4>
+              <p data-i18n="research.2.p">Prototipo experimental para análisis espectral de muestras de sangre. Diseño electrónico, firmware y validación experimental.</p>
             </article>
           </div>
         </div>
@@ -363,21 +364,21 @@
     <!-- ── CONTACTO ── -->
     <section class="section contact" id="contacto" aria-labelledby="contact-title">
       <div class="wrap">
-        <p class="cmd"><span class="ps1">$</span> <span data-type>./contacto.sh</span></p>
-        <h2 class="contact-title" id="contact-title">Hablemos de tu <em>proyecto</em><span class="cursor" aria-hidden="true"></span></h2>
+        <p class="cmd"><span class="ps1">$</span> <span data-type data-i18n="contact.cmd">./contacto.sh</span></p>
+        <h2 class="contact-title" id="contact-title" data-i18n="contact.title">Hablemos de tu <em>proyecto</em><span class="cursor" aria-hidden="true"></span></h2>
         <div class="contact-grid">
           <div class="contact-brief" data-reveal>
-            <p class="kicker">¿Tienes un proyecto?</p>
-            <p>Cuéntame qué necesitas, con qué stack trabajas y qué alcance tiene. Te respondo por correo con preguntas concretas o una propuesta.</p>
-            <button class="btn btn-solid btn-lg" type="button" data-open-brief>&gt; abrir formulario</button>
+            <p class="kicker" data-i18n="contact.kicker">¿Tienes un proyecto?</p>
+            <p data-i18n="contact.p">Cuéntame qué necesitas, con qué stack trabajas y qué alcance tiene. Te respondo por correo con preguntas concretas o una propuesta.</p>
+            <button class="btn btn-solid btn-lg" type="button" data-open-brief data-i18n="contact.cta">&gt; abrir formulario</button>
           </div>
           <div class="contact-direct" data-reveal>
-            <p class="kicker">Contacto directo</p>
-            <p class="mail-row"><a class="mail" href="mailto:v.r.adrian96@gmail.com">v.r.adrian96@gmail.com</a> <button class="copy" type="button" data-copy="v.r.adrian96@gmail.com">[copiar]</button></p>
+            <p class="kicker" data-i18n="contact.direct">Contacto directo</p>
+            <p class="mail-row"><a class="mail" href="mailto:v.r.adrian96@gmail.com">v.r.adrian96@gmail.com</a> <button class="copy" type="button" data-copy="v.r.adrian96@gmail.com" data-i18n="contact.copy">[copiar]</button></p>
             <ul class="links">
               <li><a href="https://www.linkedin.com/in/adrianvizcaino/" target="_blank" rel="noopener">linkedin <span>-&gt;</span></a></li>
               <li><a href="tel:+34630351345">+34 630 351 345 <span>-&gt;</span></a></li>
-              <li><a href="../CV/Adrian_CV.html" target="_blank" rel="noopener">currículum · pdf <span>-&gt;</span></a></li>
+              <li><a href="../CV/Adrian_CV.html" target="_blank" rel="noopener" data-i18n="contact.cv">currículum · pdf <span>-&gt;</span></a></li>
             </ul>
             <p class="toast" role="status" aria-live="polite" data-toast></p>
           </div>
@@ -387,8 +388,8 @@
         <p class="cmd"><span class="ps1">$</span> logout</p>
         <div class="foot-row">
           <span>© 2026 Adrián Vizcaíno Rodríguez</span>
-          <span>Hardware. Software. Oficio.</span>
-          <a href="#inicio">volver arriba ↑</a>
+          <span data-i18n="footer.motto">Hardware. Software. Oficio.</span>
+          <a href="#inicio" data-i18n="footer.top">volver arriba ↑</a>
         </div>
       </footer>
     </section>
@@ -397,35 +398,35 @@
   <!-- ── FORMULARIO DE PROYECTO ── -->
   <dialog class="brief window" id="brief" aria-labelledby="brief-title" data-brief>
     <div class="win-bar">
-      <span class="win-path">~/<b>nuevo-proyecto.sh</b></span>
-      <button class="win-close" type="button" data-close-brief aria-label="Cerrar formulario">[x]</button>
+      <span class="win-path" data-i18n="form.path">~/<b>nuevo-proyecto.sh</b></span>
+      <button class="win-close" type="button" data-close-brief data-i18n-attr="aria-label:form.close" aria-label="Cerrar formulario">[x]</button>
     </div>
     <form class="brief-form" novalidate data-brief-form>
       <div class="brief-head">
-        <h2 class="brief-title" id="brief-title">Nuevo proyecto</h2>
-        <p>Cuéntame qué necesitas. Te respondo por correo para seguir la conversación. Los campos con * son obligatorios.</p>
+        <h2 class="brief-title" id="brief-title" data-i18n="form.title">Nuevo proyecto</h2>
+        <p data-i18n="form.intro">Cuéntame qué necesitas. Te respondo por correo para seguir la conversación. Los campos con * son obligatorios.</p>
       </div>
 
       <fieldset>
-        <legend>01 · contacto</legend>
+        <legend data-i18n="form.l1">01 · contacto</legend>
         <div class="row-3">
-          <label class="field"><span>nombre *</span><input id="f-name" name="nombre" type="text" autocomplete="name" required></label>
+          <label class="field"><span data-i18n="form.name">nombre *</span><input id="f-name" name="nombre" type="text" autocomplete="name" required></label>
           <label class="field"><span>email *</span><input id="f-email" name="email" type="email" autocomplete="email" required></label>
-          <label class="field"><span>empresa</span><input id="f-company" name="empresa" type="text" autocomplete="organization"></label>
+          <label class="field"><span data-i18n="form.company">empresa</span><input id="f-company" name="empresa" type="text" autocomplete="organization"></label>
         </div>
       </fieldset>
 
       <fieldset>
-        <legend>02 · qué necesitas *</legend>
+        <legend data-i18n="form.l2">02 · qué necesitas *</legend>
         <div class="choices" data-required-group="tipo">
-          <label class="choice"><input type="checkbox" name="tipo" value="Bring-up de placa"><span>bring-up de placa</span></label>
-          <label class="choice"><input type="checkbox" name="tipo" value="Arquitectura de firmware"><span>arquitectura de firmware</span></label>
-          <label class="choice"><input type="checkbox" name="tipo" value="Integración con plataforma"><span>integración con plataforma</span></label>
-          <label class="choice"><input type="checkbox" name="tipo" value="Producción y fiabilidad"><span>producción y fiabilidad</span></label>
-          <label class="choice"><input type="checkbox" name="tipo" value="Linux embebido"><span>linux embebido</span></label>
+          <label class="choice"><input type="checkbox" name="tipo" value="Bring-up de placa"><span data-i18n="form.t.bringup">bring-up de placa</span></label>
+          <label class="choice"><input type="checkbox" name="tipo" value="Arquitectura de firmware"><span data-i18n="form.t.arch">arquitectura de firmware</span></label>
+          <label class="choice"><input type="checkbox" name="tipo" value="Integración con plataforma"><span data-i18n="form.t.integration">integración con plataforma</span></label>
+          <label class="choice"><input type="checkbox" name="tipo" value="Producción y fiabilidad"><span data-i18n="form.t.production">producción y fiabilidad</span></label>
+          <label class="choice"><input type="checkbox" name="tipo" value="Linux embebido"><span data-i18n="form.t.linux">linux embebido</span></label>
           <label class="choice"><input type="checkbox" name="tipo" value="Hardware / PCB"><span>hardware / pcb</span></label>
-          <label class="choice"><input type="checkbox" name="tipo" value="Auditoría de un firmware existente"><span>auditoría de firmware</span></label>
-          <label class="choice"><input type="checkbox" name="tipo" value="Otro"><span>otro</span></label>
+          <label class="choice"><input type="checkbox" name="tipo" value="Auditoría de un firmware existente"><span data-i18n="form.t.audit">auditoría de firmware</span></label>
+          <label class="choice"><input type="checkbox" name="tipo" value="Otro"><span data-i18n="form.t.other">otro</span></label>
         </div>
       </fieldset>
 
@@ -434,56 +435,56 @@
         <div class="choices">
           <label class="choice"><input type="checkbox" name="plataforma" value="ESP32"><span>esp32</span></label>
           <label class="choice"><input type="checkbox" name="plataforma" value="STM32"><span>stm32</span></label>
-          <label class="choice"><input type="checkbox" name="plataforma" value="Linux embebido"><span>linux embebido</span></label>
-          <label class="choice"><input type="checkbox" name="plataforma" value="Otra plataforma o por decidir"><span>otra / por decidir</span></label>
+          <label class="choice"><input type="checkbox" name="plataforma" value="Linux embebido"><span data-i18n="form.t.linux">linux embebido</span></label>
+          <label class="choice"><input type="checkbox" name="plataforma" value="Otra plataforma o por decidir"><span data-i18n="form.p.other">otra / por decidir</span></label>
         </div>
-        <label class="field"><span>detalles del stack</span><input id="f-stack" name="stack" type="text" placeholder="MCU, RTOS, protocolos, plataforma cloud…"></label>
+        <label class="field"><span data-i18n="form.stack">detalles del stack</span><input id="f-stack" name="stack" type="text" data-i18n-attr="placeholder:form.stack.ph" placeholder="MCU, RTOS, protocolos, plataforma cloud…"></label>
       </fieldset>
 
       <fieldset>
-        <legend>04 · alcance</legend>
-        <div class="choices" role="radiogroup" aria-label="Fase del proyecto">
+        <legend data-i18n="form.l4">04 · alcance</legend>
+        <div class="choices" role="radiogroup" data-i18n-attr="aria-label:form.stage" aria-label="Fase del proyecto">
           <label class="choice"><input type="radio" name="fase" value="Idea"><span>idea</span></label>
-          <label class="choice"><input type="radio" name="fase" value="Placa nueva sin arrancar"><span>placa nueva</span></label>
-          <label class="choice"><input type="radio" name="fase" value="Prototipo funcionando"><span>prototipo</span></label>
-          <label class="choice"><input type="radio" name="fase" value="Producto en desarrollo"><span>en desarrollo</span></label>
-          <label class="choice"><input type="radio" name="fase" value="Producto en producción"><span>en producción</span></label>
+          <label class="choice"><input type="radio" name="fase" value="Placa nueva sin arrancar"><span data-i18n="form.s.board">placa nueva</span></label>
+          <label class="choice"><input type="radio" name="fase" value="Prototipo funcionando"><span data-i18n="form.s.proto">prototipo</span></label>
+          <label class="choice"><input type="radio" name="fase" value="Producto en desarrollo"><span data-i18n="form.s.dev">en desarrollo</span></label>
+          <label class="choice"><input type="radio" name="fase" value="Producto en producción"><span data-i18n="form.s.prod">en producción</span></label>
         </div>
-        <label class="field"><span>entregables y alcance</span><textarea id="f-scope" name="alcance" rows="2" placeholder="Qué esperas recibir: firmware, documentación, pruebas, soporte…"></textarea></label>
+        <label class="field"><span data-i18n="form.scope">entregables y alcance</span><textarea id="f-scope" name="alcance" rows="2" data-i18n-attr="placeholder:form.scope.ph" placeholder="Qué esperas recibir: firmware, documentación, pruebas, soporte…"></textarea></label>
         <div class="row-2">
-          <label class="field"><span>plazo</span>
+          <label class="field"><span data-i18n="form.time">plazo</span>
             <select id="f-time" name="plazo">
-              <option value="">sin definir</option>
-              <option>menos de 1 mes</option>
-              <option>1 a 3 meses</option>
-              <option>3 a 6 meses</option>
-              <option>más de 6 meses</option>
+              <option value="" data-i18n="form.time.0">sin definir</option>
+              <option data-i18n="form.time.1">menos de 1 mes</option>
+              <option data-i18n="form.time.2">1 a 3 meses</option>
+              <option data-i18n="form.time.3">3 a 6 meses</option>
+              <option data-i18n="form.time.4">más de 6 meses</option>
             </select>
           </label>
-          <label class="field"><span>presupuesto orientativo</span>
+          <label class="field"><span data-i18n="form.budget">presupuesto orientativo</span>
             <select id="f-budget" name="presupuesto">
-              <option value="">prefiero comentarlo</option>
-              <option>menos de 5.000 €</option>
-              <option>5.000 a 15.000 €</option>
-              <option>15.000 a 40.000 €</option>
-              <option>más de 40.000 €</option>
+              <option value="" data-i18n="form.budget.0">prefiero comentarlo</option>
+              <option data-i18n="form.budget.1">menos de 5.000 €</option>
+              <option data-i18n="form.budget.2">5.000 a 15.000 €</option>
+              <option data-i18n="form.budget.3">15.000 a 40.000 €</option>
+              <option data-i18n="form.budget.4">más de 40.000 €</option>
             </select>
           </label>
         </div>
       </fieldset>
 
       <fieldset>
-        <legend>05 · descripción *</legend>
-        <label class="field"><span class="sr-only">Descripción del proyecto</span><textarea id="f-desc" name="descripcion" rows="5" required placeholder="Qué hace el producto, en qué punto está y qué problema quieres resolver."></textarea></label>
+        <legend data-i18n="form.l5">05 · descripción *</legend>
+        <label class="field"><span class="sr-only" data-i18n="form.desc.sr">Descripción del proyecto</span><textarea id="f-desc" name="descripcion" rows="5" required data-i18n-attr="placeholder:form.desc.ph" placeholder="Qué hace el producto, en qué punto está y qué problema quieres resolver."></textarea></label>
       </fieldset>
 
       <label class="trap" aria-hidden="true">No rellenes este campo<input id="f-trap" name="web" type="text" tabindex="-1" autocomplete="off"></label>
-      <label class="consent"><input id="f-consent" name="consentimiento" type="checkbox" required><span>Acepto que use estos datos solo para responder a esta solicitud. *</span></label>
+      <label class="consent"><input id="f-consent" name="consentimiento" type="checkbox" required><span data-i18n="form.consent">Acepto que use estos datos solo para responder a esta solicitud. *</span></label>
 
       <p class="form-error" role="alert" data-form-error></p>
       <div class="brief-actions">
-        <button class="btn btn-solid btn-lg" type="submit" data-submit>&gt; enviar brief</button>
-        <button class="btn btn-line btn-lg" type="button" data-close-brief>cancelar</button>
+        <button class="btn btn-solid btn-lg" type="submit" data-submit data-i18n="form.submit">&gt; enviar brief</button>
+        <button class="btn btn-line btn-lg" type="button" data-close-brief data-i18n="form.cancel">cancelar</button>
       </div>
     </form>
 
@@ -492,11 +493,12 @@
       <p data-done-text></p>
       <pre class="brief-summary" data-summary></pre>
       <div class="brief-actions">
-        <button class="btn btn-solid" type="button" data-copy-summary>copiar resumen</button>
-        <a class="btn btn-line" data-mailto href="mailto:v.r.adrian96@gmail.com">abrir en el correo</a>
-        <button class="btn btn-line" type="button" data-close-brief>cerrar</button>
+        <button class="btn btn-solid" type="button" data-copy-summary data-i18n="form.copy">copiar resumen</button>
+        <a class="btn btn-line" data-mailto href="mailto:v.r.adrian96@gmail.com" data-i18n="form.mail">abrir en el correo</a>
+        <button class="btn btn-line" type="button" data-close-brief data-i18n="form.closeBtn">cerrar</button>
       </div>
     </div>
   </dialog>
+  <script src="i18n.js"></script>
 </body>
 </html>

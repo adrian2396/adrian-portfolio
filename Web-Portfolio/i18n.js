@@ -1,0 +1,464 @@
+'use strict';
+
+/* ───────── IDIOMAS ─────────
+   El español vive en index.html. Cada elemento traducible lleva data-i18n="clave"
+   (o data-i18n-attr="atributo:clave") y aquí está su versión en inglés.
+   Para cambiar un texto en inglés, edita su clave en `en`; para el español, edita el HTML.
+   `strings` guarda los textos que genera main.js, en los dos idiomas.
+   Idioma inicial: ?lang=es|en en la URL, después la última elección y, si no hay, el del navegador. */
+(function () {
+  const en = {
+    "meta.title": "Adrián Vizcaíno — Firmware & embedded systems",
+    "meta.description": "Adrián Vizcaíno, embedded systems architect. Fast hardware bring-up, reliable firmware and scalable architecture for connected products. Available for freelance projects.",
+    "skip": "Skip to content",
+    "brand.label": "Adrián Vizcaíno, home",
+    "nav.label": "Main",
+    "nav.solutions": "solutions",
+    "nav.process": "process",
+    "nav.projects": "projects",
+    "nav.career": "career",
+    "nav.contact": "contact",
+    "cta.new": "&gt; new project",
+    "menu": "menu",
+    "boot.label": "Summary",
+    "boot.1": "firmware in C/C++ · RTOS · embedded Linux",
+    "boot.2": "from architecture to production and maintenance",
+    "boot.3": "4 IoT / Edge products at ORBIS, 3 with me owning the firmware",
+    "boot.4": "available for freelance projects",
+    "hero.tagline": "<em>Fast</em> bring-up. <em>Reliable</em> firmware. Architecture that <em>scales</em>.",
+    "hero.lead": "Embedded systems architect and firmware engineer. I bring up your hardware and take it to production with decoupled, tested firmware that is integrated with your platform.",
+    "hero.cta": "&gt; tell me about your project",
+    "hero.cta2": "see solutions",
+    "uart.hint": "hover over the name or the signal",
+    "uart.sr": "Animation of a UART serial line sending my name byte by byte.",
+    "sol.cmd": "adrian --solutions",
+    "sol.title": "What I solve.",
+    "sol.lead": "Four key moments in building a connected product. Count on me for one of them or for all of them, to move faster without losing reliability.",
+    "bu.label": "Example of a bring-up: power, debugging, bootloader, peripherals, radio, platform connection and OTA verified.",
+    "bu.rerun": "[rerun]",
+    "bu.cmd": "<span class=\"ps1\">$</span> ./bring-up.sh --board proto-rev-a",
+    "bu.1": "power rails and clocks",
+    "bu.2": "SWD / JTAG debugging",
+    "bu.3": "bootloader and flash",
+    "bu.4": "UART console",
+    "bu.5": "I²C · SPI · GPIO peripherals",
+    "bu.6": "Wi-Fi · BLE · LoRa radio",
+    "bu.7": "MQTT -&gt; your platform",
+    "bu.8": "OTA and secure boot",
+    "bu.end": "firmware ready to grow<span class=\"cursor\"></span>",
+    "sol.2.id": "02 · architecture",
+    "sol.3.id": "03 · integration",
+    "sol.4.id": "04 · production",
+    "sol.1.h": "You have a new board and it has to boot.",
+    "sol.1.p": "I bring up the board: boot, programming and debugging, drivers and validated peripherals. Your team builds on a stable base from the start.",
+    "sol.2.h": "The prototype firmware won’t hold up as a product.",
+    "sol.2.p": "I design a modular, decoupled architecture with abstraction layers, services and clear contracts between modules. It can be tested, maintained and reused across products.",
+    "tag.cpp": "modern C / C++",
+    "tag.services": "services",
+    "tag.portability": "portability",
+    "sol.3.h": "The device has to talk to your platform.",
+    "sol.3.p": "I integrate the communication stacks and protocols you need and connect the device to your cloud, your app or your industrial systems.",
+    "sol.4.h": "You’re about to manufacture and it can’t fail in the field.",
+    "sol.4.p": "Automated testing, OTA updates, secure boot, signing and encryption, plus support for the Radio Equipment Directive (RED) requirements to go to market with confidence.",
+    "sol.also": "<span>Also</span>Embedded Linux with Yocto, OpenWrt or Debian · schematics and PCB · audit and rescue of existing firmware.",
+    "proc.cmd": "make project",
+    "proc.title": "How I work.",
+    "proc.lead": "A short, transparent process: you know what you get, when, and the status of every delivery.",
+    "proc.2.h": "Proposal",
+    "proc.3.h": "Milestone deliveries",
+    "proc.4.h": "Production and support",
+    "proc.1.p": "We get to know the product, the hardware and the goal. You tell me about the project through the form or on a call.",
+    "proc.2.p": "Scope, deliverables, milestones and budget agreed in writing before we start.",
+    "proc.3.p": "Frequent, verifiable progress, with the code in your repository and CI from day one.",
+    "proc.4.p": "Documentation, testing and support through manufacturing and maintenance.",
+    "why.title": "Why it’s faster",
+    "why.1.t": "Proven patterns",
+    "why.1.d": "Architectures already validated in products on the market. Less exploring, fewer surprises.",
+    "why.2.t": "Hardware and firmware together",
+    "why.2.d": "I read schematics and design PCBs, so bring-up doesn’t stall between teams.",
+    "why.3.t": "Decoupled from the start",
+    "why.3.d": "With clear layers and contracts, switching MCU, radio or platform doesn’t mean a rewrite.",
+    "why.4.t": "Testing from day one",
+    "why.4.d": "Continuous integration and validation in every delivery: bugs show up early, not in the field.",
+    "work.cmd": "ls -l projects/",
+    "work.title": "Case studies.",
+    "work.lead": "Three ORBIS products where I took on technical leadership and responsibility for the firmware, from architecture to production.",
+    "work.path.anc": "~/projects/<b>anc-plus</b>",
+    "work.path.astro": "~/projects/<b>astro-lum</b>",
+    "work.path.xeo": "~/projects/<b>xeo-lum-plus</b>",
+    "anc.kicker": "Astronomical time switch",
+    "anc.sum": "Two-circuit astronomical time switch for lighting control. It works out sunrise and sunset from its location, is programmed over Wi-Fi or Bluetooth and integrates with ORBIS IoT.",
+    "spec.circuits": "circuits",
+    "spec.circuits.v": "2 independent",
+    "spec.connectivity": "connectivity",
+    "spec.platform": "platform",
+    "spec.role": "my role",
+    "spec.role.v": "technical lead · firmware",
+    "anc.link": "datasheet (es) -&gt;",
+    "astro.kicker": "Lighting control and metering",
+    "astro.sum": "Combines an astronomical switch, a power contactor and a network analyser in two modules. I worked on the standalone variant with Wi-Fi and Bluetooth and on the Ethernet gateway variant for XEO LUM +.",
+    "spec.contactor.v": "63 A with zero crossing",
+    "spec.metering": "metering",
+    "spec.metering.v": "voltage, current, power and energy",
+    "astro.link1": "wi-fi / bluetooth datasheet (es) -&gt;",
+    "astro.link2": "interempresas article (es) -&gt;",
+    "xeo.kicker": "Lighting telemanagement",
+    "xeo.sum": "Telemanagement hub for street lighting and electrical panels, with a colour TFT display. It supervises the installation, detects faults in real time and connects to the web platform. Architecture and firmware under my technical responsibility.",
+    "spec.comms": "communications",
+    "spec.radio.v": "LoRa (luminaires) · Zigbee (panel)",
+    "spec.expansion": "expansion",
+    "spec.expansion.v": "isolated RS485 buses",
+    "xeo.link1": "product launch (es) -&gt;",
+    "xeo.link2": "product at orbis (es) -&gt;",
+    "stack.cmd": "tree --layers stack/",
+    "stack.title": "From board to platform.",
+    "stack.lead": "I work across every layer of the system, so decisions in one don’t break the others.",
+    "layer.5": "Testing and security",
+    "layer.4": "Architecture",
+    "layer.3": "Connectivity",
+    "layer.2": "Firmware and OS",
+    "layer.5.p": "Functional validation · simulation · automation · Git · Docker · CI/CD · secure boot · signing · flash encryption · hardening · RED requirements",
+    "layer.4.p": "HW/SW definition · modularity · interfaces · reuse · portability · scalability · testability · stack integration",
+    "layer.3.p": "Wi-Fi · Ethernet · GSM · BLE / NimBLE · Zigbee · Matter · LoRa · TCP/IP · UDP · WebSockets · MQTT · HTTP · Modbus · gateways",
+    "layer.2.p": "C · modern C++ · Ada · FreeRTOS · ESP-IDF · embedded Linux · OpenWrt · Debian · Yocto Project · Python · Bash",
+    "layer.1.p": "ESP32 · STM32 · Raspberry Pi · ARM · RISC-V · schematics and PCB · Altium Designer · KiCad · electrical validation",
+    "log.cmd": "git log --graph career",
+    "log.title": "Career.",
+    "log.lead": "Applied research, connected devices and industrial systems. One common thread: understanding the hardware and building the software that makes it work.",
+    "log.v4.meta": "<b>v4.0</b> <span class=\"tag\">HEAD -&gt; current</span> feb 2025 — today",
+    "log.v3.meta": "<b>v3.0</b> feb 2024 — jan 2025",
+    "log.v4.lead": "Four IoT / Edge projects across their whole life cycle. Sole technical owner of the firmware in three of them.",
+    "log.changes6": "changes (6)",
+    "log.changes4": "changes (4)",
+    "log.v4.1": "Definition of HW/SW platforms, interfaces and modular architectures designed for testability, maintainability and reuse.",
+    "log.v4.2": "Development and porting in C/C++ for ESP32 and STM32: drivers, abstractions, services and application; memory, concurrency and latency management.",
+    "log.v4.3": "Firmware testing, hardware-software integration, production launch and issue resolution.",
+    "log.v4.4": "Connectivity and data gateways; internal frameworks and library integration for devices, events and configuration.",
+    "log.v4.5": "Secure boot, firmware signing, flash and credential encryption. Involvement in the cybersecurity requirements of the RED.",
+    "log.v4.6": "Technical support across several teams and products.",
+    "log.v3.role": "Embedded software engineer · Madrid",
+    "log.v3.lead": "Embedded software and communications for industrial systems.",
+    "log.v3.1": "Development in C/C++ and Ada, low-level components and integration into distributed systems.",
+    "log.v3.2": "TCP/IP, UDP and WebSocket communications for services and real-time data flows.",
+    "log.v3.3": "Testing, simulation and automation tools in Python.",
+    "log.v3.4": "Integration into CI/CD pipelines and Docker-based development environments.",
+    "log.v2.role": "Firmware engineer · Madrid",
+    "log.v2.lead": "Firmware for ESP32 and embedded Linux, from drivers to field validation.",
+    "log.v2.1": "Modular architectures, third-party libraries and abstraction layers.",
+    "log.v2.2": "FreeRTOS, ESP-IDF, OpenWrt, Debian and Yocto Project.",
+    "log.v2.3": "UART, I2C, SPI and GPIO drivers and interfaces; Wi-Fi, MQTT and TCP/IP integration.",
+    "log.v2.4": "Functional validation, analysis of field behaviour and debugging of connectivity issues.",
+    "log.v1.org": "University of Oviedo",
+    "log.v1.role": "Electronics / firmware R&amp;D engineer · IG10",
+    "log.v1.lead": "Research and technology transfer, from initial definition to experimental validation.",
+    "log.v1.1": "Schematics and PCBs with Altium Designer, component selection and electrical validation.",
+    "log.v1.2": "C++ firmware for ESP32: peripherals, communications and tasks.",
+    "log.v1.3": "Hardware-firmware integration and prototype bring-up.",
+    "log.v1.4": "Lab testing, instrumentation and system characterisation.",
+    "log.v0.org": "Education",
+    "log.v0.role": "Industrial Electronics and Automation Engineering · University of Oviedo",
+    "log.v0.lead": "Specialisation in Control and highest honours (Matrícula de Honor) for the final degree project. Erasmus+ at Politecnico di Milano (2018 — 2019), in the MSc in Automation and Control Engineering.",
+    "research.title": "Research",
+    "research.1.kicker": "Biomedical",
+    "research.1.h": "Automated system for photodynamic treatments",
+    "research.1.p": "Portable automated system: hardware, firmware and user interface design. Published in Biosensors and Bioelectronics: X.",
+    "research.1.link": "project documentation -&gt;",
+    "research.2.kicker": "Instrumentation",
+    "research.2.h": "Biomedical analysis through optoelectronic instrumentation",
+    "research.2.p": "Experimental prototype for spectral analysis of blood samples. Electronic design, firmware and experimental validation.",
+    "contact.cmd": "./contact.sh",
+    "contact.title": "Let’s talk about your <em>project</em><span class=\"cursor\" aria-hidden=\"true\"></span>",
+    "contact.kicker": "Got a project?",
+    "contact.p": "Tell me what you need, which stack you work with and what the scope is. I’ll reply by email with specific questions or a proposal.",
+    "contact.cta": "&gt; open the form",
+    "contact.direct": "Direct contact",
+    "contact.copy": "[copy]",
+    "contact.cv": "résumé · pdf (es) <span>-&gt;</span>",
+    "footer.motto": "Hardware. Software. Craft.",
+    "footer.top": "back to top ↑",
+    "form.close": "Close form",
+    "form.path": "~/<b>new-project.sh</b>",
+    "form.title": "New project",
+    "form.intro": "Tell me what you need. I’ll reply by email to keep the conversation going. Fields marked * are required.",
+    "form.l1": "01 · contact",
+    "form.name": "name *",
+    "form.company": "company",
+    "form.l2": "02 · what you need *",
+    "form.t.bringup": "board bring-up",
+    "form.t.arch": "firmware architecture",
+    "form.t.integration": "platform integration",
+    "form.t.production": "production and reliability",
+    "form.t.linux": "embedded linux",
+    "form.t.audit": "firmware audit",
+    "form.t.other": "other",
+    "form.p.other": "other / undecided",
+    "form.stack": "stack details",
+    "form.stack.ph": "MCU, RTOS, protocols, cloud platform…",
+    "form.l4": "04 · scope",
+    "form.stage": "Project stage",
+    "form.s.board": "new board",
+    "form.s.proto": "prototype",
+    "form.s.dev": "in development",
+    "form.s.prod": "in production",
+    "form.scope": "deliverables and scope",
+    "form.scope.ph": "What you expect to receive: firmware, documentation, testing, support…",
+    "form.time": "timeline",
+    "form.time.0": "not defined",
+    "form.time.1": "less than 1 month",
+    "form.time.2": "1 to 3 months",
+    "form.time.3": "3 to 6 months",
+    "form.time.4": "more than 6 months",
+    "form.budget": "estimated budget",
+    "form.budget.0": "I’d rather discuss it",
+    "form.budget.1": "under €5,000",
+    "form.budget.2": "€5,000 to €15,000",
+    "form.budget.3": "€15,000 to €40,000",
+    "form.budget.4": "over €40,000",
+    "form.l5": "05 · description *",
+    "form.desc.sr": "Project description",
+    "form.desc.ph": "What the product does, where it stands and what problem you want to solve.",
+    "form.consent": "I agree that these details are used only to reply to this request. *",
+    "form.submit": "&gt; send brief",
+    "form.cancel": "cancel",
+    "form.copy": "copy summary",
+    "form.mail": "open in email",
+    "form.closeBtn": "close"
+  };
+
+  const strings = {
+    es: {
+      "lang.aria": "Idioma: español. Cambiar a inglés.",
+      "theme.prefix": "tema:",
+      "theme.auto": "auto",
+      "theme.light": "claro",
+      "theme.dark": "oscuro",
+      "theme.system": ", según el sistema",
+      "theme.aria": "Tema {mode}{system}. Cambiar a {next}.",
+      "decimal": ",",
+      "date.locale": "es-ES",
+      "tab.video": "vídeo",
+      "tab.photos": "fotos",
+      "tab.scheme": "esquema",
+      "tabs.aria": "Contenido visual de {name}",
+      "note.anc": "esquema conceptual · orto y ocaso calculados para Madrid · programa de C2 de ejemplo",
+      "note.astro": "esquema conceptual · señales de red de 50 Hz con valores simulados",
+      "note.xeolum": "esquema conceptual · datos de supervisión simulados",
+      "note.video": "vídeo de {name} en YouTube",
+      "note.photos": "fotografías de {name}",
+      "video.play": "&gt; reproducir vídeo",
+      "video.aria": "Reproducir el vídeo de {name}",
+      "video.title": "Vídeo de {name}",
+      "gallery.prev": "Foto anterior",
+      "gallery.next": "Foto siguiente",
+      "viz.rise": "ORTO",
+      "viz.set": "OCASO",
+      "viz.place": "MADRID 40,4° N",
+      "viz.months": "ENE,FEB,MAR,ABR,MAY,JUN,JUL,AGO,SEP,OCT,NOV,DIC",
+      "viz.c1": "ocaso -> orto",
+      "viz.c2": "ocaso -> 01:00",
+      "viz.voltage": "tensión",
+      "viz.current": "corriente",
+      "viz.power": "potencia",
+      "viz.energy": "energía",
+      "viz.contactor": "contactor",
+      "viz.closed": "cerrado",
+      "viz.open": "abierto",
+      "viz.rating": "calibre",
+      "viz.platform": "PLATAFORMA WEB",
+      "viz.luminaires": "LUMINARIAS",
+      "viz.panel": "CUADRO",
+      "viz.expansion": "EXPANSIÓN",
+      "viz.online": "● en línea",
+      "copy.ok": "[ OK ] correo copiado",
+      "copy.select": "correo seleccionado: cópialo con el teclado",
+      "form.missing": "Falta {list}.",
+      "form.err.name": "tu nombre",
+      "form.err.email": "un email válido",
+      "form.err.type": "qué necesitas",
+      "form.err.desc": "una descripción",
+      "form.err.consent": "aceptar el uso de los datos",
+      "form.sending": "> enviando…",
+      "form.submit.text": "> enviar brief",
+      "sum.title": "NUEVO PROYECTO",
+      "sum.name": "nombre",
+      "sum.email": "email",
+      "sum.company": "empresa",
+      "sum.needs": "necesita",
+      "sum.platform": "plataforma",
+      "sum.stack": "stack",
+      "sum.stage": "fase",
+      "sum.scope": "alcance",
+      "sum.time": "plazo",
+      "sum.budget": "presupuesto",
+      "sum.budget.none": "a comentar",
+      "sum.desc": "descripción",
+      "sum.subject": "Proyecto freelance · {type} · {name}",
+      "done.sent.title": "brief enviado",
+      "done.thanks": "Gracias. Te responderé por correo.",
+      "done.sent": "Gracias, {name}. Te escribiré a {email} para seguir la conversación.",
+      "done.fail.title": "no se pudo enviar",
+      "done.fail": "El envío ha fallado. Copia el resumen o ábrelo en tu correo y envíalo a {to}.",
+      "done.ready.title": "brief preparado",
+      "done.ready": "Abre el resumen en tu correo y envíalo a {to}. Si el correo no se abre, copia el resumen.",
+      "summary.copied": "[ OK ] copiado",
+      "summary.selected": "resumen seleccionado",
+      "summary.copy": "copiar resumen"
+    },
+    en: {
+      "lang.aria": "Language: English. Switch to Spanish.",
+      "theme.prefix": "theme:",
+      "theme.auto": "auto",
+      "theme.light": "light",
+      "theme.dark": "dark",
+      "theme.system": ", following the system",
+      "theme.aria": "Theme {mode}{system}. Switch to {next}.",
+      "decimal": ".",
+      "date.locale": "en-GB",
+      "tab.video": "video",
+      "tab.photos": "photos",
+      "tab.scheme": "diagram",
+      "tabs.aria": "Visual content for {name}",
+      "note.anc": "conceptual diagram · sunrise and sunset calculated for Madrid · example C2 program",
+      "note.astro": "conceptual diagram · 50 Hz mains signals with simulated values",
+      "note.xeolum": "conceptual diagram · simulated supervision data",
+      "note.video": "{name} video on YouTube",
+      "note.photos": "photos of {name}",
+      "video.play": "&gt; play video",
+      "video.aria": "Play the {name} video",
+      "video.title": "{name} video",
+      "gallery.prev": "Previous photo",
+      "gallery.next": "Next photo",
+      "viz.rise": "SUNRISE",
+      "viz.set": "SUNSET",
+      "viz.place": "MADRID 40.4° N",
+      "viz.months": "JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC",
+      "viz.c1": "sunset -> sunrise",
+      "viz.c2": "sunset -> 01:00",
+      "viz.voltage": "voltage",
+      "viz.current": "current",
+      "viz.power": "power",
+      "viz.energy": "energy",
+      "viz.contactor": "contactor",
+      "viz.closed": "closed",
+      "viz.open": "open",
+      "viz.rating": "rating",
+      "viz.platform": "WEB PLATFORM",
+      "viz.luminaires": "LUMINAIRES",
+      "viz.panel": "PANEL",
+      "viz.expansion": "EXPANSION",
+      "viz.online": "● online",
+      "copy.ok": "[ OK ] email copied",
+      "copy.select": "email selected: copy it with your keyboard",
+      "form.missing": "Missing: {list}.",
+      "form.err.name": "your name",
+      "form.err.email": "a valid email",
+      "form.err.type": "what you need",
+      "form.err.desc": "a description",
+      "form.err.consent": "consent to the use of your details",
+      "form.sending": "> sending…",
+      "form.submit.text": "> send brief",
+      "sum.title": "NEW PROJECT",
+      "sum.name": "name",
+      "sum.email": "email",
+      "sum.company": "company",
+      "sum.needs": "needs",
+      "sum.platform": "platform",
+      "sum.stack": "stack",
+      "sum.stage": "stage",
+      "sum.scope": "scope",
+      "sum.time": "timeline",
+      "sum.budget": "budget",
+      "sum.budget.none": "to discuss",
+      "sum.desc": "description",
+      "sum.subject": "Freelance project · {type} · {name}",
+      "done.sent.title": "brief sent",
+      "done.thanks": "Thanks. I’ll reply by email.",
+      "done.sent": "Thanks, {name}. I’ll write to {email} to keep the conversation going.",
+      "done.fail.title": "could not send",
+      "done.fail": "Sending failed. Copy the summary or open it in your email and send it to {to}.",
+      "done.ready.title": "brief ready",
+      "done.ready": "Open the summary in your email and send it to {to}. If your email doesn’t open, copy the summary.",
+      "summary.copied": "[ OK ] copied",
+      "summary.selected": "summary selected",
+      "summary.copy": "copy summary"
+    }
+  };
+
+  const root = document.documentElement;
+  const meta = document.querySelector('meta[name="description"]');
+  const spanish = { html: new Map(), attrs: new Map(), title: document.title, description: meta ? meta.content : '' };
+  const listeners = [];
+
+  function pick() {
+    const query = new URLSearchParams(location.search).get('lang');
+    if (query === 'es' || query === 'en') return query;
+    try {
+      const saved = localStorage.getItem('idioma');
+      if (saved === 'es' || saved === 'en') return saved;
+    } catch (error) { /* sin almacenamiento */ }
+    const preferred = (navigator.languages && navigator.languages[0]) || navigator.language || 'es';
+    return preferred.toLowerCase().startsWith('es') ? 'es' : 'en';
+  }
+  let lang = pick();
+
+  function t(key, vars) {
+    const text = strings[lang][key] ?? strings.es[key] ?? key;
+    return vars ? text.replace(/\{(\w+)\}/g, (match, name) => (name in vars ? vars[name] : match)) : text;
+  }
+
+  document.querySelectorAll('[data-i18n]').forEach(element => spanish.html.set(element, element.innerHTML));
+  document.querySelectorAll('[data-i18n-attr]').forEach(element => {
+    const [name] = element.dataset.i18nAttr.split(':');
+    spanish.attrs.set(element, element.getAttribute(name));
+  });
+
+  function apply() {
+    root.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+      const html = lang === 'en' ? en[element.dataset.i18n] : spanish.html.get(element);
+      if (html === undefined) return;
+      if (element.hasAttribute('data-type')) {
+        // Comandos que main.js escribe letra a letra: se cambia el texto pendiente o el ya escrito.
+        element.dataset.text = html;
+        if (!element.classList.contains('typing') && element.textContent) element.textContent = html;
+      } else if (element.innerHTML !== html) {
+        element.innerHTML = html;
+      }
+    });
+    document.querySelectorAll('[data-i18n-attr]').forEach(element => {
+      const [name, key] = element.dataset.i18nAttr.split(':');
+      element.setAttribute(name, lang === 'en' ? en[key] : spanish.attrs.get(element));
+    });
+    document.title = lang === 'en' ? en['meta.title'] : spanish.title;
+    if (meta) meta.content = lang === 'en' ? en['meta.description'] : spanish.description;
+    const toggle = document.querySelector('[data-lang-toggle]');
+    if (toggle) {
+      toggle.innerHTML = `lang:<b>${lang}</b>`;
+      toggle.setAttribute('aria-label', t('lang.aria'));
+    }
+  }
+
+  function set(next) {
+    if (next === lang || !strings[next]) return;
+    lang = next;
+    try { localStorage.setItem('idioma', lang); } catch (error) { /* sin almacenamiento */ }
+    const url = new URL(location.href);
+    if (url.searchParams.has('lang')) {
+      url.searchParams.set('lang', lang);
+      history.replaceState(null, '', url);
+    }
+    apply();
+    listeners.forEach(listener => listener(lang));
+  }
+
+  apply();
+  const toggle = document.querySelector('[data-lang-toggle]');
+  if (toggle) toggle.addEventListener('click', () => set(lang === 'es' ? 'en' : 'es'));
+
+  window.i18n = {
+    get lang() { return lang; },
+    t,
+    set,
+    onChange: listener => listeners.push(listener)
+  };
+})();

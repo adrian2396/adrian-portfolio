@@ -919,16 +919,25 @@ function initProducts() {
   });
 }
 
-/* ───────── Stack y trayectoria ───────── */
-function initLayers() {
-  const layers = $$('[data-layer]');
-  if (!('IntersectionObserver' in window)) return;
-  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    layers.forEach(layer => layer.classList.toggle('is-active', layer === entry.target));
-  }), { rootMargin: '-45% 0px -45% 0px' });
-  layers.forEach(layer => observer.observe(layer));
+/* ───────── Arquitectura: qué capas se tocan en cada caso ───────── */
+function initArch() {
+  const arch = $('[data-arch]');
+  if (!arch) return;
+  const buttons = $$('button[data-case]', arch);
+  const parts = $$('[data-touch]', arch);
+  const caption = $('[data-arch-caption]', arch);
+  let current = 'migracion';
+  const show = () => {
+    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.case === current)));
+    parts.forEach(part => part.classList.toggle('is-touched', part.dataset.touch.split(' ').includes(current)));
+    caption.textContent = t(`arch.cap.${current}`);
+  };
+  buttons.forEach(button => button.addEventListener('click', () => { current = button.dataset.case; show(); }));
+  i18n.onChange(show);
+  show();
 }
+
+/* ───────── Trayectoria ───────── */
 
 function initTimeline() {
   const list = $('[data-timeline]');
@@ -1179,7 +1188,7 @@ initReveal();
 initBringUp();
 initPipeline();
 initProducts();
-initLayers();
+initArch();
 initTimeline();
 initCopy();
 initBrief();

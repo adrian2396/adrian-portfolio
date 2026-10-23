@@ -301,15 +301,29 @@ em{font-style:normal;color:var(--accent-ink);text-shadow:var(--glow)}
 .video-facade:hover span{background:var(--accent);color:var(--on-accent)}
 .pane iframe{width:100%;height:100%;border:0}
 
-/* Stack */
+/* Arquitectura: capas del firmware y qué se toca en cada caso */
+.arch-cases{display:flex;flex-wrap:wrap;align-items:center;gap:8px 6px;margin-bottom:14px;font:400 13px/1.4 var(--mono)}
+.arch-q{margin-right:6px;color:var(--dim)}
+.arch-cases button{padding:6px 11px;border:1px solid var(--line);border-radius:var(--radius);color:var(--muted);transition:color .15s,border-color .15s,background-color .15s}
+.arch-cases button:hover{border-color:var(--line-strong);color:var(--fg)}
+.arch-cases button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink);cursor:default}
+.arch-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,280px);gap:12px}
+.arch-side{display:flex;flex-direction:column;gap:6px;padding:14px clamp(16px,2.2vw,22px);border:1px solid var(--line);border-left:3px solid transparent;border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);transition:background-color .3s,border-color .3s}
+.arch-side h3{color:var(--fg);font:600 14px/1.5 var(--mono)}
+.arch-side p{color:var(--muted);font-size:14px;line-height:1.55}
+.arch-caption{min-height:3.1em;margin:14px 0 28px;color:var(--text);font-size:16px;text-wrap:pretty}
+.arch-caption::before{content:"> ";color:var(--accent-ink);font-family:var(--mono)}
+.no-js .arch-cases,.no-js .arch-caption{display:none}
 .layers{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);overflow:hidden}
 .layer{display:grid;grid-template-columns:3ch 17ch minmax(0,1fr);align-items:baseline;gap:2px 20px;padding:11px clamp(16px,2.2vw,24px);border-top:1px solid var(--line);border-left:3px solid transparent;transition:background-color .3s,border-color .3s}
 .layer:first-child{border-top:0}
 .layer-id{font:400 22px/1 var(--display);color:var(--dim);transition:color .3s}
 .layer h3{color:var(--fg);font:600 14px/1.5 var(--mono)}
 .layer p{color:var(--muted);font-size:14px;line-height:1.55}
-.layer.is-active{border-left-color:var(--accent);background:var(--accent-soft)}
-.layer.is-active .layer-id{color:var(--accent-ink)}
+.layer>*{transition:opacity .3s}
+.layer.is-touched,.arch-side.is-touched{border-left-color:var(--accent);background:var(--accent-soft)}
+.layer.is-touched .layer-id{color:var(--accent-ink)}
+.js .layer:not(.is-touched)>*{opacity:.6}
 
 /* Trayectoria */
 .log{position:relative;padding-left:44px}
@@ -436,6 +450,7 @@ legend+*{clear:both}
   .win-body{grid-template-columns:minmax(0,1fr)}
   .win-body .screen{min-height:0;aspect-ratio:1/1;border-right:0;border-bottom:1px solid var(--line)}
   .pipeline{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .arch-body{grid-template-columns:minmax(0,1fr)}
   .layer{grid-template-columns:3ch minmax(0,1fr)}
   .layer p{grid-column:2}
 }

@@ -18,6 +18,12 @@ desde dígitos hexadecimales. Al pasar el cursor por cada letra se ven sus
 bytes UTF-8 en hexadecimal y en binario. Debajo, una línea UART transmite
 el nombre byte a byte (115200 8N1).
 
+ARQUITECTURA
+El esquema de capas marca qué se toca en cada caso: desde cero, migración,
+conectividad o producción. Las capas que se iluminan en cada caso se
+indican con el atributo data-touch de cada capa en index.html. Las frases
+de cada caso están en i18n.js (arch.cap.*), en español y en inglés.
+
 TEMA
 Por defecto sigue al sistema operativo. El icono de la cabecera cambia
 entre auto (medio círculo), claro (sol) y oscuro (luna) y recuerda la

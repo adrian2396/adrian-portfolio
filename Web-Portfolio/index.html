@@ -174,6 +174,42 @@
       </div>
     </section>
 
+    <!-- ── ARQUITECTURA ── -->
+    <section class="section" id="arquitectura" aria-labelledby="arch-title">
+      <div class="wrap">
+        <p class="cmd"><span class="ps1">$</span> <span data-type data-i18n="arch.cmd">tree firmware/</span></p>
+        <header class="sec-head">
+          <h2 class="title" id="arch-title" data-i18n="arch.title">Capas que se cambian sin romper el resto.</h2>
+          <p class="sec-lead" data-i18n="arch.lead">Así organizo el firmware: cada capa tiene un contrato claro y sus propias pruebas. Por eso empezar, migrar o ampliar no obliga a reescribir el producto.</p>
+        </header>
+        <div class="arch" data-arch>
+          <div class="arch-cases" role="group" data-i18n-attr="aria-label:arch.cases" aria-label="Qué capas se tocan en cada caso">
+            <span class="arch-q" aria-hidden="true" data-i18n="arch.q">qué se toca:</span>
+            <button type="button" data-case="cero" aria-pressed="false" data-i18n="arch.c1">desde cero</button>
+            <button type="button" data-case="migracion" aria-pressed="true" data-i18n="arch.c2">migración</button>
+            <button type="button" data-case="conectividad" aria-pressed="false" data-i18n="arch.c3">conectividad</button>
+            <button type="button" data-case="produccion" aria-pressed="false" data-i18n="arch.c4">producción</button>
+          </div>
+          <div class="arch-body">
+            <ol class="layers" reversed>
+              <li class="layer" data-touch="cero"><span class="layer-id">L5</span><h3 data-i18n="arch.l5">Aplicación</h3><p data-i18n="arch.l5.p">lógica del producto&nbsp;· máquinas de estados&nbsp;· configuración</p></li>
+              <li class="layer" data-touch="cero conectividad produccion"><span class="layer-id">L4</span><h3 data-i18n="arch.l4">Servicios y conectividad</h3><p data-i18n="arch.l4.p">BLE / NimBLE&nbsp;· Wi-Fi&nbsp;· Ethernet&nbsp;· GSM&nbsp;· LoRa&nbsp;· Zigbee&nbsp;· Matter&nbsp;· TCP/IP&nbsp;· UDP&nbsp;· MQTT&nbsp;· HTTP&nbsp;· WebSockets&nbsp;· Modbus&nbsp;· pasarelas&nbsp;· OTA&nbsp;· integración de stacks</p></li>
+              <li class="layer" data-touch="cero migracion"><span class="layer-id">L3</span><h3 data-i18n="arch.l3">Sistema operativo</h3><p data-i18n="arch.l3.p">FreeRTOS&nbsp;· Zephyr&nbsp;· ESP-IDF&nbsp;· Linux embebido&nbsp;· Yocto Project&nbsp;· OpenWrt&nbsp;· Debian</p></li>
+              <li class="layer" data-touch="cero migracion"><span class="layer-id">L2</span><h3 data-i18n="arch.l2">HAL y drivers</h3><p data-i18n="arch.l2.p">abstracción del hardware&nbsp;· drivers&nbsp;· UART&nbsp;· I²C&nbsp;· SPI&nbsp;· GPIO</p></li>
+              <li class="layer" data-touch="cero"><span class="layer-id">L1</span><h3 data-i18n="arch.l1">Placa</h3><p data-i18n="arch.l1.p">ESP32&nbsp;· STM32&nbsp;· Raspberry Pi&nbsp;· ARM&nbsp;· RISC-V&nbsp;· esquemáticos y PCB&nbsp;· Altium Designer&nbsp;· KiCad&nbsp;· validación eléctrica</p></li>
+            </ol>
+            <div class="arch-side" data-touch="cero migracion conectividad produccion">
+              <h3 data-i18n="arch.side">Pruebas y seguridad</h3>
+              <p data-i18n="arch.side.p">validación funcional&nbsp;· simulación&nbsp;· apps de prueba&nbsp;· automatización&nbsp;· Git&nbsp;· Docker&nbsp;· CI/CD&nbsp;· secure boot&nbsp;· firmado&nbsp;· cifrado de flash&nbsp;· hardening&nbsp;· requisitos RED</p>
+            </div>
+          </div>
+          <p class="arch-caption" data-arch-caption aria-live="polite"></p>
+        </div>
+        <p class="also" data-i18n="arch.principles"><span>Principios</span>definición HW/SW&nbsp;· modularidad&nbsp;· interfaces&nbsp;· reutilización&nbsp;· portabilidad&nbsp;· escalabilidad&nbsp;· testabilidad</p>
+        <p class="also" data-i18n="arch.langs"><span>Lenguajes</span>C&nbsp;· C++ moderno&nbsp;· Ada&nbsp;· Python&nbsp;· Bash</p>
+      </div>
+    </section>
+
     <!-- ── PROCESO ── -->
     <section class="section" id="proceso" aria-labelledby="process-title">
       <div class="wrap">
@@ -284,24 +320,6 @@
           </div>
           <p class="win-note" data-note>esquema conceptual · datos de supervisión simulados</p>
         </article>
-      </div>
-    </section>
-
-    <!-- ── STACK ── -->
-    <section class="section" id="stack" aria-labelledby="stack-title">
-      <div class="wrap">
-        <p class="cmd"><span class="ps1">$</span> <span data-type data-i18n="stack.cmd">tree --capas stack/</span></p>
-        <header class="sec-head">
-          <h2 class="title" id="stack-title" data-i18n="stack.title">De la placa a la plataforma.</h2>
-          <p class="sec-lead" data-i18n="stack.lead">Trabajo en todas las capas del sistema, así que las decisiones de una no rompen las demás.</p>
-        </header>
-        <ol class="layers" reversed>
-          <li class="layer" data-layer><span class="layer-id">L5</span><h3 data-i18n="layer.5">Pruebas y seguridad</h3><p data-i18n="layer.5.p">Validación funcional&nbsp;· simulación&nbsp;· automatización&nbsp;· Git&nbsp;· Docker&nbsp;· CI/CD&nbsp;· secure boot&nbsp;· firmado&nbsp;· cifrado de flash&nbsp;· hardening&nbsp;· requisitos RED</p></li>
-          <li class="layer" data-layer><span class="layer-id">L4</span><h3 data-i18n="layer.4">Arquitectura</h3><p data-i18n="layer.4.p">Definición HW/SW&nbsp;· modularidad&nbsp;· interfaces&nbsp;· reutilización&nbsp;· portabilidad&nbsp;· escalabilidad&nbsp;· testabilidad&nbsp;· integración de stacks</p></li>
-          <li class="layer" data-layer><span class="layer-id">L3</span><h3 data-i18n="layer.3">Conectividad</h3><p data-i18n="layer.3.p">Wi-Fi&nbsp;· Ethernet&nbsp;· GSM&nbsp;· BLE / NimBLE&nbsp;· Zigbee&nbsp;· Matter&nbsp;· LoRa&nbsp;· TCP/IP&nbsp;· UDP&nbsp;· WebSockets&nbsp;· MQTT&nbsp;· HTTP&nbsp;· Modbus&nbsp;· pasarelas</p></li>
-          <li class="layer" data-layer><span class="layer-id">L2</span><h3 data-i18n="layer.2">Firmware y SO</h3><p data-i18n="layer.2.p">C&nbsp;· C++ moderno&nbsp;· Ada&nbsp;· FreeRTOS&nbsp;· ESP-IDF&nbsp;· Linux embebido&nbsp;· OpenWrt&nbsp;· Debian&nbsp;· Yocto Project&nbsp;· Python&nbsp;· Bash</p></li>
-          <li class="layer" data-layer><span class="layer-id">L1</span><h3>Hardware</h3><p data-i18n="layer.1.p">ESP32&nbsp;· STM32&nbsp;· Raspberry Pi&nbsp;· ARM&nbsp;· RISC-V&nbsp;· esquemáticos y PCB&nbsp;· Altium Designer&nbsp;· KiCad&nbsp;· validación eléctrica</p></li>
-        </ol>
       </div>
     </section>
 

@@ -113,7 +113,9 @@
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header) + 16px);-webkit-text-size-adjust:100%;text-size-adjust:100%}
 html:has(dialog[open]){overflow:hidden}
-body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.65 var(--sans);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:clip;transition:background-color .3s,color .3s}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.65 var(--sans);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:clip}
+@supports not (view-transition-name:none){body{transition:background-color .3s,color .3s}}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.35s;animation-timing-function:ease-out}
 a{color:inherit}
 img,video,canvas,iframe{display:block;max-width:100%}
 button,input,select,textarea{font:inherit;color:inherit}

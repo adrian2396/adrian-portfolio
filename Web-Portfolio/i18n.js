@@ -447,8 +447,13 @@
       url.searchParams.set('lang', lang);
       history.replaceState(null, '', url);
     }
-    apply();
-    listeners.forEach(listener => listener(lang));
+    const swap = () => {
+      apply();
+      listeners.forEach(listener => listener(lang));
+    };
+    // Fundido suave al cambiar de idioma, si el navegador lo permite.
+    if (document.startViewTransition && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.startViewTransition(swap);
+    else swap();
   }
 
   apply();

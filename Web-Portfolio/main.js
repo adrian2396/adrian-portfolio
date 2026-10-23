@@ -109,7 +109,14 @@ window.addEventListener('resize', queueScroll);
 /* Avisa a los lienzos cuando cambia el tema. */
 const paletteListeners = [];
 const onPaletteChange = listener => paletteListeners.push(listener);
-function paletteChanged() { requestAnimationFrame(() => paletteListeners.forEach(listener => listener())); }
+function redrawPalettes() { paletteListeners.forEach(listener => listener()); }
+function paletteChanged() { requestAnimationFrame(redrawPalettes); }
+
+/* Cambios de tema o idioma con un fundido suave, si el navegador lo permite. */
+function withTransition(update) {
+  if (document.startViewTransition && !reduceMotion) document.startViewTransition(update);
+  else update();
+}
 
 function canvasSurface(canvas, onFit) {
   const ctx = canvas.getContext('2d');
@@ -147,14 +154,16 @@ function initTheme() {
   i18n.onChange(render);
   button.addEventListener('click', () => {
     const next = order[(order.indexOf(current()) + 1) % order.length];
-    if (next === 'auto') delete root.dataset.theme;
-    else root.dataset.theme = next;
     try { localStorage.setItem('tema', next); } catch (error) { /* sin almacenamiento */ }
-    render();
-    paletteChanged();
+    withTransition(() => {
+      if (next === 'auto') delete root.dataset.theme;
+      else root.dataset.theme = next;
+      render();
+      redrawPalettes();
+    });
   });
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', paletteChanged);
-  i18n.onChange(paletteChanged);
+  i18n.onChange(redrawPalettes);
   render();
 }
 

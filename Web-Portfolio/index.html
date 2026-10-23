@@ -13,6 +13,13 @@
     document.documentElement.classList.remove('no-js');
     document.documentElement.classList.add('js');
     try { var tema = localStorage.getItem('tema'); if (tema === 'light' || tema === 'dark') document.documentElement.dataset.theme = tema; } catch (error) {}
+    // Precarga las fuentes del inicio. Con file:// el navegador bloquea la precarga, así que solo se pide desde un servidor.
+    if (location.protocol !== 'file:') ['vt323-latin-400', 'ibm-plex-mono-latin-400', 'ibm-plex-sans-latin-wght'].forEach(function (font) {
+      var link = document.createElement('link');
+      link.rel = 'preload'; link.as = 'font'; link.type = 'font/woff2'; link.crossOrigin = 'anonymous';
+      link.href = 'assets/fonts/' + font + '-normal.woff2';
+      document.head.appendChild(link);
+    });
   </script>
   <link rel="stylesheet" href="styles.css">
   <script src="main.js" defer></script>

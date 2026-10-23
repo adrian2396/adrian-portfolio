@@ -259,7 +259,6 @@ function decodeLetters(letters, skipped = () => false) {
     const glyphs = '0123456789ABCDEF';
     const random = () => glyphs[(Math.random() * 16) | 0];
     letters.forEach(letter => {
-      letter.classList.remove('is-wait');
       if (!letter.dataset.char.trim()) return;
       letter.classList.add('is-hex');
       letter.textContent = random();
@@ -294,6 +293,10 @@ async function initHero() {
   const boot = $('[data-boot]');
   const command = $('[data-hero-cmd]');
   const name = $('[data-decode]');
+  // El nombre espera a su fuente (como mucho 1,5 s) para no verse un instante en otra tipografía.
+  const fontReady = document.fonts
+    ? Promise.race([document.fonts.load('400 1em VT323'), wait(1500)]).catch(() => {})
+    : Promise.resolve();
   // Cada letra guarda sus bytes UTF-8: al pasar el cursor se ven en hexadecimal y binario.
   const letters = [...name.textContent].map(char => {
     const span = document.createElement('span');
@@ -315,7 +318,7 @@ async function initHero() {
     command.textContent = command.dataset.text || command.textContent;
     letters.forEach(letter => {
       letter.textContent = letter.dataset.char;
-      letter.classList.remove('is-wait', 'is-hex');
+      letter.classList.remove('is-hex');
     });
     hero.classList.add('is-ready');
   };
@@ -325,7 +328,7 @@ async function initHero() {
     seen = sessionStorage.getItem('intro') === 'vista';
     sessionStorage.setItem('intro', 'vista');
   } catch (error) { /* sin almacenamiento */ }
-  if (reduceMotion || seen) { finish(); return; }
+  if (reduceMotion || seen) { await fontReady; finish(); return; }
 
   // Un clic, una tecla o el scroll lo terminan al instante.
   let skipped = false;
@@ -336,7 +339,6 @@ async function initHero() {
 
   command.dataset.text = command.textContent;
   command.textContent = '';
-  letters.forEach(letter => letter.classList.add('is-wait'));
   lines.forEach(line => { line.style.opacity = '0'; });
   boot.classList.add('is-on');
   for (const line of lines) {
@@ -351,6 +353,7 @@ async function initHero() {
     await pause(55 + Math.random() * 28);
   }
   await pause(120);
+  await fontReady;
   hero.classList.add('is-ready');
   await decodeLetters(letters, () => skipped);
   finish();

@@ -37,7 +37,8 @@ data-i18n y añade la clave con la traducción en i18n.js.
 
 FORMULARIO "NUEVO PROYECTO"
 Se abre desde la cabecera, el inicio, soluciones y contacto, y también con
-el enlace index.html#brief. Por defecto prepara un resumen y abre el
+el enlace index.html#brief. El enlace «pedir esto» de cada solución lo
+abre con esa opción ya marcada. Por defecto prepara un resumen y abre el
 programa de correo del cliente. Para recibir los mensajes directamente,
 configura briefConfig al principio de main.js:
   Web3Forms: pide una clave en web3forms.com con tu correo y pon

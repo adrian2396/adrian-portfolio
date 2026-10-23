@@ -104,25 +104,37 @@
             <p class="sol-id">01 · bring-up</p>
             <h3 data-i18n="sol.1.h">Tienes placa nueva y hay que hacerla arrancar.</h3>
             <p data-i18n="sol.1.p">Pongo en marcha la placa: arranque, programación y depuración, drivers y periféricos validados. Tu equipo desarrolla sobre una base estable desde el principio.</p>
-            <ul class="tags"><li>ESP32</li><li>STM32</li><li>RTOS</li><li>UART · I²C · SPI</li></ul>
+            <div class="sol-foot">
+              <ul class="tags"><li>ESP32</li><li>STM32</li><li>RTOS</li><li>UART · I²C · SPI</li></ul>
+              <button class="sol-ask" type="button" data-open-brief data-brief-need="Bring-up de placa" data-i18n="sol.ask">&gt; pedir esto</button>
+            </div>
           </li>
           <li class="solution" data-reveal>
             <p class="sol-id" data-i18n="sol.2.id">02 · arquitectura</p>
             <h3 data-i18n="sol.2.h">El firmware del prototipo no aguanta un producto.</h3>
             <p data-i18n="sol.2.p">Diseño una arquitectura modular y desacoplada, con capas de abstracción, servicios y contratos claros entre módulos. Se prueba, se mantiene y se reutiliza entre productos.</p>
-            <ul class="tags"><li data-i18n="tag.cpp">C / C++ moderno</li><li>HAL</li><li data-i18n="tag.services">servicios</li><li data-i18n="tag.portability">portabilidad</li></ul>
+            <div class="sol-foot">
+              <ul class="tags"><li data-i18n="tag.cpp">C / C++ moderno</li><li>HAL</li><li data-i18n="tag.services">servicios</li><li data-i18n="tag.portability">portabilidad</li></ul>
+              <button class="sol-ask" type="button" data-open-brief data-brief-need="Arquitectura de firmware" data-i18n="sol.ask">&gt; pedir esto</button>
+            </div>
           </li>
           <li class="solution" data-reveal>
             <p class="sol-id" data-i18n="sol.3.id">03 · integración</p>
             <h3 data-i18n="sol.3.h">El dispositivo tiene que hablar con tu plataforma.</h3>
             <p data-i18n="sol.3.p">Integro los stacks de comunicación y los protocolos que necesites y conecto el equipo con tu nube, tu app o tus sistemas industriales.</p>
-            <ul class="tags"><li>Wi-Fi · BLE</li><li>Ethernet · 4G</li><li>LoRa · Zigbee · Matter</li><li>MQTT · HTTP · Modbus</li></ul>
+            <div class="sol-foot">
+              <ul class="tags"><li>Wi-Fi · BLE</li><li>Ethernet · 4G</li><li>LoRa · Zigbee · Matter</li><li>MQTT · HTTP · Modbus</li></ul>
+              <button class="sol-ask" type="button" data-open-brief data-brief-need="Integración con plataforma" data-i18n="sol.ask">&gt; pedir esto</button>
+            </div>
           </li>
           <li class="solution" data-reveal>
             <p class="sol-id" data-i18n="sol.4.id">04 · producción</p>
             <h3 data-i18n="sol.4.h">Vas a fabricar y necesitas que no falle en campo.</h3>
             <p data-i18n="sol.4.p">Pruebas automatizadas, actualizaciones OTA, secure boot, firmado y cifrado, y soporte a los requisitos de la directiva RED para salir al mercado con garantías.</p>
-            <ul class="tags"><li>CI/CD</li><li>OTA</li><li>secure boot</li><li>RED</li></ul>
+            <div class="sol-foot">
+              <ul class="tags"><li>CI/CD</li><li>OTA</li><li>secure boot</li><li>RED</li></ul>
+              <button class="sol-ask" type="button" data-open-brief data-brief-need="Producción y fiabilidad" data-i18n="sol.ask">&gt; pedir esto</button>
+            </div>
           </li>
         </ol>
         <p class="also" data-i18n="sol.also"><span>También</span>Linux embebido con Yocto, OpenWrt o Debian · esquemáticos y PCB · auditoría y rescate de un firmware existente.</p>

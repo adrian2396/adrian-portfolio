@@ -60,6 +60,7 @@
     "sol.3.p": "I integrate the communication stacks and protocols you need and connect the device to your cloud, your app or your industrial systems.",
     "sol.4.h": "You’re about to manufacture and it can’t fail in the field.",
     "sol.4.p": "Automated testing, OTA updates, secure boot, signing and encryption, plus support for the Radio Equipment Directive (RED) requirements to go to market with confidence.",
+    "sol.ask": "&gt; ask for this",
     "sol.also": "<span>Also</span>Embedded Linux with Yocto, OpenWrt or Debian · schematics and PCB · audit and rescue of existing firmware.",
     "proc.cmd": "make project",
     "proc.title": "How I work.",

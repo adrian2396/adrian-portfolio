@@ -968,8 +968,14 @@ function initBrief() {
   let opener = null;
   let sent = false;
 
-  const open = () => {
+  const open = event => {
     opener = document.activeElement;
+    // Los enlaces «pedir esto» de cada solución abren el formulario con esa opción marcada.
+    const need = event && event.currentTarget && event.currentTarget.dataset ? event.currentTarget.dataset.briefNeed : '';
+    if (need) {
+      const option = $$('input[name="tipo"]', form).find(input => input.value === need);
+      if (option) option.checked = true;
+    }
     if (typeof dialog.showModal === 'function') dialog.showModal();
     else dialog.setAttribute('open', '');
     setTimeout(() => $('#f-name').focus(), 50);

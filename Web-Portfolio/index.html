@@ -169,7 +169,7 @@
             </div>
           </li>
         </ol>
-        <p class="sol-note"><span data-i18n="sol.note">En los cuatro casos, cada entrega llega con su forma de probarla: apps móviles para validar BLE y MQTT, simulación y pruebas automáticas en CI.</span> <a href="#proceso" data-i18n="sol.note.link">ver cómo lo pruebo -&gt;</a></p>
+        <p class="sol-note"><span data-i18n="sol.note">En los cuatro casos, cada entrega llega con su forma de probarla: apps móviles para validar BLE y MQTT, simulación y pruebas automáticas en CI.</span> <a href="#pruebas" data-i18n="sol.note.link">ver cómo lo pruebo -&gt;</a></p>
         <p class="also" data-i18n="sol.also"><span>También</span>Linux embebido con Yocto, OpenWrt o Debian · esquemáticos y PCB · auditoría y rescate de un firmware existente.</p>
       </div>
     </section>
@@ -225,13 +225,41 @@
           <li class="stage"><p class="stage-st"><span>[ OK ]</span> 04</p><h3 data-i18n="proc.4.h">Producción y soporte</h3><p data-i18n="proc.4.p">Documentación, pruebas y acompañamiento hasta fabricación y mantenimiento.</p></li>
         </ol>
 
+        <div class="proof" id="pruebas">
+          <div class="proof-text" data-reveal>
+            <h3 class="proof-title" data-i18n="tst.title">Cada entrega llega con su forma de probarla.</h3>
+            <p data-i18n="tst.lead">No entrego solo código. Cada hito incluye lo necesario para comprobar que funciona, en tu mesa y en tu CI, sin depender de mí.</p>
+            <ul class="gets">
+              <li data-i18n="tst.g1">apps móviles para validar BLE con el dispositivo real</li>
+              <li data-i18n="tst.g2">clientes y simuladores MQTT para probar el camino a la nube</li>
+              <li data-i18n="tst.g3">pruebas automáticas que se ejecutan en CI con cada cambio</li>
+              <li data-i18n="tst.g4">simulación para avanzar aunque el hardware no esté listo</li>
+            </ul>
+          </div>
+          <div class="window" role="img" data-i18n-attr="aria-label:tst.label" aria-label="Sesión de ejemplo de una validación: BLE con la app, MQTT con la nube y pruebas automáticas en CI, todo correcto.">
+            <div class="win-bar"><span class="win-path" data-i18n="tst.path">~/pruebas/<b>validar.sh</b></span></div>
+            <div class="screen term-body" aria-hidden="true">
+              <p class="term-cmd" data-i18n="tst.cmd"><span class="ps1">$</span> ./validar.sh --ble --mqtt</p>
+              <ol class="bootlog">
+                <li><span class="st">[  OK  ]</span> <span data-i18n="tst.1">BLE: dispositivo anunciado, −58 dBm</span></li>
+                <li><span class="st">[  OK  ]</span> <span data-i18n="tst.2">BLE: servicios GATT y lectura de datos</span></li>
+                <li><span class="st">[  OK  ]</span> <span data-i18n="tst.3">BLE: configuración escrita desde la app</span></li>
+                <li><span class="st">[  OK  ]</span> <span data-i18n="tst.4">MQTT: conexión TLS con el broker</span></li>
+                <li><span class="st">[  OK  ]</span> <span data-i18n="tst.5">MQTT: telemetría publicada y recibida</span></li>
+                <li><span class="st">[  OK  ]</span> <span data-i18n="tst.6">MQTT: comando nube -&gt; dispositivo</span></li>
+                <li><span class="st">[  OK  ]</span> <span data-i18n="tst.7">CI: pruebas automáticas, 0 fallos</span></li>
+              </ol>
+              <p class="term-end" data-i18n="tst.end">todo en verde<span class="cursor"></span></p>
+            </div>
+            <p class="win-note" data-i18n="tst.note">sesión de ejemplo · cada proyecto lleva sus propias pruebas</p>
+          </div>
+        </div>
+
         <div class="why" data-reveal>
           <h3 class="why-title" data-i18n="why.title">Por qué es más rápido</h3>
           <dl class="why-list">
             <div><dt data-i18n="why.1.t">Patrones probados</dt><dd data-i18n="why.1.d">Arquitecturas ya validadas en productos que están en el mercado. Menos exploración y menos sorpresas.</dd></div>
             <div><dt data-i18n="why.2.t">Hardware y firmware a la vez</dt><dd data-i18n="why.2.d">Leo esquemáticos y diseño PCB, así que el bring-up no se atasca entre equipos.</dd></div>
-            <div><dt data-i18n="why.3.t">Desacoplado desde el inicio</dt><dd data-i18n="why.3.d">Con capas y contratos claros, cambiar de MCU, de radio o de plataforma no obliga a reescribir.</dd></div>
-            <div><dt data-i18n="why.4.t">Pruebas desde el primer día</dt><dd data-i18n="why.4.d">Integración continua y validación en cada entrega: los fallos aparecen pronto, no en campo.</dd></div>
           </dl>
         </div>
       </div>

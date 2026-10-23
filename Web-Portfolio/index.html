@@ -88,11 +88,11 @@
     <!-- ── SOLUCIONES ── -->
     <section class="section" id="soluciones" aria-labelledby="solutions-title">
       <div class="wrap">
-        <p class="cmd"><span class="ps1">$</span> <span data-type data-i18n="sol.cmd">adrian --soluciones</span></p>
+        <p class="cmd"><span class="ps1">$</span> <span data-type data-i18n="sol.cmd">git status</span></p>
         <div class="sol-intro">
           <header class="sec-head">
-            <h2 class="title" id="solutions-title" data-i18n="sol.title">Lo que resuelvo.</h2>
-            <p class="sec-lead" data-i18n="sol.lead">Cuatro momentos clave al desarrollar un producto conectado. Puedes contar conmigo en uno o en todos, para ganar velocidad sin perder fiabilidad.</p>
+            <h2 class="title" id="solutions-title" data-i18n="sol.title">¿En qué punto está tu proyecto?</h2>
+            <p class="sec-lead" data-i18n="sol.lead">Entro en el punto en el que esté: una idea, un producto que hay que migrar o uno al que le falta conectividad. Siempre con la misma base: arquitectura modular y pruebas desde el primer día.</p>
           </header>
           <div class="window bringup" role="img" data-i18n-attr="aria-label:bu.label" aria-label="Ejemplo de un bring-up: alimentación, depuración, bootloader, periféricos, radio, conexión con la plataforma y OTA verificados.">
             <div class="win-bar">
@@ -117,42 +117,59 @@
         </div>
         <ol class="solutions">
           <li class="solution" data-reveal>
-            <p class="sol-id">01 · bring-up</p>
-            <h3 data-i18n="sol.1.h">Tienes placa nueva y hay que hacerla arrancar.</h3>
-            <p data-i18n="sol.1.p">Pongo en marcha la placa: arranque, programación y depuración, drivers y periféricos validados. Tu equipo desarrolla sobre una base estable desde el principio.</p>
+            <p class="sol-id" data-i18n="sol.1.id">01 · desde cero</p>
+            <h3 data-i18n="sol.1.h">Empiezas de cero.</h3>
+            <p data-i18n="sol.1.p">Tienes una idea, un prototipo o una placa nueva sin arrancar. Hago el bring-up y monto una arquitectura modular desde el primer día, para que el producto crezca sin rehacer el firmware.</p>
+            <ul class="gets">
+              <li data-i18n="sol.1.g1">placa en marcha: arranque, depuración, drivers y periféricos</li>
+              <li data-i18n="sol.1.g2">firmware por capas, con HAL y servicios desacoplados</li>
+              <li data-i18n="sol.1.g3">pruebas y CI desde la primera entrega</li>
+            </ul>
             <div class="sol-foot">
-              <ul class="tags"><li>ESP32</li><li>STM32</li><li>RTOS</li><li>UART · I²C · SPI</li></ul>
-              <button class="sol-ask" type="button" data-open-brief data-brief-need="Bring-up de placa" data-i18n="sol.ask">&gt; pedir esto</button>
+              <button class="sol-ask" type="button" data-open-brief data-brief-need="Proyecto desde cero" data-i18n="sol.ask">&gt; cuéntame tu caso</button>
             </div>
           </li>
           <li class="solution" data-reveal>
-            <p class="sol-id" data-i18n="sol.2.id">02 · arquitectura</p>
-            <h3 data-i18n="sol.2.h">El firmware del prototipo no aguanta un producto.</h3>
-            <p data-i18n="sol.2.p">Diseño una arquitectura modular y desacoplada, con capas de abstracción, servicios y contratos claros entre módulos. Se prueba, se mantiene y se reutiliza entre productos.</p>
+            <p class="sol-id" data-i18n="sol.2.id">02 · migración</p>
+            <h3 data-i18n="sol.2.h">Tu plataforma se queda corta.</h3>
+            <p data-i18n="sol.2.p">El producto funciona, pero hay que cambiar de RTOS, de microcontrolador o de SDK; por ejemplo, de FreeRTOS a Zephyr. Primero fijo con pruebas lo que hace hoy y después migro capa a capa, sin perder funciones por el camino.</p>
+            <ul class="gets">
+              <li data-i18n="sol.2.g1">pruebas que fijan el comportamiento actual</li>
+              <li data-i18n="sol.2.g2">migración por capas, verificada en cada paso</li>
+              <li data-i18n="sol.2.g3">código más portable para el próximo cambio</li>
+            </ul>
             <div class="sol-foot">
-              <ul class="tags"><li data-i18n="tag.cpp">C / C++ moderno</li><li>HAL</li><li data-i18n="tag.services">servicios</li><li data-i18n="tag.portability">portabilidad</li></ul>
-              <button class="sol-ask" type="button" data-open-brief data-brief-need="Arquitectura de firmware" data-i18n="sol.ask">&gt; pedir esto</button>
+              <button class="sol-ask" type="button" data-open-brief data-brief-need="Migración de plataforma" data-i18n="sol.ask">&gt; cuéntame tu caso</button>
             </div>
           </li>
           <li class="solution" data-reveal>
-            <p class="sol-id" data-i18n="sol.3.id">03 · integración</p>
-            <h3 data-i18n="sol.3.h">El dispositivo tiene que hablar con tu plataforma.</h3>
-            <p data-i18n="sol.3.p">Integro los stacks de comunicación y los protocolos que necesites y conecto el equipo con tu nube, tu app o tus sistemas industriales.</p>
+            <p class="sol-id" data-i18n="sol.3.id">03 · ampliación</p>
+            <h3 data-i18n="sol.3.h">Ya hay base, pero le falta conectividad.</h3>
+            <p data-i18n="sol.3.p">Añado lo que falta a un firmware que ya existe: Bluetooth, MQTT, conexión con tu nube o actualizaciones OTA. Lo integro en tu arquitectura sin reescribirla y lo dejo probado de punta a punta.</p>
+            <ul class="gets">
+              <li data-i18n="sol.3.g1">BLE y MQTT integrados en tu firmware</li>
+              <li data-i18n="sol.3.g2">conexión con tu nube, tu app o tus sistemas</li>
+              <li data-i18n="sol.3.g3">validación del dispositivo a la nube</li>
+            </ul>
             <div class="sol-foot">
-              <ul class="tags"><li>Wi-Fi · BLE</li><li>Ethernet · 4G</li><li>LoRa · Zigbee · Matter</li><li>MQTT · HTTP · Modbus</li></ul>
-              <button class="sol-ask" type="button" data-open-brief data-brief-need="Integración con plataforma" data-i18n="sol.ask">&gt; pedir esto</button>
+              <button class="sol-ask" type="button" data-open-brief data-brief-need="Añadir conectividad" data-i18n="sol.ask">&gt; cuéntame tu caso</button>
             </div>
           </li>
           <li class="solution" data-reveal>
             <p class="sol-id" data-i18n="sol.4.id">04 · producción</p>
-            <h3 data-i18n="sol.4.h">Vas a fabricar y necesitas que no falle en campo.</h3>
-            <p data-i18n="sol.4.p">Pruebas automatizadas, actualizaciones OTA, secure boot, firmado y cifrado, y soporte a los requisitos de la directiva RED para salir al mercado con garantías.</p>
+            <h3 data-i18n="sol.4.h">Vas a fabricar y no puede fallar en campo.</h3>
+            <p data-i18n="sol.4.p">Preparo el firmware para salir al mercado con garantías y para poder mantenerlo una vez instalado.</p>
+            <ul class="gets">
+              <li data-i18n="sol.4.g1">pruebas automatizadas y CI</li>
+              <li data-i18n="sol.4.g2">OTA, secure boot, firmado y cifrado de flash</li>
+              <li data-i18n="sol.4.g3">soporte a los requisitos de la directiva RED</li>
+            </ul>
             <div class="sol-foot">
-              <ul class="tags"><li>CI/CD</li><li>OTA</li><li>secure boot</li><li>RED</li></ul>
-              <button class="sol-ask" type="button" data-open-brief data-brief-need="Producción y fiabilidad" data-i18n="sol.ask">&gt; pedir esto</button>
+              <button class="sol-ask" type="button" data-open-brief data-brief-need="Preparar la producción" data-i18n="sol.ask">&gt; cuéntame tu caso</button>
             </div>
           </li>
         </ol>
+        <p class="sol-note"><span data-i18n="sol.note">En los cuatro casos, cada entrega llega con su forma de probarla: apps móviles para validar BLE y MQTT, simulación y pruebas automáticas en CI.</span> <a href="#proceso" data-i18n="sol.note.link">ver cómo lo pruebo -&gt;</a></p>
         <p class="also" data-i18n="sol.also"><span>También</span>Linux embebido con Yocto, OpenWrt o Debian · esquemáticos y PCB · auditoría y rescate de un firmware existente.</p>
       </div>
     </section>
@@ -447,10 +464,11 @@
       <fieldset>
         <legend data-i18n="form.l2">02 · qué necesitas</legend>
         <div class="choices">
-          <label class="choice"><input type="checkbox" name="tipo" value="Bring-up de placa"><span data-i18n="form.t.bringup">bring-up de placa</span></label>
-          <label class="choice"><input type="checkbox" name="tipo" value="Arquitectura de firmware"><span data-i18n="form.t.arch">arquitectura de firmware</span></label>
-          <label class="choice"><input type="checkbox" name="tipo" value="Integración con plataforma"><span data-i18n="form.t.integration">integración con plataforma</span></label>
-          <label class="choice"><input type="checkbox" name="tipo" value="Producción y fiabilidad"><span data-i18n="form.t.production">producción y fiabilidad</span></label>
+          <label class="choice"><input type="checkbox" name="tipo" value="Proyecto desde cero"><span data-i18n="form.t.scratch">proyecto desde cero</span></label>
+          <label class="choice"><input type="checkbox" name="tipo" value="Migración de plataforma"><span data-i18n="form.t.migration">migración de plataforma</span></label>
+          <label class="choice"><input type="checkbox" name="tipo" value="Añadir conectividad"><span data-i18n="form.t.connectivity">añadir conectividad</span></label>
+          <label class="choice"><input type="checkbox" name="tipo" value="Preparar la producción"><span data-i18n="form.t.production">preparar la producción</span></label>
+          <label class="choice"><input type="checkbox" name="tipo" value="Entorno de pruebas"><span data-i18n="form.t.testing">entorno de pruebas</span></label>
           <label class="choice"><input type="checkbox" name="tipo" value="Linux embebido"><span data-i18n="form.t.linux">linux embebido</span></label>
           <label class="choice"><input type="checkbox" name="tipo" value="Hardware / PCB"><span>hardware / pcb</span></label>
           <label class="choice"><input type="checkbox" name="tipo" value="Auditoría de un firmware existente"><span data-i18n="form.t.audit">auditoría de firmware</span></label>

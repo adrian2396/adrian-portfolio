@@ -38,8 +38,9 @@ data-i18n y añade la clave con la traducción en i18n.js.
 
 FORMULARIO "NUEVO PROYECTO"
 Se abre desde la cabecera, el inicio, soluciones y contacto, y también con
-el enlace index.html#brief. El enlace «pedir esto» de cada solución lo
-abre con esa opción ya marcada. Solo son obligatorios el nombre, el email,
+el enlace index.html#brief. El enlace «cuéntame tu caso» de cada situación
+(desde cero, migración, ampliación, producción) lo abre con esa opción ya
+marcada. Solo son obligatorios el nombre, el email,
 la descripción y la casilla de privacidad. Lo escrito se guarda en el
 navegador hasta que se envía. Por defecto prepara un resumen y abre el
 programa de correo del cliente. Para recibir los mensajes directamente,

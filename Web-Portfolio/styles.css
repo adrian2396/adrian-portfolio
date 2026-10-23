@@ -246,9 +246,14 @@ em{font-style:normal;color:var(--accent-ink);text-shadow:var(--glow)}
 .sol-id{color:var(--accent-ink);font:600 12px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase}
 .solution h3{font:400 clamp(30px,2.5vw,38px)/1.02 var(--display);color:var(--fg);text-wrap:balance}
 .solution>p:not(.sol-id){color:var(--text);font-size:16px}
+.gets{display:grid;gap:6px;color:var(--muted);font:400 14px/1.5 var(--mono)}
+.gets li{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:1ch}
+.gets li::before{content:"+";color:var(--accent-ink)}
 .sol-foot{display:flex;flex-direction:column;align-items:flex-start;gap:14px;margin-top:auto;padding-top:6px}
 .sol-ask{color:var(--accent-ink);font:500 13px/1.5 var(--mono);white-space:nowrap;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:4px;transition:text-decoration-color .2s}
 .sol-ask:hover{text-decoration-color:currentColor}
+.sol-note{margin-top:16px;padding:16px 20px;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);background:var(--surface);color:var(--text);font-size:16px;text-wrap:pretty}
+.sol-note a{color:var(--accent-ink);font:500 14px var(--mono);white-space:nowrap;text-underline-offset:4px}
 .also{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:24px;color:var(--muted);font-size:15px}
 .also span{color:var(--accent-ink);font:600 12px/2 var(--mono);letter-spacing:.1em;text-transform:uppercase}
 

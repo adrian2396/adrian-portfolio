@@ -974,7 +974,7 @@ function initBrief() {
     const need = event && event.currentTarget && event.currentTarget.dataset ? event.currentTarget.dataset.briefNeed : '';
     if (need) {
       const option = $$('input[name="tipo"]', form).find(input => input.value === need);
-      if (option) option.checked = true;
+      if (option) { option.checked = true; queueDraft(); }
     }
     if (typeof dialog.showModal === 'function') dialog.showModal();
     else dialog.setAttribute('open', '');
@@ -995,6 +995,42 @@ function initBrief() {
     if (opener && typeof opener.focus === 'function') opener.focus();
   });
   dialog.addEventListener('click', event => { if (event.target === dialog) close(); });
+
+  // Borrador: lo escrito se guarda en este navegador hasta que se envía (sin el consentimiento).
+  const draftKey = 'brief-borrador';
+  const draftFields = () => $$('input, textarea, select', form).filter(field => field.name && !['web', 'consentimiento'].includes(field.name));
+  let draftTimer = 0;
+  const saveDraft = () => {
+    const data = {};
+    draftFields().forEach(field => {
+      if (field.type === 'checkbox' || field.type === 'radio') {
+        if (field.checked) (data[field.name] = data[field.name] || []).push(field.value);
+      } else if (field.tagName === 'SELECT') {
+        data[field.name] = field.selectedIndex;
+      } else if (field.value.trim()) {
+        data[field.name] = field.value;
+      }
+    });
+    try { localStorage.setItem(draftKey, JSON.stringify(data)); } catch (error) { /* sin almacenamiento */ }
+  };
+  const clearDraft = () => {
+    clearTimeout(draftTimer);
+    try { localStorage.removeItem(draftKey); } catch (error) { /* sin almacenamiento */ }
+  };
+  try {
+    const draft = JSON.parse(localStorage.getItem(draftKey) || 'null');
+    if (draft) {
+      draftFields().forEach(field => {
+        const value = draft[field.name];
+        if (field.type === 'checkbox' || field.type === 'radio') field.checked = Array.isArray(value) && value.includes(field.value);
+        else if (field.tagName === 'SELECT') field.selectedIndex = Number.isInteger(value) && value < field.options.length ? value : 0;
+        else if (typeof value === 'string') field.value = value;
+      });
+    }
+  } catch (error) { /* borrador ilegible o sin almacenamiento */ }
+  const queueDraft = () => { clearTimeout(draftTimer); draftTimer = setTimeout(saveDraft, 300); };
+  form.addEventListener('input', queueDraft);
+  form.addEventListener('change', queueDraft);
   $$('[data-open-brief]').forEach(button => button.addEventListener('click', open));
   $$('[data-close-brief]').forEach(button => button.addEventListener('click', close));
   if (location.hash === '#brief') open();
@@ -1040,15 +1076,11 @@ function initBrief() {
     const email = $('#f-email');
     const description = $('#f-desc');
     const consent = $('#f-consent');
-    const types = $('[data-required-group="tipo"]');
     mark(name, !name.value.trim());
     if (!name.value.trim()) problems.push([name, t('form.err.name')]);
     const badEmail = !email.value.trim() || !email.validity.valid;
     mark(email, badEmail);
     if (badEmail) problems.push([email, t('form.err.email')]);
-    const noType = !$$('input[name="tipo"]:checked', form).length;
-    types.classList.toggle('is-invalid', noType);
-    if (noType) problems.push([$('input[name="tipo"]', form), t('form.err.type')]);
     mark(description, !description.value.trim());
     if (!description.value.trim()) problems.push([description, t('form.err.desc')]);
     mark(consent, !consent.checked);
@@ -1071,6 +1103,7 @@ function initBrief() {
     mailto.href = `mailto:${briefConfig.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
     summaryBox.textContent = text;
     const show = (title, message) => {
+      clearDraft();
       $('[data-done-title]').textContent = title;
       $('[data-done-text]').textContent = message;
       form.hidden = true;
@@ -1110,7 +1143,6 @@ function initBrief() {
   form.addEventListener('input', event => {
     error.textContent = '';
     if (event.target.getAttribute('aria-invalid') === 'true') event.target.setAttribute('aria-invalid', 'false');
-    if (event.target.name === 'tipo') $('[data-required-group="tipo"]').classList.remove('is-invalid');
   });
 
   $('[data-copy-summary]').addEventListener('click', event => {

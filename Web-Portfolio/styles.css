@@ -383,7 +383,6 @@ legend+*{clear:both}
 .choice input[type="radio"]:checked+span::before{content:"(•) "}
 .choice:hover span{color:var(--fg)}
 .choice input:focus-visible+span,.consent input:focus-visible+span{outline:2px solid var(--accent-ink);outline-offset:3px}
-.choices.is-invalid .choice span::before{color:var(--err)}
 .trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .consent{position:relative;display:flex;margin-top:24px;cursor:pointer}
 .consent span::before{content:"[ ] ";white-space:pre;color:var(--dim)}
@@ -392,6 +391,7 @@ legend+*{clear:both}
 .form-error{margin-top:14px;color:var(--err);font:500 14px/1.5 var(--mono)}
 .form-error:empty{display:none}
 .brief-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.draft-note{margin-top:12px;color:var(--dim);font:400 12px/1.5 var(--mono)}
 .brief-done{display:grid;gap:14px}
 .done-status{font:500 15px var(--mono);color:var(--fg)}
 .done-status .ok{color:var(--ok);white-space:pre}

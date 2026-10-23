@@ -202,6 +202,7 @@ em{font-style:normal;color:var(--accent-ink);text-shadow:var(--glow)}
 /* ── Inicio ── */
 .hero{position:relative;display:flex;flex-direction:column;justify-content:center;min-height:min(100svh,980px);padding-top:calc(var(--header) + env(safe-area-inset-top,0px) + 32px);padding-bottom:140px}
 .boot{display:grid;margin-bottom:28px;color:var(--muted);font:400 13px/1.65 var(--mono)}
+.boot li{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:1ch}
 .boot .ok{color:var(--ok);white-space:pre}
 .hero-cmd{margin-bottom:12px}
 .hero-title{margin-bottom:20px;font:400 clamp(64px,min(10.6vw,16vh),150px)/.86 var(--display);color:var(--accent-ink);letter-spacing:.005em;text-shadow:var(--glow)}
@@ -436,7 +437,7 @@ legend+*{clear:both}
 @media (max-width:640px){
   .hero{padding-bottom:124px}
   .hero-title{font-size:min(23vw,110px)}
-  .boot{font-size:12px}
+  .boot{row-gap:4px;margin-bottom:22px;font-size:12px;line-height:1.45}
   .uart{height:76px}
   body{font-size:16px}
   .brand-text{display:none}

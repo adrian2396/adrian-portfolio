@@ -229,7 +229,7 @@ em{font-style:normal;color:var(--accent-ink);text-shadow:var(--glow)}
 .term-end.is-wait{visibility:hidden}
 
 /* ── Secciones ── */
-.section{padding-block:clamp(88px,12vh,140px);border-top:1px solid var(--line)}
+.section{padding-block:clamp(72px,10vh,120px);border-top:1px solid var(--line)}
 
 .solutions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .solution{display:flex;flex-direction:column;gap:14px;padding:clamp(24px,2.6vw,36px);border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);transition:border-color .2s}

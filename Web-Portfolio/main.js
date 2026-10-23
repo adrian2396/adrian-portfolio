@@ -245,7 +245,7 @@ function initReveal() {
 const utf8 = new TextEncoder();
 const hexByte = byte => byte.toString(16).toUpperCase().padStart(2, '0');
 
-function decodeLetters(letters) {
+function decodeLetters(letters, skipped = () => false) {
   return new Promise(resolve => {
     const glyphs = '0123456789ABCDEF';
     const random = () => glyphs[(Math.random() * 16) | 0];
@@ -258,6 +258,7 @@ function decodeLetters(letters) {
     const start = performance.now();
     let lastSwap = 0;
     const tick = now => {
+      if (skipped()) { resolve(); return; }
       const elapsed = now - start;
       const swap = now - lastSwap > 55;
       if (swap) lastSwap = now;
@@ -297,26 +298,54 @@ async function initHero() {
     return span;
   });
   name.replaceChildren(...letters);
-  if (reduceMotion) {
-    boot.classList.add('is-on');
-    hero.classList.add('is-ready');
-    return;
-  }
   const lines = $$('li', boot);
+  const finish = () => {
+    boot.classList.add('is-on');
+    lines.forEach(line => { line.style.opacity = ''; });
+    command.classList.remove('typing');
+    command.textContent = command.dataset.text || command.textContent;
+    letters.forEach(letter => {
+      letter.textContent = letter.dataset.char;
+      letter.classList.remove('is-wait', 'is-hex');
+    });
+    hero.classList.add('is-ready');
+  };
+  // El arranque completo solo se ve en la primera visita de la sesión.
+  let seen = false;
+  try {
+    seen = sessionStorage.getItem('intro') === 'vista';
+    sessionStorage.setItem('intro', 'vista');
+  } catch (error) { /* sin almacenamiento */ }
+  if (reduceMotion || seen) { finish(); return; }
+
+  // Un clic, una tecla o el scroll lo terminan al instante.
+  let skipped = false;
+  const skipEvents = ['pointerdown', 'keydown', 'wheel', 'touchstart'];
+  const skip = () => { skipped = true; };
+  skipEvents.forEach(type => window.addEventListener(type, skip, { once: true, passive: true }));
+  const pause = ms => (skipped ? Promise.resolve() : wait(ms));
+
   command.dataset.text = command.textContent;
   command.textContent = '';
   letters.forEach(letter => letter.classList.add('is-wait'));
   lines.forEach(line => { line.style.opacity = '0'; });
   boot.classList.add('is-on');
   for (const line of lines) {
-    await wait(130);
+    await pause(130);
     line.style.opacity = '';
   }
-  await wait(150);
-  await typeInto(command, 55);
-  await wait(120);
+  await pause(150);
+  const text = command.dataset.text;
+  command.classList.add('typing');
+  for (let i = 1; i <= text.length && !skipped; i++) {
+    command.textContent = text.slice(0, i);
+    await pause(55 + Math.random() * 28);
+  }
+  await pause(120);
   hero.classList.add('is-ready');
-  await decodeLetters(letters);
+  await decodeLetters(letters, () => skipped);
+  finish();
+  skipEvents.forEach(type => window.removeEventListener(type, skip));
 }
 
 /* Línea UART bajo el inicio: transmite el nombre byte a byte (8N1, UTF-8). */

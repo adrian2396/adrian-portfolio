@@ -13,6 +13,7 @@
     "skip": "Skip to content",
     "brand.label": "Adrián Vizcaíno, home",
     "nav.label": "Main",
+    "lang.group": "Language",
     "nav.solutions": "solutions",
     "nav.process": "process",
     "nav.projects": "projects",
@@ -229,8 +230,6 @@
 
   const strings = {
     es: {
-      "lang.aria": "Idioma: español. Cambiar a inglés.",
-      "theme.prefix": "tema:",
       "theme.auto": "auto",
       "theme.light": "claro",
       "theme.dark": "oscuro",
@@ -306,8 +305,6 @@
       "summary.copy": "copiar resumen"
     },
     en: {
-      "lang.aria": "Language: English. Switch to Spanish.",
-      "theme.prefix": "theme:",
       "theme.auto": "auto",
       "theme.light": "light",
       "theme.dark": "dark",
@@ -431,11 +428,7 @@
     });
     document.title = lang === 'en' ? en['meta.title'] : spanish.title;
     if (meta) meta.content = lang === 'en' ? en['meta.description'] : spanish.description;
-    const toggle = document.querySelector('[data-lang-toggle]');
-    if (toggle) {
-      toggle.innerHTML = `lang:<b>${lang}</b>`;
-      toggle.setAttribute('aria-label', t('lang.aria'));
-    }
+    document.querySelectorAll('[data-lang]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.lang === lang)));
   }
 
   function set(next) {
@@ -457,8 +450,7 @@
   }
 
   apply();
-  const toggle = document.querySelector('[data-lang-toggle]');
-  if (toggle) toggle.addEventListener('click', () => set(lang === 'es' ? 'en' : 'es'));
+  document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => set(button.dataset.lang)));
 
   window.i18n = {
     get lang() { return lang; },

@@ -145,11 +145,13 @@ function initTheme() {
   const button = $('[data-theme-toggle]');
   const order = ['auto', 'light', 'dark'];
   const current = () => root.dataset.theme || 'auto';
+  // El icono del tema actual lo elige el CSS a partir de data-theme; aquí solo va el texto.
   const render = () => {
     const mode = current();
     const next = order[(order.indexOf(mode) + 1) % order.length];
-    button.innerHTML = `${t('theme.prefix')}<b>${t(`theme.${mode}`)}</b>`;
-    button.setAttribute('aria-label', t('theme.aria', { mode: t(`theme.${mode}`), system: mode === 'auto' ? t('theme.system') : '', next: t(`theme.${next}`) }));
+    const label = t('theme.aria', { mode: t(`theme.${mode}`), system: mode === 'auto' ? t('theme.system') : '', next: t(`theme.${next}`) });
+    button.setAttribute('aria-label', label);
+    button.title = label;
   };
   i18n.onChange(render);
   button.addEventListener('click', () => {

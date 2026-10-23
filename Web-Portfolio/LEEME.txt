@@ -19,14 +19,15 @@ bytes UTF-8 en hexadecimal y en binario. Debajo, una línea UART transmite
 el nombre byte a byte (115200 8N1).
 
 TEMA
-Por defecto sigue al sistema operativo. El botón "tema:" de la cabecera
-cambia entre auto, claro y oscuro y recuerda la elección.
+Por defecto sigue al sistema operativo. El icono de la cabecera cambia
+entre auto (medio círculo), claro (sol) y oscuro (luna) y recuerda la
+elección.
 Oscuro = monitor de fósforo. Claro = listado de impresora.
 Las pantallas (bring-up y esquemas) siempre se ven como un monitor.
 
 IDIOMA
-Español e inglés. El botón "lang:" de la cabecera cambia de idioma y
-recuerda la elección. Si no hay elección guardada, usa el idioma del
+Español e inglés. Los botones "es / en" de la cabecera cambian de idioma
+y recuerdan la elección. Si no hay elección guardada, usa el idioma del
 navegador (español si empieza por "es"; si no, inglés). El enlace
 index.html?lang=en abre siempre la versión en inglés (?lang=es, la española).
 Los textos en español están en index.html; cada uno lleva data-i18n="clave".

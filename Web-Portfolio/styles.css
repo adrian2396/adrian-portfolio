@@ -183,9 +183,17 @@ em{font-style:normal;color:var(--accent-ink);text-shadow:var(--glow)}
 .nav a.is-active{color:var(--fg)}
 .nav a.is-active::before,.nav a.is-active::after{opacity:1}
 .nav-cta{display:none}
-.theme-toggle,.lang-toggle{padding:6px 2px;color:var(--dim);font:400 13px var(--mono);white-space:nowrap}
-.theme-toggle b,.lang-toggle b{font-weight:500;color:var(--fg)}
-.theme-toggle:hover b,.lang-toggle:hover b{color:var(--accent-ink)}
+/* Preferencias: idioma (es / en) y tema (un icono). Sin JavaScript no hacen nada, así que no se muestran. */
+.prefs{display:flex;align-items:center;gap:10px;padding-left:18px;border-left:1px solid var(--line)}
+.no-js .prefs{display:none}
+.lang-switch{display:flex;align-items:center;gap:2px;color:var(--line-strong);font:400 13px var(--mono)}
+.lang-switch button{padding:6px 4px;color:var(--dim);transition:color .15s}
+.lang-switch button:hover{color:var(--fg)}
+.lang-switch button[aria-pressed="true"]{color:var(--fg);font-weight:500;cursor:default}
+.theme-btn{display:grid;place-items:center;width:34px;height:34px;border-radius:var(--radius);color:var(--muted);transition:color .15s,background-color .15s}
+.theme-btn:hover{color:var(--fg);background:var(--surface-2)}
+.theme-btn .ico{display:none;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+:root:not([data-theme]) .theme-btn .ico-auto,:root[data-theme="light"] .theme-btn .ico-light,:root[data-theme="dark"] .theme-btn .ico-dark{display:block}
 .header-cta{min-height:38px;padding:0 14px;font-size:13px}
 .menu-btn{display:none;min-height:40px;padding:0 2px;color:var(--fg);font:400 14px var(--mono)}
 .menu-btn::before{content:"[";color:var(--accent-ink);margin-right:.3em}
@@ -414,6 +422,7 @@ legend+*{clear:both}
   .nav:has(a.is-active) a:not(.is-active){color:var(--muted)}
   .nav-cta{display:inline-flex;margin-top:24px}
   .header-cta{display:none}
+  .prefs{padding-left:0;border-left:0}
   .menu-btn{display:inline-flex;align-items:center}
 }
 @media (max-width:900px){
@@ -431,7 +440,6 @@ legend+*{clear:both}
   .uart{height:76px}
   body{font-size:16px}
   .brand-text{display:none}
-  .theme-toggle,.lang-toggle{font-size:12px}
   .term-body{padding:14px 14px 16px;font-size:12.5px}
   .pipeline{grid-template-columns:minmax(0,1fr)}
   .row-3,.row-2{grid-template-columns:minmax(0,1fr)}

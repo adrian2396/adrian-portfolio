@@ -42,8 +42,16 @@
         <a href="#contacto" data-nav data-i18n="nav.contact">contacto</a>
         <button class="btn btn-solid nav-cta" type="button" data-open-brief data-i18n="cta.new">&gt; nuevo proyecto</button>
       </nav>
-      <button class="lang-toggle" type="button" data-lang-toggle>lang:<b>es</b></button>
-      <button class="theme-toggle" type="button" data-theme-toggle>tema:<b>auto</b></button>
+      <div class="prefs">
+        <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.group" aria-label="Idioma">
+          <button type="button" data-lang="es" lang="es" aria-label="Español" title="Español" aria-pressed="true">es</button><span aria-hidden="true">/</span><button type="button" data-lang="en" lang="en" aria-label="English" title="English" aria-pressed="false">en</button>
+        </div>
+        <button class="theme-btn" type="button" data-theme-toggle>
+          <svg class="ico ico-auto" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor" stroke="none"/></svg>
+          <svg class="ico ico-light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg>
+          <svg class="ico ico-dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+        </button>
+      </div>
       <button class="btn btn-solid header-cta" type="button" data-open-brief data-i18n="cta.new">&gt; nuevo proyecto</button>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" data-i18n="menu">menú</button>
     </div>

@@ -406,9 +406,12 @@ legend+*{clear:both}
 
 /* ── Responsive ── */
 @media (max-width:1060px){
-  .nav{position:fixed;inset:0;z-index:-1;flex-direction:column;align-items:flex-start;justify-content:center;gap:10px;padding:calc(var(--header) + env(safe-area-inset-top,0px) + 24px) max(var(--gutter),env(safe-area-inset-right,0px)) 40px max(calc(var(--gutter) + 1ch),env(safe-area-inset-left,0px));background:var(--bg);font:400 clamp(44px,11vw,64px)/1.1 var(--display);opacity:0;visibility:hidden;transition:opacity .25s,visibility 0s .25s}
+  .nav{position:fixed;inset:0;z-index:-1;flex-direction:column;align-items:flex-start;justify-content:center;gap:10px;padding:calc(var(--header) + env(safe-area-inset-top,0px) + 24px) max(var(--gutter),env(safe-area-inset-right,0px)) 40px max(calc(var(--gutter) + .6em),env(safe-area-inset-left,0px));background:var(--bg);font:400 clamp(44px,11vw,64px)/1.1 var(--display);opacity:0;visibility:hidden;transition:opacity .25s,visibility 0s .25s}
   .nav.is-open{opacity:1;visibility:visible;transition:opacity .25s}
   .nav a{color:var(--fg)}
+  .nav a::before{left:-.6em}
+  .nav a::after{right:-.6em}
+  .nav:has(a.is-active) a:not(.is-active){color:var(--muted)}
   .nav-cta{display:inline-flex;margin-top:24px}
   .header-cta{display:none}
   .menu-btn{display:inline-flex;align-items:center}

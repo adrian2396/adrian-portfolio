@@ -3,16 +3,45 @@
 /* ───────── CONFIGURACIÓN ─────────
 
    FOTOS Y VÍDEO DE PRODUCTO
-   Guarda las fotos en assets/media/ y añade sus rutas. Para un vídeo de YouTube,
-   pega el enlace completo o solo su identificador. Cada producto muestra pestañas
-   [vídeo] [fotos] [esquema] según el material disponible.
-   Ejemplo:
-     youtube: 'https://www.youtube.com/watch?v=XXXXXXXXXXX',
-     images: [{ src: 'assets/media/xeo-lum-produccion-1.jpg', alt: 'XEO LUM + en la línea de producción' }] */
+   El material está en assets/media/, ya recortado y optimizado. Cada producto muestra
+   pestañas [vídeo] [fotos] [esquema] según lo que tenga:
+     video:   vídeo propio, sin sonido y en bucle: { src (mp4), webm, poster, caption }.
+              El .webm es opcional: lo usan los navegadores sin H.264.
+     youtube: enlace de YouTube (o solo su identificador), si no hay vídeo propio.
+     images:  fotos: [{ src, caption }]. El pie se ve bajo la pantalla.
+   Los pies admiten los dos idiomas: { es: '…', en: '…' }. */
 const productMedia = {
-  anc: { name: 'ANC +', youtube: '', images: [] },
-  astro: { name: 'ASTRO LUM', youtube: '', images: [] },
-  xeolum: { name: 'XEO LUM +', youtube: '', images: [] }
+  anc: {
+    name: 'ANC +',
+    video: {
+      src: 'assets/media/anc-produccion.mp4',
+      webm: 'assets/media/anc-produccion.webm',
+      poster: 'assets/media/anc-produccion-video.jpg',
+      caption: { es: 'ANC + en producción: decenas de unidades en el rack de pruebas', en: 'ANC + in production: dozens of units on the test rack' }
+    },
+    youtube: '',
+    images: [
+      { src: 'assets/media/anc-banco.jpg', caption: { es: 'Cuatro ANC + conectados en la mesa de pruebas', en: 'Four ANC + units wired up on the test bench' } },
+      { src: 'assets/media/anc-programador.jpg', caption: { es: 'ANC + con el programador conectado y la ciudad configurada en pantalla', en: 'ANC + with the programmer attached and the city set on screen' } },
+      { src: 'assets/media/anc-produccion.jpg', caption: { es: 'Rack de pruebas de producción con decenas de ANC +', en: 'Production test rack with dozens of ANC + units' } }
+    ]
+  },
+  astro: {
+    name: 'ASTRO LUM',
+    video: null,
+    youtube: '',
+    images: [
+      { src: 'assets/media/astro-lum.jpg', caption: { es: 'ASTRO LUM: sin pantalla y con un solo botón', en: 'ASTRO LUM: no screen and a single button' } }
+    ]
+  },
+  xeolum: {
+    name: 'XEO LUM +',
+    video: null,
+    youtube: 'https://www.youtube.com/watch?v=LOH5GwTmqz0',
+    images: [
+      { src: 'assets/media/xeo-lum-pruebas.jpg', caption: { es: 'XEO LUM + en la pared de pruebas, con su pantalla de control de relés', en: 'XEO LUM + on the test wall, showing its relay control screen' } }
+    ]
+  }
 };
 
 /* FORMULARIO DE PROYECTO
@@ -784,6 +813,9 @@ const visuals = {
 };
 
 /* ───────── Proyectos: pestañas de vídeo, fotos y esquema ───────── */
+/* Texto en el idioma actual: admite un texto simple o { es, en }. */
+const inLang = value => (value && typeof value === 'object' ? value[i18n.lang] || value.es || '' : value || '');
+
 function youtubeId(value) {
   if (!value) return '';
   const match = String(value).match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/);
@@ -793,27 +825,82 @@ function youtubeId(value) {
 function initProducts() {
   $$('[data-product]').forEach(article => {
     const key = article.dataset.product;
-    const media = productMedia[key] || { images: [] };
+    const media = productMedia[key] || {};
+    const images = media.images || [];
     const screen = $('[data-screen]', article);
     const tabs = $('[data-tabs]', article);
     const note = $('[data-note]', article);
     const panes = { esquema: $('[data-pane="esquema"]', screen) };
     const notes = { esquema: () => t(`note.${key}`) };
+    const links = {};
     const relabel = [];
     const videoId = youtubeId(media.youtube);
+    let current = null;
+    let syncVideo = () => {};
 
-    if (videoId) {
+    if (media.video && media.video.src) {
+      // Vídeo propio: sin sonido y en bucle. Solo se reproduce mientras se ve y se puede pausar.
+      const pane = document.createElement('div');
+      pane.className = 'pane';
+      const video = document.createElement('video');
+      video.className = 'pane-video';
+      video.muted = true;
+      video.defaultMuted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.preload = 'none';
+      if (media.video.poster) video.poster = media.video.poster;
+      [[media.video.src, 'video/mp4'], [media.video.webm, 'video/webm']].forEach(([src, type]) => {
+        if (!src) return;
+        const source = document.createElement('source');
+        source.src = src;
+        source.type = type;
+        video.append(source);
+      });
+      const toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'video-toggle';
+      let wanted = !reduceMotion;
+      let inView = !('IntersectionObserver' in window);
+      syncVideo = () => {
+        const play = wanted && inView && current === 'vídeo';
+        if (play && video.paused) video.play().catch(() => {});
+        else if (!play && !video.paused) video.pause();
+        toggle.textContent = `[${t(wanted ? 'video.pause' : 'video.resume')}]`;
+      };
+      toggle.addEventListener('click', () => { wanted = !wanted; syncVideo(); });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(entries => {
+          inView = entries[entries.length - 1].isIntersecting;
+          syncVideo();
+        }, { threshold: 0.3 }).observe(screen);
+      }
+      relabel.push(() => {
+        video.setAttribute('aria-label', inLang(media.video.caption) || media.name);
+        syncVideo();
+      });
+      pane.append(video, toggle);
+      screen.prepend(pane);
+      panes['vídeo'] = pane;
+      notes['vídeo'] = () => inLang(media.video.caption) || t('note.video', { name: media.name });
+    } else if (videoId) {
+      const watch = `https://www.youtube.com/watch?v=${videoId}`;
       const pane = document.createElement('div');
       pane.className = 'pane';
       const facade = document.createElement('button');
       facade.type = 'button';
       facade.className = 'video-facade';
-      facade.style.backgroundImage = `url("https://i.ytimg.com/vi/${videoId}/hqdefault.jpg")`;
+      // Debajo de la miniatura de YouTube va la primera foto, por si YouTube está bloqueado.
+      const fallback = images[0] && images[0].src;
+      facade.style.backgroundImage = [`url("https://i.ytimg.com/vi/${videoId}/hqdefault.jpg")`, fallback && `url("${fallback}")`].filter(Boolean).join(', ');
+      facade.style.backgroundSize = fallback ? 'auto 134%, cover' : '';
       relabel.push(() => {
         facade.innerHTML = `<span>${t('video.play')}</span>`;
         facade.setAttribute('aria-label', t('video.aria', { name: media.name }));
       });
       facade.addEventListener('click', () => {
+        // YouTube no deja incrustar vídeos en una página abierta como archivo local.
+        if (location.protocol === 'file:') { window.open(watch, '_blank', 'noopener'); return; }
         const frame = document.createElement('iframe');
         frame.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
         frame.title = t('video.title', { name: media.name });
@@ -825,22 +912,26 @@ function initProducts() {
       screen.prepend(pane);
       panes['vídeo'] = pane;
       notes['vídeo'] = () => t('note.video', { name: media.name });
+      links['vídeo'] = { href: watch, label: () => t('video.open') };
     }
 
-    if (media.images.length) {
+    if (images.length) {
       const pane = document.createElement('div');
       pane.className = 'pane';
       const gallery = document.createElement('div');
       gallery.className = 'gallery';
-      media.images.forEach(image => {
+      let shown = 0;
+      const caption = image => inLang(image.caption || image.alt);
+      images.forEach(image => {
         const img = document.createElement('img');
         img.src = image.src;
-        img.alt = image.alt || media.name;
         img.loading = 'lazy';
+        img.decoding = 'async';
+        relabel.push(() => { img.alt = caption(image) || media.name; });
         gallery.append(img);
       });
       pane.append(gallery);
-      if (media.images.length > 1) {
+      if (images.length > 1) {
         const bar = document.createElement('div');
         bar.className = 'gallery-nav';
         const counter = document.createElement('span');
@@ -856,7 +947,11 @@ function initProducts() {
         });
         prev.addEventListener('click', () => go(-1));
         next.addEventListener('click', () => go(1));
-        const update = () => { counter.textContent = `${Math.round(gallery.scrollLeft / gallery.clientWidth) + 1}/${media.images.length}`; };
+        const update = () => {
+          shown = clamp(Math.round(gallery.scrollLeft / (gallery.clientWidth || 1)), 0, images.length - 1);
+          counter.textContent = `${shown + 1}/${images.length}`;
+          if (current === 'fotos') setNote('fotos');
+        };
         gallery.addEventListener('scroll', update, { passive: true });
         update();
         bar.append(prev, counter, next);
@@ -864,11 +959,24 @@ function initProducts() {
       }
       screen.insertBefore(pane, panes.esquema);
       panes.fotos = pane;
-      notes.fotos = () => t('note.photos', { name: media.name });
+      notes.fotos = () => caption(images[shown]) || t('note.photos', { name: media.name });
+    }
+
+    // Nota bajo la pantalla: pie de la foto o del vídeo y, para YouTube, enlace al vídeo.
+    function setNote(name) {
+      note.textContent = notes[name]();
+      const link = links[name];
+      if (!link) return;
+      const a = document.createElement('a');
+      a.href = link.href;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = link.label();
+      note.append(' · ', a);
     }
 
     const order = ['vídeo', 'fotos', 'esquema'].filter(name => panes[name]);
-    let current = order[0];
+    current = order[0];
     const buttons = {};
     const select = name => {
       current = name;
@@ -877,7 +985,8 @@ function initProducts() {
         if (buttons[other]) buttons[other].setAttribute('aria-selected', String(other === name));
       });
       screen.classList.toggle('is-media', name !== 'esquema');
-      note.textContent = notes[name]();
+      setNote(name);
+      syncVideo();
       if (name === 'esquema') wake();
     };
     const tabName = { 'vídeo': 'tab.video', fotos: 'tab.photos', esquema: 'tab.scheme' };
@@ -899,7 +1008,7 @@ function initProducts() {
       only.setAttribute('aria-selected', 'true');
       tabs.append(only);
     }
-    relabel.push(() => { note.textContent = notes[current](); });
+    relabel.push(() => setNote(current));
     const applyLabels = () => relabel.forEach(update => update());
     applyLabels();
     i18n.onChange(applyLabels);

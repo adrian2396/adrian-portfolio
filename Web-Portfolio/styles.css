@@ -284,8 +284,9 @@ em{font-style:normal;color:var(--accent-ink);text-shadow:var(--glow)}
 .win-tabs button,.win-tabs span{padding:3px 6px;color:var(--dim);font:400 13px var(--mono)}
 .win-tabs button:hover{color:var(--fg)}
 .win-tabs [aria-selected="true"]{color:var(--accent-ink)}
-.win-body{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
-.win-body .screen{min-height:420px;border-right:1px solid var(--line)}
+.win-body{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);container-type:inline-size}
+/* La pantalla mide al menos 6:5 (el formato de las fotos y el vídeo) y se estira si la ficha es más alta. */
+.win-body .screen{min-height:420px;min-height:max(420px,43.6cqw);border-right:1px solid var(--line)}
 .pane{position:absolute;inset:0}
 .pane canvas{width:100%;height:100%}
 .product-info{display:flex;flex-direction:column;gap:16px;padding:clamp(24px,3vw,40px);min-width:0}
@@ -299,11 +300,16 @@ em{font-style:normal;color:var(--accent-ink);text-shadow:var(--glow)}
 .gallery-nav{position:absolute;right:12px;bottom:12px;z-index:3;display:flex;align-items:center;gap:6px;padding:4px 8px;border-radius:var(--radius);background:rgba(10,10,10,.8);color:#cfcfcf;font:400 13px var(--mono)}
 .gallery-nav button{padding:2px 6px;color:#ffffff}
 .gallery-nav button:hover{color:var(--accent)}
-.video-facade{position:absolute;inset:0;display:grid;place-items:center;width:100%;background:var(--bg) center/cover no-repeat}
+/* La miniatura de YouTube (4:3) lleva franjas negras: con 134 % de alto quedan fuera. */
+.video-facade{position:absolute;inset:0;display:grid;place-items:center;width:100%;background:var(--bg) center/auto 134% no-repeat}
 .video-facade::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.4)}
 .video-facade span{position:relative;padding:10px 16px;border:1px solid var(--accent);border-radius:var(--radius);background:rgba(10,10,10,.8);color:var(--accent);font:500 14px var(--mono)}
 .video-facade:hover span{background:var(--accent);color:var(--on-accent)}
 .pane iframe{width:100%;height:100%;border:0}
+.pane-video{display:block;width:100%;height:100%;object-fit:cover}
+.video-toggle{position:absolute;right:12px;bottom:12px;z-index:3;padding:4px 8px;border-radius:var(--radius);background:rgba(10,10,10,.8);color:#ffffff;font:400 13px var(--mono)}
+.video-toggle:hover{color:var(--accent)}
+.win-note a{color:var(--accent-ink);text-underline-offset:3px}
 
 /* Arquitectura: capas del firmware y qué se toca en cada caso */
 .arch-cases{display:flex;flex-wrap:wrap;align-items:center;gap:8px 6px;margin-bottom:14px;font:400 13px/1.4 var(--mono)}

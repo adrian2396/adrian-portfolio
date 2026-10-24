@@ -58,9 +58,19 @@ configura briefConfig al principio de main.js:
     endpoint: 'https://formspree.io/f/TU-ID'
 
 FOTOS Y VÍDEO
-Fotos en assets/media/ y rutas en productMedia, al principio de main.js.
-Para un vídeo, pega el enlace de YouTube. Cada producto muestra pestañas
-[vídeo] [fotos] [esquema] según el material disponible.
+Fotos y vídeo de producto en assets/media/, ya recortados y optimizados.
+Qué se ve en cada producto se configura en productMedia, al principio de
+main.js:
+  video    vídeo propio, sin sonido y en bucle (mp4, y webm opcional).
+  youtube  enlace de YouTube, si no hay vídeo propio.
+  images   fotos, cada una con su pie en español y en inglés.
+Cada producto muestra pestañas [vídeo] [fotos] [esquema] según el material.
+El vídeo propio solo se reproduce mientras se ve y se puede pausar; con
+"reducir movimiento" no arranca solo. Al abrir la página con doble clic,
+el vídeo de YouTube se abre en otra pestaña: YouTube no deja verlo
+incrustado en un archivo local.
+Los originales no van en Web-Portfolio: todo lo que hay en esta carpeta se
+publica con la web, y los originales pueden llevar caras o datos privados.
 
 FUENTES DE LOS DATOS DE PRODUCTO
 ANC +: ficha técnica de ORBIS.

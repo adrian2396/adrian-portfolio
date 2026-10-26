@@ -37,9 +37,10 @@ const productMedia = {
   xeolum: {
     name: 'XEO LUM +',
     video: null,
-    youtube: 'https://www.youtube.com/watch?v=LOH5GwTmqz0',
+    // El vídeo de ORBIS va como enlace en la ficha (index.html); aquí se ve la foto propia.
+    youtube: '',
     images: [
-      { src: 'assets/media/xeo-lum-pruebas.jpg', caption: { es: 'XEO LUM + en la pared de pruebas, con su pantalla de control de relés', en: 'XEO LUM + on the test wall, showing its relay control screen' } }
+      { src: 'assets/media/xeo-lum-pruebas.jpg', caption: { es: 'XEO LUM + en desarrollo, en la pared de pruebas, con su pantalla de control de relés', en: 'XEO LUM + in development on the test wall, showing its relay control screen' } }
     ]
   }
 };

@@ -160,6 +160,7 @@
     "spec.radio.v": "LoRa (luminaires) · Zigbee (panel)",
     "spec.expansion": "expansion",
     "spec.expansion.v": "isolated RS485 buses",
+    "xeo.link3": "product video (es) -&gt;",
     "xeo.link1": "product launch (es) -&gt;",
     "xeo.link2": "product at orbis (es) -&gt;",
     "log.cmd": "git log --graph career",

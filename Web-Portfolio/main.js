@@ -392,101 +392,6 @@ async function initHero() {
   skipEvents.forEach(type => window.removeEventListener(type, skip));
 }
 
-/* Línea UART bajo el inicio: transmite el nombre byte a byte (8N1, UTF-8). */
-function initUart() {
-  const host = $('[data-uart]');
-  if (!host) return;
-  const tx = [];
-  const frames = [];
-  const put = (level, count) => { for (let i = 0; i < count; i++) tx.push(level); };
-  put(1, 12);
-  for (const char of 'ADRIÁN VIZCAÍNO · EMBEDDED · FIRMWARE · ') {
-    const start = tx.length;
-    const bytes = [...utf8.encode(char)];
-    bytes.forEach((byte, index) => {
-      if (index) put(1, 2);
-      put(0, 2);
-      for (let bit = 0; bit < 8; bit++) put((byte >> bit) & 1, 2);
-      put(1, 2);
-    });
-    frames.push({ start, end: tx.length, label: char === ' ' ? 'SP' : char, hex: bytes.map(hexByte).join(' ') });
-    put(1, 6);
-  }
-  const level = i => tx[((i % tx.length) + tx.length) % tx.length];
-  const canvas = $('canvas', host);
-  let palette = paletteOf(host);
-  let offset = 0;
-  let cursorX = null;
-  const draw = () => {
-    const { w, h } = size;
-    if (!w) return;
-    const P = palette;
-    ctx.clearRect(0, 0, w, h);
-    const sw = w < 640 ? 3 : 4;
-    const from = offset / sw;
-    const to = (offset + w) / sw;
-    const x = i => i * sw - offset;
-    const hi = 12;
-    const lo = h * 0.48;
-    const first = Math.floor(from) - 1;
-    let previous = level(first);
-    ctx.beginPath();
-    ctx.moveTo(x(first), previous ? hi : lo);
-    for (let i = first + 1; i <= to + 1; i++) {
-      const current = level(i);
-      if (current !== previous) {
-        ctx.lineTo(x(i), previous ? hi : lo);
-        ctx.lineTo(x(i), current ? hi : lo);
-        previous = current;
-      }
-    }
-    ctx.lineTo(w, previous ? hi : lo);
-    ctx.strokeStyle = rgba(P.ink);
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
-    const yc = h * 0.76;
-    const half = Math.min(10, h * 0.13);
-    ctx.font = `500 ${w < 640 ? 10 : 11}px ${MONO}`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    for (let k = Math.floor(from / tx.length) - 1; k <= Math.floor(to / tx.length) + 1; k++) {
-      for (const frame of frames) {
-        const x0 = x(k * tx.length + frame.start) + 1;
-        const x1 = x(k * tx.length + frame.end) - 1;
-        if (x1 < 0 || x0 > w) continue;
-        const hot = cursorX !== null && cursorX >= x0 && cursorX <= x1;
-        ctx.beginPath();
-        ctx.moveTo(x0, yc);
-        ctx.lineTo(x0 + 6, yc - half);
-        ctx.lineTo(x1 - 6, yc - half);
-        ctx.lineTo(x1, yc);
-        ctx.lineTo(x1 - 6, yc + half);
-        ctx.lineTo(x0 + 6, yc + half);
-        ctx.closePath();
-        ctx.fillStyle = hot ? rgba(P.accent) : rgba(P.accent, 0.1);
-        ctx.fill();
-        ctx.strokeStyle = rgba(P.ink, hot ? 1 : 0.45);
-        ctx.lineWidth = 1;
-        ctx.stroke();
-        const text = x1 - x0 > 76 ? `${frame.label} ${frame.hex}` : frame.label;
-        if (ctx.measureText(text).width < x1 - x0 - 12) {
-          ctx.fillStyle = rgba(hot ? P.onAccent : P.fg);
-          ctx.fillText(text, (x0 + x1) / 2, yc + 0.5);
-        }
-      }
-    }
-  };
-  const { ctx, size } = canvasSurface(canvas, draw);
-  onPaletteChange(() => { palette = paletteOf(host); draw(); });
-  host.addEventListener('pointermove', event => {
-    cursorX = event.clientX - canvas.getBoundingClientRect().left;
-    if (reduceMotion) draw();
-  });
-  host.addEventListener('pointerleave', () => { cursorX = null; if (reduceMotion) draw(); });
-  if (document.fonts) document.fonts.ready.then(draw);
-  animate(host, dt => { offset += dt * (size.w < 640 ? 40 : 56); draw(); });
-}
-
 /* ───────── Terminal de bring-up (sección de soluciones) ───────── */
 function initBringUp() {
   const screen = $('[data-bringup]');
@@ -1292,7 +1197,6 @@ initTheme();
 initHeader();
 initNav();
 initHero();
-initUart();
 initTyping();
 initReveal();
 initBringUp();

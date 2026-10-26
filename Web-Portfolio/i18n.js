@@ -31,8 +31,6 @@
     "hero.lead": "Embedded systems architect and firmware engineer. Starting from scratch, migrating to a new platform or extending what you already have, I take your product to production with a modular, tested architecture that is ready to grow.",
     "hero.cta": "&gt; tell me about your project",
     "hero.cta2": "see solutions",
-    "uart.hint": "hover over the name or the signal",
-    "uart.sr": "Animation of a UART serial line sending my name byte by byte.",
     "sol.cmd": "git status",
     "sol.title": "Where is your project at?",
     "sol.lead": "I join wherever it is: an idea, a product that needs migrating or one that is missing connectivity. Always on the same foundation: modular architecture and tests from day one.",
